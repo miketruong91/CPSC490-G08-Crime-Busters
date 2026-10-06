@@ -71,20 +71,9 @@ Date: 〈YYYY-MM-DD〉
 
 ## 0. Abstract
 
-> The primary purpose of abstract is to help the reader understand the main
-> message of current document (proposal in this case) without reading the
-> entire document. Therefore an abstract should include at least one or two
-> paragraph of background (or motivation) information for the project, a
-> brief description of the problem you are trying to solve in this proposal,
-> a proposed ideas or solutions, the significance of your proposed idea
-> elaborating why the proposed idea is non-trivial, significant, or
-> beneficial in one or two paragraphs, the project goals and outcomes in one
-> paragraph, and a brief description of what you will discuss in this
-> proposal, giving a brief outline of this document in 1-2 sentences in one
-> paragraph. Abstract should not exceed one page. Any abstract exceeded
-> one-page limit must be shortened.
+Crime happens everywhere, in every community. Access to crime data can help residents stay aware of and understand what's happening in the community. Although the data may be able to be accessed through specific agencies and departments, that data isn’t always shown in a way that’s easy for the public to visualize. The purpose of this project is to create an interactive application that organizes publicly available crime incident data and allows users to search for and view reported incidents of crime within an area. By showing the data through an interactive map, users can gain a better understanding of reported crime activity in their community. This can help users stay more informed about the crime happening in the areas that matter to them.
 
-〈Your abstract. Write it last.〉
+Our project has three main objectives. The first is to collect publicly available crime data from all possible and credible sources and organize it in a database. The second is to provide users with statistics and other useful information that can help with identifying possible patterns in crime activity. The third is to integrate an interactive map that allows users to explore incidents within a selected area. The expected outcome is a functional application that combines these three goals into one.
 
 ## 1. Introduction
 
