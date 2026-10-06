@@ -174,8 +174,11 @@ the measure that says it is done**, not a role-play sentence:
   - Objective 1.2: 〈Demonstrate the login round-trip in a runnable prototype
     at the Week-8 in-class check.〉 (#〈n〉)
 - **Goal 2: Identify possible crime patterns** (Epic #14)
-  - Objective 2.1: Analyze crime incidents within the selected area. (#15)
-  - Objective 2.2: Provide statistics and visualizations that summarize crime activity. (#16)
+
+  Our second goal is to help users identify possible crime patterns. The application will analyze incidents within the selected radius and look at information such as crime type, frequency, date, and time. It will help provide statistics and visualizations that summarize the crime activity in that specific area that was selected. This will make it easier for users to notice patterns without having to go through each crime record individually.
+
+  - **Objective 2.1: Analyze crime incidents within the selected area.** (#15)
+  - **Objective 2.2: Provide statistics and visualizations that summarize crime activity.** (#16)
 
 〈Replace the brackets with your own 2–3 goals and their objectives, and put
 the **real issue numbers** in as you file them — gate G8 checks that every
