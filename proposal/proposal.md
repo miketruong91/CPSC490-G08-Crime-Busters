@@ -173,9 +173,9 @@ the measure that says it is done**, not a role-play sentence:
     credentials, session expiry, and rejection of malformed input.〉 (#〈n〉)
   - Objective 1.2: 〈Demonstrate the login round-trip in a runnable prototype
     at the Week-8 in-class check.〉 (#〈n〉)
-- **Goal 2: 〈your second goal〉** (Epic #〈n〉)
-  - Objective 2.1: 〈Action word + what you will complete + how it will be
-    measured〉 (#〈n〉)
+- **Goal 2: Identify possible crime patterns** (Epic #14)
+  - Objective 2.1: Analyze crime incidents within the selected area. (#15)
+  - Objective 2.2: Provide statistics and visualizations that summarize crime activity. (#16)
 
 〈Replace the brackets with your own 2–3 goals and their objectives, and put
 the **real issue numbers** in as you file them — gate G8 checks that every
