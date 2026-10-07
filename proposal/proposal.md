@@ -184,6 +184,13 @@ the measure that says it is done**, not a role-play sentence:
   The application will analyze incidents within the selected radius and look at information such as crime type, frequency, date, and time. 
   It will help provide statistics and visualizations that summarize the crime activity in that specific area that was selected. This will make it easier for users to notice patterns without having to go through each crime record individually.
 
+  **Goal 3: Integrate an interactive map that allows users to explore crime incidents within a selected area** (Epic [#12](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/12))
+
+  Our third goal is to have an interactive map integrated within our application that way users can explore crime incidents. It will allow users to be able to search and filter the data by location, crime type, date, and time period. We also plan to let users select a location and create a custom radius around it. The application will then show the crime incidents that occurred within that selected area.
+
+  - Objective 3.1: Display crime incidents on an interactive map ([#13](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/13))
+  - Objective 3.2: Allow users to search and filter crime incidents by location, crime type, date, and time period ([#21](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/21))
+  - Objective 3.3: Allow users to select a location and define a custom serach radius ([#23](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/23))
   - **Objective 2.1: Analyze crime incidents within the selected area.** (#15)
   - **Objective 2.2: Provide statistics and visualizations that summarize crime activity.** (#16)
 
