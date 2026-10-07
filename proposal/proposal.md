@@ -169,6 +169,8 @@ Write each objective the way the guidance above asks — **an action word plus
 the measure that says it is done**, not a role-play sentence:
 
 - **Goal 1: Collect and organize crime data** (Epic #3)
+Our first goal is to collect crime data from different sources and keep it organized in one database. Since different law enforcement agencies may organize their crime records differently, we will make sure the data follows a consistent format before storing it. We will keep useful information such as the type of crime, location, date, and time so the rest of the application can easily access and use the crime data.
+
   - Objective 1.1: Collect publicly available crime data from selected sources. (#4)
   - Objective 1.2: Organize crime records into a consistent format. (#5)
   - Objective 1.3: Store standardized crime records in the database and verify that the stored records can be successfully retrieved. (#28)
