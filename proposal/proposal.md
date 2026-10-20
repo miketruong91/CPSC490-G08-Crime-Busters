@@ -73,7 +73,7 @@ Date: 〈YYYY-MM-DD〉
 
 Crime happens everywhere, in every community. Access to crime data can help residents stay aware of and understand what's happening in the community. Although the data may be able to be accessed through specific agencies and departments, that data isn’t always shown in a way that’s easy for the public to visualize. The purpose of this project is to create an interactive application that organizes publicly available crime incident data and allows users to search for and view reported incidents of crime within an area. By showing the data through an interactive map, users can gain a better understanding of reported crime activity in their community. This can help users stay more informed about the crime happening in the areas that matter to them.
 Our project has three main objectives. The first is to collect publicly available crime data from all possible and credible sources and organize it in a database. The second is to provide users with statistics and other useful information that can help with identifying possible patterns in crime activity. The third is to integrate an interactive map that allows users to explore incidents within a selected area. The expected outcome is a functional application that combines these three goals into one.
-This proposal presents the initial design and development plan for our Crime Busters. The project will focus on creating an interactive application that organizes public crime data and makes the information easier for users to explore and understand. The initial goals and objectives will guide the development of key features, including searching, filtering, and viewing reported crime incidents. These goals will also be organized into epics and user stories to guide the team through future development sprints. As the project progresses, the system will be developed and tested incrementally, allowing the team to improve its functionally based on testing, feedback, and project requirements.
+This proposal presents the initial design and development plan for our Crime Busters. The project will focus on creating an interactive application that organizes public crime data and makes the information easier for users to explore and understand. The initial goals and objectives will guide the development of key features, including searching, filtering, and viewing reported crime incidents. These goals will also be organized into epics and user stories to guide the team through future development sprints. As the project progresses, the system will be developed and tested incrementally, allowing the team to improve its functionality based on testing, feedback, and project requirements.
 
 
 ## 1. Introduction
@@ -168,7 +168,7 @@ the measure that says it is done**, not a role-play sentence:
   - Objective 1.2: Organize crime records into a consistent format. (#5)
   - Objective 1.3: Store standardized crime records in the database and verify that the stored records can be successfully retrieved. (#28)
 
-- **Goal 2: Identify possible crime patterns** (Epic #14)
+- **Goal 2: Identify possible crime patterns** (Epic )[#14](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/14)
 
   Our second goal is to help users identify possible crime patterns. 
   The application will analyze incidents within the selected radius and look at information such as crime type, frequency, date, and time. 
