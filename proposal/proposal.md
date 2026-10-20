@@ -135,54 +135,39 @@ is what the final project report is graded against.
 
 ## 2. Goals and Objectives
 
-> Describe goals and objectives. Goals are general statements of what you are
-> trying to accomplish with the project or problems to solve. Objectives are
-> specific, measurable statements of what you want to complete to reach the
-> project goals. Most projects have 2-3 goals.
->
-> List the objectives for each goal. To write objectives, look at the goal
-> statement and list what you need to complete using action words like use
-> case names in order to meet the goal.
->
-> Note that the goals and objectives in a proposal will be an important
-> metric to evaluate whether or not you successfully finished your project
-> when you turn in your final project report.
+### Goal 1: Establish a reliable and structured crime data foundation for the application.
+[[epic:#3]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/3)
 
-Each **goal** is tracked as an **Epic** issue and each **objective** as a
-**User Story** issue in the team repository (see the setup guide's *Epics and user stories* section).
-**Every epic and user story in the repository is linked from this section** —
-CI gate G8 fails if one exists that this section does not link. That is what
-keeps the goals in this document and the work on the board from drifting
-apart.
+- **Objective 1.1:** Collect publicly available crime records containing crime type, location, date, and time, with the data source and minimum record count to be confirmed after reviewing available datasets.
+  [[story:#4]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/4)
 
-Write each objective the way the guidance above asks — **an action word plus
-the measure that says it is done**, not a role-play sentence:
+- **Objective 1.2:** Organize collected crime records into a consistent format for crime type, location, date, and time, verifying that each record meets the documented format or is flagged for correction.
+  [[story:#5]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/5)
 
-- **Goal 1: Collect and organize crime data** (Epic #3)
+- **Objective 1.3:** Store standardized crime records in the database and verify that the stored record count and retrieved information match the records loaded.
+  [[story:#28]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/28)
 
-  Our first goal is to collect crime data from different sources and keep it organized in one database. 
-  Since different law enforcement agencies may organize their crime records differently, we will make sure the data follows a consistent format before storing it. 
-  We will keep useful information such as the type of crime, location, date, and time so the rest of the application can easily access and use the crime data.
+### Goal 2: Identify possible crime patterns.
+[[epic:#14]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/14)
 
-  - Objective 1.1: Collect publicly available crime data from selected sources. (#4)
-  - Objective 1.2: Organize crime records into a consistent format. (#5)
-  - Objective 1.3: Store standardized crime records in the database and verify that the stored records can be successfully retrieved. (#28)
+- **Objective 2.1:** Analyze crime incidents within the selected area by crime type, date, and time, verifying that the frequency counts match manually calculated results from a test dataset.
+  [[story:#15]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/15)
 
-- **Goal 2: Identify possible crime patterns** (Epic )[#14](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/14)
+- **Objective 2.2:** Provide the total incident count, counts by crime type, and charts summarizing crime activity in the selected area, with displayed values matching the corresponding database query results.
+  [[story:#16]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/16)
 
-  Our second goal is to help users identify possible crime patterns. 
-  The application will analyze incidents within the selected radius and look at information such as crime type, frequency, date, and time. 
-  It will help provide statistics and visualizations that summarize the crime activity in that specific area that was selected. This will make it easier for users to notice patterns without having to go through each crime record individually.
+### Goal 3: Integrate an interactive map that allows users to explore crime incidents within a selected area.
+[[epic:#12]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/12)
 
-  - **Objective 2.1: Analyze crime incidents within the selected area.** (#15)
-  - **Objective 2.2: Provide statistics and visualizations that summarize crime activity.** (#16)
+- **Objective 3.1:** Display crime incidents as interactive map markers showing available crime type, date, and time details, with the response-time target and test dataset size to be confirmed after selecting the dataset.
+  [[story:#13]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/13)
 
-〈Replace the brackets with your own 2–3 goals and their objectives, and put
-the **real issue numbers** in as you file them — gate G8 checks that every
-epic and story in your repository is linked from this section. A fully worked
-version of this, with live issues and a populated board, is in the course
-example repository.〉
+- **Objective 3.2:** Allow users to search and filter crime incidents by location, crime type, date range, and time period, verifying that individual and combined filters return the expected records from a test dataset.
+  [[story:#21]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/21)
 
+- **Objective 3.3:** Allow users to select a location and adjust a custom search radius, verifying with known test locations that incidents inside or on the boundary are included and incidents outside the radius are excluded.
+  [[story:#22]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/22)
+  
 ## 3. Proposed Approaches
 
 > Describe your proposed approach to solve the problem, specifying how you
