@@ -3,9 +3,9 @@
 **Department of Computer Science**
 **CPSC 490 Undergraduate Seminar in Computer Science — Proposal for Capstone Project**
 
-**Group 〈N〉 — 〈Group Name〉** · Sponsor: 〈RTX-3 / EL-1 / SNX-n / independent〉
-Authors: 〈Last, First (GitHub username)〉, 〈…〉
-Date: 〈YYYY-MM-DD〉
+**Group 08 — Crime Busters** · Sponsor: independent
+Authors: 〈Reyes, Alex (alexreyes1-ctrl)〉, 〈Chavez, Julian (jmbchavez)〉, 〈Truong, Mike (miketruong91)〉, 〈Yonnas, Adonay (Abreezy2)〉
+Date: 2026-10-20
 
 > **This file is the proposal document, not a README.** Its section numbers,
 > titles, and guidance are copied from the course Word template, so it
