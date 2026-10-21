@@ -4,44 +4,99 @@ Related issues: Epic #3; Story #4; Tasks #8 and #9
 
 ## Selection status
 
-We are currently evaluating candidate sources. No source has been selected, and
-this document does not yet establish completion of Story #4.
+Costa Mesa's burglary layer has been queried successfully and is a
+candidate for prototype testing. Final team selection remains pending.
+This document does not establish completion of Story #4.
 
 ## Candidate sources
-
-| Candidate | URL | Evaluation status |
-|---|---|---|
-| Costa Mesa Police Incidents | https://apps.costamesaca.gov/gis1/rest/services/PoliceIncidents/MapServer | Under evaluation |
-| Fullerton Police Calls for Service | https://www2.cityoffullerton.com/webdata/apps/cfs/ | Under evaluation |
-| Community Crime Map | https://www.communitycrimemap.com/ | Under evaluation |
+Sample query verified; final selection pending
 
 ## Source evaluation
 
-For each candidate, record the following after verification:
+### Costa Mesa source evaluation
 
-- Publishing agency and dataset name.
-- Whether records describe crimes, calls for service, or both.
-- Geographic coverage and available dates.
-- API or download method.
-- Available category, location, date, and time fields.
-- Location precision and coordinate system, if provided.
-- Usage terms and access restrictions.
-- Missing information and limitations.
-- Reviewer and date reviewed.
+Reviewed by: Alex Reyes
+Review date: October 20, 2026
 
-## Selected source and rationale
+### Publisher and dataset
 
-Pending evaluation and team agreement.
+City of Costa Mesa / Costa Mesa Police Department.
+PoliceIncidents service, Burglary layer 57.
 
-## Collection and field-verification evidence
+Layer URL:
+https://apps.costamesaca.gov/gis1/rest/services/PoliceIncidents/MapServer/57
 
-Collection and field verification are pending.
+The source describes calls for service, including burglary-related calls.
+These records must not be treated as confirmed crimes.
 
-When completed, record:
-- The exact endpoint or download URL used.
-- Retrieval date and query parameters.
-- Number of records retrieved.
-- Where the data or reproducible retrieval instructions are stored.
-- Actual source field names corresponding to category, location,
-  date, and time.
-- Missing-field counts and any exclusions.
+### Access method
+
+Open the layer URL, select Query, and use:
+
+| Parameter | Value |
+|---|---|
+| Where | 1=1 |
+| Out Fields | * |
+| Return Geometry | True |
+| Output Spatial Reference | 4326 |
+| Format | JSON |
+
+### Available fields
+
+| Field | Observed content |
+|---|---|
+| FID | Object identifier |
+| ID | Call identifier |
+| CallDate | Date in MM/DD/YYYY format |
+| CallTime | Time in HH:MM:SS format |
+| Type | Numeric code; meaning not yet verified |
+| Code | Call code |
+| Nature | Call description |
+| Location | Block-level address |
+| City | City name |
+| Agency | Agency identifier |
+| Dispo | Disposition text; may be blank |
+| geometry.x | Longitude in EPSG:4326 output |
+| geometry.y | Latitude in EPSG:4326 output |
+
+### Sample-query evidence
+
+The query returned 19 features. All contained populated ID, CallDate,
+CallTime, Nature, Location, City, and Agency fields and numeric coordinates.
+One Dispo value contained only whitespace.
+
+All returned records identified COSTA MESA as the city and CMPD as the
+agency. Their dates ranged from July 14 through July 27, 2025.
+
+These findings describe this response only, not the entire service.
+The returned dates are historical despite the layer's Past 14 Days label.
+
+### Suitability and limitations
+
+The sample contains fields that support initial testing of map markers,
+category and date/time filters, and geographic searches.
+
+Locations use block-level addresses. Coordinate accuracy and exact
+incident positions have not been verified.
+
+The sample includes a canceled call and records marked NO REPORT REQUIRED.
+Counting every call as a confirmed crime would misrepresent the data.
+
+Update frequency, timezone, reuse terms, and access restrictions remain
+unverified. Public accessibility alone does not establish reuse permission.
+
+## Selection outcome
+
+Costa Mesa has been identified as an accessible candidate for prototype
+evaluation. Final adoption requires team agreement and review of the
+remaining limitations.
+
+Fullerton and Community Crime Map remain unevaluated candidates.
+
+## Remaining work
+
+- Confirm reuse terms and access restrictions.
+- Investigate the historical dates and update frequency.
+- Confirm timezone and location accuracy.
+- Agree on the source and collection scope with the team.
+- Complete broader collection and field validation under Story #4 and Task #9.
