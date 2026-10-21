@@ -75,3 +75,26 @@ the actual dataset, API, database, or interactive map.
 - Before marking #17 complete, the team should review this approach, run the
   tests in the repository, and agree whether prototype-only filtering satisfies
   the Issue's Definition of Done or whether dataset integration is required.
+
+
+## Task #18 — crime frequency by type, date, and time
+
+The `prototype/crime_frequency.py` module implements `analyze_frequency(incidents)` for the incident records already selected by Task #17. This function does not perform its own geographic filtering; callers should first use `filter_incidents` with the desired search center and radius. The analysis returns a total selected-record count and three frequency tables: `by_crime_type`, `by_date`, and `by_hour`.
+
+Crime types are counted from nonempty `crime_type` strings, with surrounding whitespace removed. Dates use `YYYY-MM-DD` and hours are grouped into 24-hour buckets labeled `HH:00`. The prototype accepts an ISO-8601 `datetime` or `timestamp`, or separate ISO `date` and `time` fields. Missing or invalid values are omitted from the affected group count but the record remains in `total_incidents`. This means category/date/hour totals can be lower than the overall total; users should not interpret missing fields as zero crime.
+
+The code groups by **hour of day**, not by a combined date-and-hour interval, and does not yet produce visualizations. ISO timestamps containing offsets are read as written without conversion to a common timezone; the team must define the desired reporting timezone when it chooses the real public dataset. The selected dataset's field names and quality have not been verified.
+
+### Example and verification
+
+For three selected example records with types Theft, Assault, Theft, on two dates and at 09:15, 21:30, and 09:05, the output includes `total_incidents: 3`, `by_crime_type: {Assault: 1, Theft: 2}`, `by_date: {2026-10-19: 2, 2026-10-20: 1}`, and `by_hour: {09:00: 2, 21:00: 1}`.
+
+Run both Task #17 and Task #18 unit tests from the repository root:
+
+```bash
+python3 -m unittest discover -s prototype -p 'test_*.py' -v
+```
+
+`prototype/test_crime_frequency.py` tests category/date/hour counts, integration with selected-area filtering, empty input, missing fields, invalid date/time strings, and category whitespace normalization. These tests use synthetic records only. The team must confirm the output against a manually counted sample from the selected real dataset before claiming integration complete.
+
+**Issue:** [Task #18](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/18) under [Story #15](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/15). **Next dependency:** Task #19 can use these counts for summary statistics; Task #20 can display charts after the UI integration is designed.
