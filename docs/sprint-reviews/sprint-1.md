@@ -7,7 +7,7 @@
 ## Progress this sprint — the substance
 
 **Proposal moved during October 6–19:**
-- [PR #38](../../pull/38) is referenced below as [PR #38](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/38): Goal 2 objectives added to the proposal, merged October 6.
+- [PR #38](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/38): Goal 2 objectives added to the proposal, merged October 6.
 - [PR #40](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/40): Goal 1 objectives added, merged October 7. This PR documented objectives; it did **not** implement the Goal 1 data workflow.
 
 **Repository setup during October 6–19:**
