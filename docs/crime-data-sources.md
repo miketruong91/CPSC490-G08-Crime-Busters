@@ -63,7 +63,10 @@ Open the layer URL, select Query, and use:
 | geometry.y | Latitude in EPSG:4326 output |
 
 ### Sample-query evidence
+Reproducible query:
+[Burglary layer 57 — JSON sample](https://apps.costamesaca.gov/gis1/rest/services/PoliceIncidents/MapServer/57/query?where=1%3D1&outFields=%2A&returnGeometry=true&outSR=4326&f=pjson)
 
+Results may change; the findings below describe the response inspected.
 The query returned 19 features. All contained populated ID, CallDate,
 CallTime, Nature, Location, City, and Agency fields and numeric coordinates.
 One Dispo value contained only whitespace.
