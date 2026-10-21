@@ -9,9 +9,12 @@ candidate for prototype testing. Final team selection remains pending.
 This document does not establish completion of Story #4.
 
 ## Candidate sources
-Sample query verified; final selection pending
 
-## Source evaluation
+| Candidate | URL | Evaluation status |
+|---|---|---|
+| Costa Mesa Police Incidents | https://apps.costamesaca.gov/gis1/rest/services/PoliceIncidents/MapServer | Sample query verified; final selection pending |
+| Fullerton Police Calls for Service | https://www2.cityoffullerton.com/webdata/apps/cfs/ | Under evaluation |
+| Community Crime Map | https://www.communitycrimemap.com/ | Under evaluation |
 
 ### Costa Mesa source evaluation
 
