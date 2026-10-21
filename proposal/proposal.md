@@ -171,64 +171,63 @@ trade-off each. If it runs past a page, you are writing §4.〉
 
 ## 4. Required Environment, Resources, and Planned Activities
 
-> Review the required and available resources and environment to complete
-> your project. For example, server, platform, software tools, operating
-> systems, DBMS, or any required skills.
->
-> Describe the expected activities to achieve the stated goals, e.g.,
-> software development process.
+The Crime Busters project requires access to publicly available incident records, a development environment for data processing and testing, a database for storing standardized records, and a web-based map interface. The team will use its shared GitHub repository to maintain source code, technical documentation, issues, and pull requests. Development will proceed in small increments so that data ingestion, area filtering, summaries, and map presentation can be verified separately before integration.
 
-〈Your environment, resources, and planned activities.〉
+### Required environment and resources
 
-**Diagrams belong in this section.** Include at minimum a high-level
-architecture diagram and a system (context) diagram; add the ER/EER model and
-a data-flow diagram where they help the reader understand what you are
-building and what it depends on. Draw them with any graphical tool
-(Lucidchart, draw.io, Miro, Mermaid, ERDPlus, Figma), keep the authoritative
-copies in `docs/design/` with both editable source and exported image, and
-reference them here.
+The current selected-area filtering prototype uses Python 3 and its standard library; its automated checks use `unittest` and synthetic coordinates. Team members need a computer capable of running the project code, Git access, and a browser for reviewing the repository and eventual map interface. A public data source containing usable incident categories, dates, times, and locations must be selected and evaluated before the team can commit to a final import workflow. Location precision, permitted use, missing values, and the distinction between calls for service and confirmed crimes will be documented as part of Goal 1.
 
-〈Number every figure, caption it, and point at it from the prose — "Figure 1
-shows the three deployment tiers and the trust boundary between them." A
-figure the text never mentions is decoration. See `docs/design/DIAGRAMS.md`
-for tools, conventions, and the rule that every box and arrow must be
-verified against reality.〉
+The final database management system, mapping library, application framework, hosting platform, and operating-system deployment target have **not yet been selected or verified** in the existing project documentation. The team will choose these based on the source data, compatibility, development effort, and testing needs. Any credentials or configuration required by a future data service must be kept outside version control. A hosted server is not required to verify the current standalone prototype; deployment resources will be specified after the system architecture is agreed.
+
+The application is planned around four cooperating responsibilities: (1) acquiring and validating incident data, (2) storing and retrieving standardized records, (3) filtering and summarizing records for a selected area, and (4) presenting the results on an interactive map. The map interface will request incident information using the user's location, radius, and other filters; the data-processing components will return records and counts consistent with those criteria. This is a **proposed architecture**, not a claim that the full system is implemented.
+
+### Architecture and system context diagrams
+
+The team will prepare **Figure 1, High-Level System Architecture**, showing the public data source, import/normalization step, database, query/filter and analysis logic, and user-facing map. **Figure 2, System Context Diagram**, will identify the user, the application, and external data providers, with the direction of each data exchange. The editable source files and exported figures are planned for `docs/design/`; they must be reviewed against the actual technology choices before inclusion in the Word proposal. No unverified diagrams are represented as completed in this draft. A database entity-relationship diagram and a data-flow diagram will be added when the schema and interfaces are defined.
 
 ### Specification and design documents
 
-**Every specification and design document the team writes is listed here**
-with the objective it serves. This section is the index of the project's
-technical detail: §3 holds the argument, §4 holds the documents that make it
-buildable. CI gate G9 fails if a document exists in `docs/specs/` or
-`docs/design/` that this section does not link.
+The following documents provide the currently verified technical reference and the design artifacts still needed. The planned documents are **not** presented as existing files. The document index must be updated as the team creates specifications or design files so that every actual file in `docs/specs/` and `docs/design/` is linked here.
 
-| Document | Kind | Covers | Issues |
-|---|---|---|---|
-| 〈docs/specs/account-management.md〉 | specification | 〈account management requirements〉 | 〈#n, #n〉 |
-| 〈docs/design/architecture.md〉 | design | 〈system architecture + data model〉 | 〈#n〉 |
-
-〈The scaffold ships `docs/specs/example-spec.md` and
-`docs/design/example-design.md` as worked examples — read them, then delete
-them once you have your own, and list yours here.〉
-
-〈Replace these rows with your own. Each document names its epic and stories
-in its own first lines too (gate G2), so the trail runs both ways.〉
+| Document | Kind | Covers | Related issues | Status |
+|---|---|---|---|---|
+| [Crime pattern analysis](../docs/crime-pattern-analysis.md) | Prototype specification / analysis | Selected-area filtering inputs, distance calculation, test coverage, and integration dependencies | [[task:#17]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/17), [[task:#18]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/18) | Exists; integration pending |
+| `docs/design/` architecture diagram and system context diagram | Planned design figures | System components, external actors, and data flow | [[task:#23]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/23), [[task:#24]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/24), [[task:#32]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/32) | To be created and reviewed |
+| `docs/design/` database model | Planned design | Incident record fields, relationships, and storage constraints | [[task:#10]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/10), [[task:#32]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/32), [[task:#35]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/35) | To be created after schema selection |
 
 ### Planned activities — the work items
 
-The goals and objectives live in §2 as epics and user stories. **This section
-links every *other* work item: features, enhancements, bugs, tasks, and
-sub-tasks** — the concrete activities that deliver those objectives. CI gate
-G8 fails if such an issue exists that this section does not link.
+The goals and objectives in §2 identify the project's epics and user stories. The tasks below describe the work required to deliver them. The **status** column indicates current implementation evidence or a planned activity; it does not assign an unverified sprint milestone or claim that the work is complete. Actual assignees, story points, and sprint milestones are managed in the GitHub Issues and project board.
 
-| Issue | Type | Activity | Parent | Owner | Sprint |
+| Issue | Type | Activity | Parent | Responsibility | Status |
 |---|---|---|---|---|---|
-| 〈#n〉 | 〈task〉 | 〈stand up the prototype login endpoint〉 | 〈#story〉 | 〈owner〉 | 〈Sprint 1〉 |
-| 〈#n〉 | 〈feature/enhancement/bug/task/sub-task〉 | 〈…〉 | 〈#story〉 | 〈…〉 | 〈…〉 |
+| [[task:#8]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/8) | Task | Identify and document an accessible public crime dataset | [[story:#4]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/4) | Alex / Goal 1 | Planning |
+| [[task:#9]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/9) | Task | Verify crime type, location, date, and time fields | [[story:#4]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/4) | Goal 1 | Planning |
+| [[task:#10]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/10) | Task | Define a consistent crime-record format | [[story:#5]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/5) | Goal 1 | Planning |
+| [[task:#11]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/11) | Task | Normalize source records into that format | [[story:#5]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/5) | Goal 1 | Planning |
+| [[task:#32]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/32) | Task | Design the initial database schema | [[story:#28]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/28) | Goal 1 | Planning |
+| [[task:#35]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/35) | Task | Load standardized records into the database | [[story:#28]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/28) | Goal 1 | Planning |
+| [[task:#36]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/36) | Task | Retrieve stored records and verify data consistency | [[story:#28]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/28) | Goal 1 | Planning |
+| [[task:#17]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/17) | Task | Filter incident records within a selected circular area | [[story:#15]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/15) | Mike / Goal 2 | Prototype merged; validation pending |
+| [[task:#18]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/18) | Task | Count incidents by crime type, date, and time | [[story:#15]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/15) | Goal 2 | Planned |
+| [[task:#19]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/19) | Task | Generate incident totals and category summary statistics | [[story:#16]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/16) | Goal 2 | Planned |
+| [[task:#20]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/20) | Task | Visualize incident frequency and summary statistics | [[story:#16]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/16) | Goal 2 | Planned |
+| [[task:#23]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/23) | Task | Set up the interactive map | [[story:#13]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/13) | Goal 3 | Planned |
+| [[task:#24]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/24) | Task | Connect incident data to the map | [[story:#13]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/13) | Goal 3 | Planned |
+| [[task:#27]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/27) | Task | Display and select incident markers | [[story:#13]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/13) | Goal 3 | Planned |
+| [[task:#29]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/29) | Task | Create location, crime-type, and time filter controls | [[story:#21]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/21) | Goal 3 | Planned |
+| [[task:#30]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/30) | Task | Connect search filters to incident data | [[story:#21]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/21) | Goal 3 | Planned |
+| [[task:#31]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/31) | Task | Update map results when filters change | [[story:#21]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/21) | Goal 3 | Planned |
+| [[task:#33]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/33) | Task | Let users select a location and radius | [[story:#22]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/22) | Goal 3 | Planned |
+| [[task:#34]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/34) | Task | Display the selected radius on the map | [[story:#22]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/22) | Goal 3 | Planned |
+| [[task:#42]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/42) | Task | Create the project README | Standalone documentation | Team | Completed |
+| [[task:#49]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/49) | Task | Write the proposal abstract | Standalone documentation | Team | Completed |
+| [[task:#51]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/51) | Task | Update proposal §2 goals and objectives | Standalone documentation | Team | In review / verification |
+| [[task:#53]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/53) | Task | Complete proposal §1 introduction and related work | Standalone documentation | Team | In review / verification |
 
-〈Replace these rows with your own, and keep the table current as you file new
-issues — with §2 it gives a reader every planned activity in one place, each
-traceable to the objective it serves.〉
+Work will follow an incremental review process. For Goal 1, the team will first select and assess a dataset, define its standardized fields, then implement database loading and retrieval checks. For Goal 2, selected-area filtering will feed frequency analysis and summary generation. For Goal 3, the team will implement map display, filtering controls, and radius selection, then connect those interactions to the data-processing components. Each implementation task will be developed on a separate branch, checked against its acceptance criteria, and submitted in a pull request for review by at least one other team member before merging into `develop`.
+
+Testing will include unit tests for filtering and counts, checks for invalid or missing input data, comparisons of stored versus retrieved records, and integration tests once the map and database interfaces exist. The team will use synthetic data for isolated tests and will validate behavior against the selected public dataset when its schema and access constraints are confirmed. The standalone area-filtering code and tests are already available in `prototype/area_filter.py` and `prototype/test_area_filter.py`; this does not yet establish end-to-end map or database functionality.
 
 ## 5. Project Outcomes
 
