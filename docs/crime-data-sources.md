@@ -4,9 +4,16 @@ Related issues: Epic #3; Story #4; Tasks #8 and #9
 
 ## Selection status
 
-Costa Mesa's burglary layer has been queried successfully and is a
-candidate for prototype testing. Final team selection remains pending.
-This document does not establish completion of Story #4.
+Costa Mesa's PoliceIncidents Burglary layer 57 has been identified
+as technically suitable for evaluating record parsing, map markers,
+date/time filters, and radius searches.
+
+The inspected response contains 19 historical burglary-related
+calls for service with dates, times, descriptions, block-level
+locations, and coordinates. These are not confirmed crime counts.
+
+Final team adoption and reuse terms remain unresolved. This
+evaluation does not establish completion of Story #4 or Task #9.
 
 ## Candidate sources
 
@@ -93,11 +100,24 @@ unverified. Public accessibility alone does not establish reuse permission.
 
 ## Selection outcome
 
-Costa Mesa has been identified as an accessible candidate for prototype
-evaluation. Final adoption requires team agreement and review of the
-remaining limitations.
+The inspected Costa Mesa sample provides the fields needed for
+initial technical evaluation. Nature and Code describe the call
+category, CallDate and CallTime provide date and time values, and
+geometry provides coordinates in EPSG:4326.
 
-Fullerton and Community Crime Map remain unevaluated candidates.
+The source is suitable for testing with historical call records;
+it has not been verified as a current crime feed. Block-level
+locations limit spatial precision, and dispositions require careful
+interpretation before producing crime statistics.
+
+The published service metadata contains no license information:
+https://apps.costamesaca.gov/gis1/rest/services/PoliceIncidents/MapServer/info/iteminfo
+
+Reuse terms and final team adoption remain unresolved. This document
+does not claim permission to redistribute the records.
+
+Fullerton and Community Crime Map were listed as alternatives but
+have not been evaluated.
 
 ## Remaining work
 
