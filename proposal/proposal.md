@@ -150,24 +150,13 @@ Calls for service must also be distinguished from confirmed crimes. If a selecte
   
 ## 3. Proposed Approaches
 
-> Describe your proposed approach to solve the problem, specifying how you
-> will achieve the stated goals. List some possible strategies.
+The proposed strategy is to build a traceable data-to-map workflow in small, testable increments. For Goal 1, the team will evaluate a public source, validate its fields and limitations, convert records into a consistent format, and verify storage and retrieval. A reviewed local dataset will make demonstrations repeatable while keeping source identity, missing values, and location precision visible. Calls for service will retain that label rather than being presented as confirmed crimes. Source adoption and reuse terms remain open; §4 links the current evaluation and format specification.
 
-〈Your approach — **clear and concise**. State the strategy you chose, the
-alternatives you considered, and the reasoning that decided between them.
-Think of this as the argument, not the manual: a reader should finish this
-section understanding *what* you will do and *why that* rather than the
-alternatives.〉
+For Goal 2, the application will select records within a user-defined area and summarize their frequencies by category, date, and time. These descriptive summaries will help users explore possible patterns in the available records. They will not establish causation or predict individual crimes. The existing area-filtering and frequency modules provide a starting point; connecting them to standardized records, storage, and the interface remains planned work.
 
-**Keep the details out of this section.** Tooling, platforms, frameworks,
-DBMS choices, environment setup, diagrams, and the work breakdown all belong
-in §4 (Required Environment, Resources, and Planned Activities). If a
-sentence here names a version number, a library, or a configuration, it
-probably belongs in §4 — leave a pointer instead ("the implementation stack
-is detailed in §4").
+For Goal 3, users will explore mapped records, inspect incident details, and narrow results using location, category, date/time, and radius controls. Map results and summaries should use the same selected records so that the two views agree. The team will first connect a small verified dataset to the map, then add and test the remaining interactions incrementally. The implementation stack and component boundaries are detailed in §4.
 
-〈A few paragraphs, or a short list of candidate strategies with one line of
-trade-off each. If it runs past a page, you are writing §4.〉
+Possible alternatives include requesting live provider data on every search or importing a reviewed snapshot before querying locally. Live requests could provide newer data but depend on provider availability, update frequency, and access terms that have not been verified. Local snapshots support repeatable testing, but their age and coverage must be disclosed. The latter is the proposed initial approach, subject to source approval. Similarly, descriptive counts are a smaller, more explainable starting point than predictive modeling, whose data and evaluation requirements have not been established. These are proposal trade-offs for team review, not a record of completed experiments or undocumented team decisions.
 
 ## 4. Required Environment, Resources, and Planned Activities
 
@@ -175,25 +164,39 @@ The Crime Busters project requires access to publicly available incident records
 
 ### Required environment and resources
 
-The current selected-area filtering prototype uses Python 3 and its standard library; its automated checks use `unittest` and synthetic coordinates. Team members need a computer capable of running the project code, Git access, and a browser for reviewing the repository and eventual map interface. A public data source containing usable incident categories, dates, times, and locations must be selected and evaluated before the team can commit to a final import workflow. Location precision, permitted use, missing values, and the distinction between calls for service and confirmed crimes will be documented as part of Goal 1.
+The agreed target stack is **Python with Flask, SQLite, Leaflet.js, and HTML/CSS/JavaScript**, running on **localhost**. This is the implementation plan, not a claim that those components are integrated. Python will handle import validation, queries, area filtering, and summaries; Flask will serve the browser interface and application requests; SQLite will store standardized records in a local database file; Leaflet.js will present the interactive map in the browser.
 
-The final database management system, mapping library, application framework, hosting platform, and operating-system deployment target have **not yet been selected or verified** in the existing project documentation. The team will choose these based on the source data, compatibility, development effort, and testing needs. Any credentials or configuration required by a future data service must be kept outside version control. A hosted server is not required to verify the current standalone prototype; deployment resources will be specified after the system architecture is agreed.
+Team members need a computer with Python, Git, a modern browser, and access to this repository. A Python virtual environment will isolate application dependencies. Flask and Leaflet versions and installation steps must be pinned and documented when their implementation tasks add them; the current `prototype/requirements.txt` has no runtime dependencies. CI currently uses Python 3.12. SQLite will not require a separate database server. No hosted application server is planned for the localhost prototype. Internet access is needed to acquire approved source records and, if chosen, remote basemap tiles. The basemap provider, attribution, usage terms, and offline behavior remain unresolved; Leaflet itself is not a tile provider. No geocoding service, live feed, or public deployment is assumed.
 
-The application is planned around four cooperating responsibilities: (1) acquiring and validating incident data, (2) storing and retrieving standardized records, (3) filtering and summarizing records for a selected area, and (4) presenting the results on an interactive map. The map interface will request incident information using the user's location, radius, and other filters; the data-processing components will return records and counts consistent with those criteria. This is a **proposed architecture**, not a claim that the full system is implemented.
+Goal 1's [Crime Data Sources](../docs/crime-data-sources.md) documents the inspected Costa Mesa Burglary layer 57 response: 19 historical calls for service, with block-level locations. Final adoption, reuse terms, timezone, and update frequency remain unresolved. [Standardized Crime Data Format](../docs/crime-data-format.md) defines the UTF-8 JSON exchange format, source identifiers, nullable fields, coordinate validation, quality flags, and duplicate handling. It is a specification, not evidence of a completed import. The planned SQLite schema (#32), import (#35), and retrieval checks (#36) must preserve those meanings. Unusable coordinates must be excluded from spatial results; missing fields cannot participate in filters that require them. Source values must remain traceable and must not be invented.
+
+At the inspected `develop` commit `faa5dc5`, `prototype/area_filter.py` and `prototype/crime_frequency.py` contain standalone filtering and frequency logic with synthetic-data tests. They do not establish an integrated Flask application, SQLite storage, or interactive map. The frequency module reads `date`/`time` or combined timestamps, while the standardized format uses `incident_date`/`incident_time`; an explicit adapter or reviewed interface change and tests are needed before integration. The scaffold login example does not establish a project authentication requirement.
 
 ### Architecture and system context diagrams
 
-The team will prepare **Figure 1, High-Level System Architecture**, showing the public data source, import/normalization step, database, query/filter and analysis logic, and user-facing map. **Figure 2, System Context Diagram**, will identify the user, the application, and external data providers, with the direction of each data exchange. The editable source files and exported figures are planned for `docs/design/`; they must be reviewed against the actual technology choices before inclusion in the Word proposal. No unverified diagrams are represented as completed in this draft. A database entity-relationship diagram and a data-flow diagram will be added when the schema and interfaces are defined.
+Figure 1 shows the proposed components and localhost boundary. The browser will request pages and submit search criteria to Flask, which will query SQLite and apply filtering/analysis before returning records and summaries. Import and normalization will be a separate preparation step, not a provider request on every user search. Interfaces and route names remain to be designed. The authoritative [architecture design and editable Mermaid](../docs/design/architecture.md) explain each exchange and its implementation status.
+
+![Proposed localhost architecture: browser, Flask, SQLite, and a separate import workflow](../docs/design/diagrams/architecture.png)
+
+*Figure 1 — Proposed high-level architecture; arrows describe planned exchanges, not implemented interfaces.*
+
+Figure 2 treats Crime Busters as one system and shows its external actors. A team data maintainer will prepare approved records; a user will explore the application. A possible external basemap dependency remains conditional until a provider is selected. The [system context design and editable Mermaid](../docs/design/system-context.md) define this boundary. Alex's ER model and Adonay's DFD/sequence work are separate planned designs, not delivered by these two figures.
+
+![Proposed system context: user, data maintainer, public data provider, and conditional basemap provider](../docs/design/diagrams/system-context.png)
+
+*Figure 2 — Proposed system context; the conditional basemap arrows do not imply an adopted provider.*
 
 ### Specification and design documents
 
-The following documents provide the currently verified technical reference and the design artifacts still needed. The planned documents are **not** presented as existing files. The document index must be updated as the team creates specifications or design files so that every actual file in `docs/specs/` and `docs/design/` is linked here.
+| Document | Kind | Related issues | Evidence/status |
+|---|---|---|---|
+| [Crime Data Sources](../docs/crime-data-sources.md) | Source evaluation | #3, #4, #8, #9 | Evaluation exists; final source adoption and broader collection pending |
+| [Standardized Crime Data Format](../docs/crime-data-format.md) | Exchange specification | #5, #10, #11 | Format exists; normalization and storage pending |
+| [Crime pattern analysis](../docs/crime-pattern-analysis.md) | Prototype analysis | #15, #17, #18 | Standalone code exists; standardized-data integration pending |
+| [Architecture](../docs/design/architecture.md) | Proposed design + Figure 1 | #60, #66; all three goals | Draft for independent review |
+| [System context](../docs/design/system-context.md) | Proposed design + Figure 2 | #60, #66; all three goals | Draft for independent review |
 
-| Document | Kind | Covers | Related issues | Status |
-|---|---|---|---|---|
-| [Crime pattern analysis](../docs/crime-pattern-analysis.md) | Prototype specification / analysis | Selected-area filtering inputs, distance calculation, test coverage, and integration dependencies | [[task:#17]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/17), [[task:#18]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/18) | Exists; integration pending |
-| `docs/design/` architecture diagram and system context diagram | Planned design figures | System components, external actors, and data flow | [[task:#23]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/23), [[task:#24]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/24), [[task:#32]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/32) | To be created and reviewed |
-| `docs/design/` database model | Planned design | Incident record fields, relationships, and storage constraints | [[task:#10]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/10), [[task:#32]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/32), [[task:#35]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/35) | To be created after schema selection |
+The course examples in `docs/specs/example-spec.md` and `docs/design/example-design.md` are reference templates, not Crime Busters designs. ER, DFD, and sequence artifacts will be indexed when their owners create them; their filenames and interfaces are not asserted here.
 
 ### Planned activities — the work items
 
@@ -201,15 +204,15 @@ The goals and objectives in §2 identify the project's epics and user stories. T
 
 | Issue | Type | Activity | Parent | Responsibility | Status |
 |---|---|---|---|---|---|
-| [[task:#8]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/8) | Task | Identify and document an accessible public crime dataset | [[story:#4]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/4) | Alex / Goal 1 | Planning |
-| [[task:#9]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/9) | Task | Verify crime type, location, date, and time fields | [[story:#4]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/4) | Goal 1 | Planning |
-| [[task:#10]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/10) | Task | Define a consistent crime-record format | [[story:#5]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/5) | Goal 1 | Planning |
+| [[task:#8]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/8) | Task | Identify and document an accessible public crime dataset | [[story:#4]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/4) | Alex / Goal 1 | Source evaluation documented; final adoption pending |
+| [[task:#9]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/9) | Task | Verify crime type, location, date, and time fields | [[story:#4]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/4) | Goal 1 | Sample fields documented; broader collection validation pending |
+| [[task:#10]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/10) | Task | Define a consistent crime-record format | [[story:#5]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/5) | Goal 1 | Format specification merged (#10); normalization pending |
 | [[task:#11]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/11) | Task | Normalize source records into that format | [[story:#5]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/5) | Goal 1 | Planning |
 | [[task:#32]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/32) | Task | Design the initial database schema | [[story:#28]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/28) | Goal 1 | Planning |
 | [[task:#35]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/35) | Task | Load standardized records into the database | [[story:#28]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/28) | Goal 1 | Planning |
 | [[task:#36]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/36) | Task | Retrieve stored records and verify data consistency | [[story:#28]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/28) | Goal 1 | Planning |
 | [[task:#17]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/17) | Task | Filter incident records within a selected circular area | [[story:#15]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/15) | Mike / Goal 2 | Prototype merged; validation pending |
-| [[task:#18]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/18) | Task | Count incidents by crime type, date, and time | [[story:#15]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/15) | Goal 2 | Planned |
+| [[task:#18]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/18) | Task | Count incidents by crime type, date, and time | [[story:#15]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/15) | Goal 2 | Frequency module merged; standardized-data integration pending |
 | [[task:#19]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/19) | Task | Generate incident totals and category summary statistics | [[story:#16]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/16) | Goal 2 | Planned |
 | [[task:#20]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/20) | Task | Visualize incident frequency and summary statistics | [[story:#16]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/16) | Goal 2 | Planned |
 | [[task:#23]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/23) | Task | Set up the interactive map | [[story:#13]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/13) | Goal 3 | Planned |
@@ -222,8 +225,10 @@ The goals and objectives in §2 identify the project's epics and user stories. T
 | [[task:#34]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/34) | Task | Display the selected radius on the map | [[story:#22]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/22) | Goal 3 | Planned |
 | [[task:#42]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/42) | Task | Create the project README | Standalone documentation | Team | Completed |
 | [[task:#49]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/49) | Task | Write the proposal abstract | Standalone documentation | Team | Completed |
-| [[task:#51]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/51) | Task | Update proposal §2 goals and objectives | Standalone documentation | Team | In review / verification |
-| [[task:#53]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/53) | Task | Complete proposal §1 introduction and related work | Standalone documentation | Team | In review / verification |
+| [[task:#51]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/51) | Task | Update proposal §2 goals and objectives | Standalone documentation | Team | Merged; see linked issue |
+| [[task:#53]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/53) | Task | Complete proposal §1 introduction and related work | Standalone documentation | Team | Merged; see linked issue |
+
+Sprint 2 documentation for the November 3, 2026 review is tracked in [[task:#65]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/65) (§3 draft), [[task:#60]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/60) (§4 update), and [[task:#66]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/66) (architecture/context figures), all assigned to Mike and pending independent review. The separate [[task:#62]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/62) tracks the Sprint 1 review report. These documentation tasks do not close implementation stories.
 
 Work will follow an incremental review process. For Goal 1, the team will first select and assess a dataset, define its standardized fields, then implement database loading and retrieval checks. For Goal 2, selected-area filtering will feed frequency analysis and summary generation. For Goal 3, the team will implement map display, filtering controls, and radius selection, then connect those interactions to the data-processing components. Each implementation task will be developed on a separate branch, checked against its acceptance criteria, and submitted in a pull request for review by at least one other team member before merging into `develop`.
 
@@ -276,8 +281,7 @@ the system actually get built next semester?"〉
 > fully responsible for the correctness of all AI-assisted work, including
 > the prototype code.
 
-〈Your disclosure. Naming the tool is not disclosure — name what it drafted,
-what fraction of each artifact was AI-assisted, and how you verified it.〉
+For this Sprint 2 draft, ChatGPT (OpenAI) drafted substantially all new text in §3 and the revised portions of §4, both Mermaid diagrams, and their static figure exports (approximately 100% AI-assisted initial drafting of these changes). It compared claims against `develop`, Goal 1 source/format documentation, issue requirements, and prototype code, and ran repository checks and existing tests as recorded in the pull request. This is automated verification, not human authorship or approval. Mike and an independent teammate must verify the content, rewrite proposal prose in their own words as required by the course, and take responsibility before submission. This disclosure covers this change only; the team must complete disclosure of other proposal and prototype contributions separately.
 
 ## 8. References
 
