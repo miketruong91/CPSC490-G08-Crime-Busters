@@ -195,6 +195,9 @@ Figure 2 treats Crime Busters as one system and shows its external actors. A tea
 | [Crime pattern analysis](../docs/crime-pattern-analysis.md) | Prototype analysis | #15, #17, #18 | Standalone code exists; standardized-data integration pending |
 | [Architecture](../docs/design/architecture.md) | Proposed design + Figure 1 | #60, #66; all three goals | Draft for independent review |
 | [System context](../docs/design/system-context.md) | Proposed design + Figure 2 | #60, #66; all three goals | Draft for independent review |
+| [Interactive Crime Map Specification](../docs/specs/crime-map.md) | Goal 3 functional specification | #12, #13, #21, #22, #68 | Draft; defines map interactions, filtering, radius searches, and testable acceptance criteria |
+
+The [Interactive Crime Map Specification](../docs/specs/crime-map.md) defines the requirements for Goal 3 (Epic #12), including displaying crime incidents on an interactive map, filtering by crime type, date, and time, and selecting a geographic search radius. It documents the scope, functional and non-functional requirements, and acceptance criteria associated with stories #13, #21, and #22. The specification is tracked under [Issue #68](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/68).
 
 The course examples in `docs/specs/example-spec.md` and `docs/design/example-design.md` are reference templates, not Crime Busters designs. ER, DFD, and sequence artifacts will be indexed when their owners create them; their filenames and interfaces are not asserted here.
 
