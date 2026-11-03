@@ -170,6 +170,15 @@ Team members need a computer with Python, Git, a modern browser, and access to t
 
 Goal 1's [Crime Data Sources](../docs/crime-data-sources.md) documents the inspected Costa Mesa Burglary layer 57 response: 19 historical calls for service, with block-level locations. Final adoption, reuse terms, timezone, and update frequency remain unresolved. [Standardized Crime Data Format](../docs/crime-data-format.md) defines the UTF-8 JSON exchange format, source identifiers, nullable fields, coordinate validation, quality flags, and duplicate handling. It is a specification, not evidence of a completed import. The planned SQLite schema (#32), import (#35), and retrieval checks (#36) must preserve those meanings. Unusable coordinates must be excluded from spatial results; missing fields cannot participate in filters that require them. Source values must remain traceable and must not be invented.
 
+### Sprint 2 Design Diagrams
+
+The following proposed design diagrams document the planned Crime-Busters data pipeline and interactive radius-search workflow:
+
+- [Figure 1: Crime Data Flow Diagram](../docs/design/data-flow.md) — Shows public crime data ingestion, validation, normalization, SQLite storage, Flask filtering, and Leaflet map visualization. Related to #69.
+- [Figure 2: Radius Search UML Sequence Diagram](../docs/design/radius-search-sequence.md) — Shows location/radius selection, request validation, SQLite retrieval, API responses, error handling, and Leaflet map updates. Related to #70.
+
+These diagrams describe the planned integration and do not imply that all components are currently implemented.
+
 At the inspected `develop` commit `faa5dc5`, `prototype/area_filter.py` and `prototype/crime_frequency.py` contain standalone filtering and frequency logic with synthetic-data tests. They do not establish an integrated Flask application, SQLite storage, or interactive map. The frequency module reads `date`/`time` or combined timestamps, while the standardized format uses `incident_date`/`incident_time`; an explicit adapter or reviewed interface change and tests are needed before integration. The scaffold login example does not establish a project authentication requirement.
 
 ### Architecture and system context diagrams
