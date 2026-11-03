@@ -1,6 +1,6 @@
 
 # Sprint 2 — Location Search UML Sequence Diagram
-
+> Epic: #3. Stories: #4, #5. Task: #70
 This diagram illustrates the planned interaction when a user searches for crime incidents near a selected location.
 
 ```mermaid
