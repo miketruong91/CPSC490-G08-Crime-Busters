@@ -5,55 +5,49 @@
 
 **Figure 2. Proposed Crime-Busters radius-search sequence:** A user selects a location and radius, Flask validates and filters incidents from SQLite, and Leaflet displays matching markers and the search boundary.
 
+
 ```mermaid
 sequenceDiagram
     actor User
-    participant Browser as Browser / Leaflet
+    participant Browser as Browser and Leaflet
     participant API as Flask API
     participant DB as SQLite
 
-    User->>Browser: Select location and enter radius
-    User->>Browser: Apply search and optional filters
-    Browser->>Browser: Assign new request ID
-    Browser->>API: Request(lat, lon, radius_km, type?, start?, end?)
-    API->>API: Validate coordinates, radius, and filters
+    User->>Browser: Select location and radius
+    Browser->>API: Send latitude, longitude, radius_km, optional filters
+    API->>API: Validate search parameters
 
-    alt Missing or invalid coordinates
-        API-->>Browser: 400 validation error
-        Browser-->>User: Show location error; do not update markers
-    else Missing, invalid, or nonpositive radius
-        API-->>Browser: 400 validation error
-        Browser-->>User: Show radius error; do not update markers
-    else Valid search parameters
-        API->>DB: Retrieve candidate incidents using filters
-
-        alt Database or API failure
-            DB-->>API: Query error
-            API-->>Browser: 500 error response
-            Browser-->>User: Show error; preserve prior results
-        else Query succeeds
-            DB-->>API: Candidate incident records
-            API->>API: Apply radius distance filter (algorithm TBD)
-
-            alt Zero matching incidents
-                API-->>Browser: 200 OK, incidents = []
-                Browser->>Browser: Replace markers and draw radius boundary
-                Browser-->>User: Show "No incidents found"
-            else One or more matching incidents
-                API-->>Browser: 200 OK, matching incident JSON
-                Browser->>Browser: Replace markers and draw radius boundary
-                Browser-->>User: Display incidents inside radius
+    alt Invalid coordinates or radius
+        API-->>Browser: Validation error
+        Browser-->>User: Display error message
+    else Valid parameters
+        API->>DB: Query candidate incidents
+        alt Database failure
+            DB-->>API: Database error
+            API-->>Browser: Server error
+            Browser-->>User: Show error and keep previous results
+        else Query successful
+            DB-->>API: Return candidate incidents
+            API->>API: Filter by distance within radius
+            alt No matching incidents
+                API-->>Browser: Empty incident list
+                Browser->>Browser: Clear markers and draw radius
+                Browser-->>User: No incidents found
+            else Matching incidents
+                API-->>Browser: Return matching incident JSON
+                Browser->>Browser: Replace markers and draw radius
+                Browser-->>User: Display matching incidents
             end
         end
     end
 
-    opt User changes location, radius, or filters
-        User->>Browser: Apply updated search
-        Browser->>Browser: Start new request and mark prior response stale
-        Browser->>API: Request with updated parameters
-        API-->>Browser: Updated results or error
-        Browser->>Browser: Ignore stale responses; apply latest valid result
-        Browser-->>User: Refresh boundary, markers, and status
+    opt User changes location or radius
+        User->>Browser: Apply new search
+        Browser->>Browser: Mark earlier responses as stale
+        Browser->>API: Send updated search parameters
+        API-->>Browser: Return updated results
+        Browser->>Browser: Ignore stale responses
+        Browser->>Browser: Refresh boundary and markers
     end
 ```
 
