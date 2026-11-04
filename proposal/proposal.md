@@ -241,8 +241,8 @@ erDiagram
 | [System context](../docs/design/system-context.md) | Proposed design + Figure 2 | #60, #66; all three goals | Draft for independent review |
 | [Interactive Crime Map Specification](../docs/specs/crime-map.md) | Goal 3 functional specification | #12, #13, #21, #22, #68 | Draft; defines map interactions, filtering, radius searches, and testable acceptance criteria |
 | [Crime database ER model](../docs/design/crime-database-er.md) | Database design and Figure 3 | [[task:#32]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/32), [[task:#35]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/35), [[task:#36]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/36) | Delivered on develop in [PR #73](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/73) |
-
-
+| [Crime Data Foundation Specification](../docs/specs/crime-data-foundation.md) | Goal 1 requirements | #3, #4, #5, #28 | Draft; collection, normalization, storage, and application retrieval acceptance checks |
+| [Crime Pattern Analysis Specification](../docs/specs/crime-pattern-analysis.md) | Goal 2 requirements | #14, #15, #16 | Draft; selected-area analysis, summaries, charts, and integration gaps |
 The [Interactive Crime Map Specification](../docs/specs/crime-map.md) defines the requirements for Goal 3 (Epic #12), including displaying crime incidents on an interactive map, filtering by crime type, date, and time, and selecting a geographic search radius. It documents the scope, functional and non-functional requirements, and acceptance criteria associated with stories #13, #21, and #22. The specification is tracked under [Issue #68](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/68).
 
 The course examples in `docs/specs/example-spec.md` and `docs/design/example-design.md` are reference templates, not Crime Busters designs. The crime data flow diagram and radius-search UML sequence diagram are pending in [PR #71](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/71). Their documents and figures will be indexed after merge to develop.
