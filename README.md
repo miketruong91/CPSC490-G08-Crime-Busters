@@ -17,11 +17,12 @@
 
 ## Links
 
-- **Proposal:** [`proposal/proposal.md`](proposal/proposal.md)
+- **Proposal:** [proposal/proposal.md](proposal/proposal.md)
 - **Project board:** https://github.com/users/miketruong91/projects/1
-- **Specifications:** [`docs/specs/`](docs/specs/) · **Designs:** [`docs/design/`](docs/design/)
-- **Prototype:** [`prototype/`](prototype/) — run instructions in its README
-- **Sprint reviews:** [`docs/sprint-reviews/`](docs/sprint-reviews/)
+- **Specifications:** [docs/specs/](docs/specs/)
+- **Designs:** [docs/design/](docs/design/)
+- **Prototype:** [prototype/](prototype/) — run instructions in its README
+- **Sprint reviews:** [docs/sprint-reviews/](docs/sprint-reviews/)
 
 ## Project summary
 
@@ -29,9 +30,10 @@ Crime data is often spread across different sources and may be organized in diff
 
 ## How we work
 
-- Sprints: four 2-week sprints (`Sprint 1`–`Sprint 4` milestones).
-  Sprint boundary ritual every other Tuesday.
-- Every change lands by pull request; **the author never approves their own PR**.
-- Every issue carries: assignee (owner), milestone (sprint), `priority:`,
-  and a `sp:` story-point label.
-- AI tools are used and disclosed — see the proposal's *AI Usage* section.
+- Four two-week sprints are tracked using Sprint 1–Sprint 4 milestones.
+- Changes enter develop through pull requests, with non-author approval and passing required checks before merging.
+- Stories entering a sprint have one assignee, a sprint milestone, priority, story points, and acceptance criteria.
+- Epics have no story points or sprint milestone.
+- Implementation tasks under stories have no separate story points.
+- Standalone writing tasks carry their own story-point estimates.
+- AI assistance is disclosed in commits, pull requests, and the proposal's AI Usage section.

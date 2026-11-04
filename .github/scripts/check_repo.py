@@ -469,6 +469,9 @@ NEEDS_PARENT = ("user-story", "feature", "enhancement", "bug", "task", "sub-task
 PARENT_HEADING_RE = re.compile(r"^#{2,}\s*(?:epic|parent)\b[^\n]*\n+[^\n]*?#(\d{1,5})",
                                re.I | re.M)
 
+STANDALONE_WRITING_RE = re.compile(
+    r"^## Parent\s*\n+None — standalone writing task\.[ \t]*$", re.I | re.M)
+
 
 def _gh_json(repo: str, token: str, path: str):
     """One GET against the issues API, parsed. Raises on failure."""
@@ -488,6 +491,9 @@ def gate_hierarchy() -> None:
     proposal section 2 and walk all the way down to the smallest piece of
     work. An item with no parent breaks that walk, and it is usually a sign
     of work nobody traced back to an objective.
+
+    README.md permits standalone writing tasks. Documentation tasks explicitly
+    marked as such under ## Parent are accounted for separately.
 
     Parents are found by asking every issue for its CHILDREN
     (/issues/N/sub_issues) - GitHub does not put a parent pointer on the
@@ -528,6 +534,7 @@ def gate_hierarchy() -> None:
             parented.add(i["number"])
 
     orphans = 0
+    standalone_writing = 0
     for i in issues:
         labels = [l["name"] for l in i.get("labels", [])]
         if "epic" in labels:
@@ -535,6 +542,11 @@ def gate_hierarchy() -> None:
         kind = next((l for l in NEEDS_PARENT if l in labels), None)
         if kind is None:
             continue                # untyped issue: G8's business, not this gate
+        if (set(labels) & set(NEEDS_PARENT) == {"task"}
+                and "documentation" in labels
+                and STANDALONE_WRITING_RE.search(i.get("body") or "")):
+            standalone_writing += 1
+            continue
         if i["number"] not in parented:
             orphans += 1
             inventory_issue(g, f'#{i["number"]} ({kind}) "{i["title"][:42]}" names no '
@@ -542,7 +554,8 @@ def gate_hierarchy() -> None:
                                f"(epic -> user story -> feature/enhancement/bug -> "
                                f"task/sub-task)")
     if not orphans:
-        print(f"  {g}: all {len(issues)} open issue(s) sit on the chain")
+        print(f"  {g}: {len(issues)} open issue(s) accounted for "
+              f"({standalone_writing} standalone writing task(s))")
 
 
 
