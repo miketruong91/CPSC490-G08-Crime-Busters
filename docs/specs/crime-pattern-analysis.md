@@ -1,7 +1,7 @@
 # Specification — Crime Pattern Analysis
 
 > Epic: #14 · Stories: #15, #16 · Tasks: #17, #18, #19, #20
-> Owner: Goal 2 team · Status: draft for teammate review
+> Owner: Alex Reyes · Status: draft for teammate review
 
 ## Scope
 
