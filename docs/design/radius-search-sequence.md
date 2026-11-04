@@ -3,7 +3,7 @@
 
 > Goal 3. Epic: #12. Stories: #22, #21, #13, #28. Task: #70.
 
-**Figure 2. Proposed Crime-Busters radius-search sequence:** A user selects a location and radius, Flask validates and filters incidents from SQLite, and Leaflet displays matching markers and the search boundary.
+**Figure 4. Proposed Crime-Busters radius-search sequence:** A user selects a location and radius, Flask validates and filters incidents from SQLite, and Leaflet displays matching markers and the search boundary.
 
 
 ```mermaid
