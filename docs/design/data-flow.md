@@ -3,7 +3,7 @@
 
 > Epic: #3, #12. Stories: #4, #5, #28, #21, #13, #22. Task: #69.
 
-**Figure 1. Proposed Crime-Busters data flow:** Public crime data is imported, validated, normalized, stored in SQLite, queried through Flask, and displayed as incident markers on a Leaflet map.
+**Figure 3. Proposed Crime-Busters data flow:** Public crime data is imported, validated, normalized, stored in SQLite, queried through Flask, and displayed as incident markers on a Leaflet map.
 
 ```mermaid
 flowchart TD
