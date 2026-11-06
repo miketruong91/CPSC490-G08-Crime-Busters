@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 682" width="1120" height="682" role="img" aria-labelledby="title description">
+  <title id="title">Crime Busters map and filters wireframe</title>
+  <desc id="description">A proposed desktop screen. Select a center on the map, set a radius and filters, then apply them to update markers and the search boundary. Select a marker for details. An inset shows the message when no incidents match.</desc>
+  <defs>
+    <clipPath id="map-clip"><rect x="302" y="166" width="546" height="350" rx="8"/></clipPath>
+    <g id="pin"><path d="M0 11C-4 6-9 0-9-5a9 9 0 0 1 18 0C9 0 4 6 0 11Z" fill="currentColor" stroke="#fff" stroke-width="1.5"/><circle cy="-5" r="2.5" fill="#fff"/></g>
+  </defs>
+  <style>
+    text { font-family: 'DejaVu Sans', sans-serif; fill: #15283b; }
+    .heading { font-size: 28px; font-weight: 700; }
+    .label { font-size: 16px; font-weight: 700; }
+    .body { font-size: 15px; }
+    .small { font-size: 13px; }
+    .muted { fill: #42576b; }
+    .white { fill: #fff; }
+    .card { fill: #fff; stroke: #b9c7d4; }
+    .field { fill: #f6f9fc; stroke: #a7b7c7; }
+    .step { fill: #175a87; }
+  </style>
+  <rect width="1120" height="682" fill="#f3f6fa"/>
+  <text x="32" y="43" class="heading">Crime Busters | Map and filters</text>
+  <text x="32" y="69" class="body muted">Proposed desktop wireframe · schematic map and example inputs</text>
+
+  <rect x="32" y="92" width="1056" height="468" rx="12" class="card"/>
+  <path d="M32 137h1056M286 137v423M864 137v423" fill="none" stroke="#b9c7d4"/>
+  <text x="52" y="121" class="label">Explore incidents</text>
+  <text x="1068" y="120" text-anchor="end" class="small muted">Example screen after applying filters</text>
+
+  <text x="52" y="162" class="label">Search and filter</text>
+  <text x="52" y="191" class="small">Search center</text>
+  <rect x="52" y="200" width="214" height="34" rx="5" class="field"/>
+  <text x="64" y="222" class="body">Choose point on map</text>
+  <text x="52" y="253" class="small muted">Center selected</text>
+  <text x="52" y="278" class="small">Search radius</text>
+  <rect x="52" y="287" width="214" height="34" rx="5" class="field"/>
+  <text x="64" y="309" class="body">2 km</text>
+  <text x="52" y="344" class="small">Crime type</text>
+  <rect x="52" y="353" width="214" height="33" rx="5" class="field"/>
+  <text x="64" y="375" class="body">All types</text>
+  <path d="m244 367 5 5 5-5" fill="none" stroke="#42576b" stroke-width="1.5"/>
+  <text x="52" y="408" class="small">Date range</text>
+  <rect x="52" y="417" width="103" height="28" rx="5" class="field"/>
+  <rect x="163" y="417" width="103" height="28" rx="5" class="field"/>
+  <text x="62" y="436" class="small muted">Start date</text>
+  <text x="173" y="436" class="small muted">End date</text>
+  <text x="52" y="466" class="small">Time range</text>
+  <rect x="52" y="475" width="103" height="28" rx="5" class="field"/>
+  <rect x="163" y="475" width="103" height="28" rx="5" class="field"/>
+  <text x="62" y="494" class="small muted">Start time</text>
+  <text x="173" y="494" class="small muted">End time</text>
+  <rect x="52" y="516" width="214" height="31" rx="5" fill="#175a87"/>
+  <text x="159" y="537" text-anchor="middle" class="label white">Apply filters</text>
+
+  <rect x="302" y="166" width="546" height="350" rx="8" fill="#e9edf0" stroke="#b9c7d4"/>
+  <g clip-path="url(#map-clip)">
+    <path d="M324 163v360m88-360v360m81-360v360m83-360v360m104-360v360m91-360v360M294 224h560m-560 67h560m-560 85h560m-560 70h560M294 506h560M300 490 840 220" stroke="#fff" stroke-width="7"/>
+    <path d="M689 233h72v51h-72zm-277 150h72v56h-72z" fill="#dce8df"/>
+    <circle cx="574" cy="342" r="126" fill="#cde4f1" fill-opacity=".65" stroke="#175a87" stroke-width="2.5" stroke-dasharray="8 5"/>
+    <path d="M574 342h126" stroke="#175a87" stroke-width="1.5"/>
+    <circle cx="574" cy="342" r="7" fill="#fff" stroke="#175a87" stroke-width="2"/>
+    <path d="M574 338v8m-4-4h8" stroke="#175a87" stroke-width="1.5"/>
+    <rect x="600" y="350" width="79" height="24" rx="4" fill="#fff"/>
+    <text x="640" y="367" text-anchor="middle" class="small">2 km radius</text>
+    <use href="#pin" x="526" y="302" color="#254865"/>
+    <use href="#pin" x="624" y="413" color="#254865"/>
+    <circle cx="661" cy="283" r="17" fill="#fff" stroke="#963f16" stroke-width="2"/>
+    <use href="#pin" x="661" y="284" color="#963f16"/>
+    <rect x="315" y="179" width="33" height="63" rx="5" class="card"/>
+    <path d="M315 210h33m-23-16h13m-6.5-6.5v13m-6.5 25h13" fill="none" stroke="#15283b" stroke-width="1.7"/>
+    <rect x="315" y="477" width="117" height="26" rx="5" class="card"/>
+    <text x="324" y="495" class="small">Drag to pan</text>
+  </g>
+  <path d="M682 283h173m-7-5 7 5-7 5" fill="none" stroke="#963f16" stroke-width="1.8"/>
+  <text x="302" y="539" class="small muted">Pins: matching incidents · Dashed circle: search boundary · Cross: center</text>
+
+  <text x="881" y="162" class="label">Incident details</text>
+  <text x="881" y="185" class="small muted">Selected marker</text>
+  <path d="M881 200h188" stroke="#b9c7d4"/>
+  <text x="881" y="227" class="small">Crime type</text>
+  <text x="881" y="246" class="small muted">Category, if available</text>
+  <text x="881" y="277" class="small">Date</text>
+  <text x="881" y="296" class="small muted">Date, if available</text>
+  <text x="881" y="327" class="small">Time</text>
+  <text x="881" y="346" class="small muted">Time, if available</text>
+  <text x="881" y="377" class="small">Location</text>
+  <text x="881" y="396" class="small muted">Description, if available</text>
+  <path d="M881 416h188" stroke="#b9c7d4"/>
+  <text x="881" y="441" class="small muted">Use available record values.</text>
+  <text x="881" y="460" class="small muted">Missing values stay unknown.</text>
+
+  <rect x="32" y="579" width="681" height="75" rx="8" class="card"/>
+  <text x="48" y="605" class="label">Typical flow</text>
+  <text x="48" y="632" class="body">1. Pick center and filters</text>
+  <text x="238" y="632" class="body muted">→</text>
+  <text x="267" y="632" class="body">2. Apply and update map</text>
+  <text x="466" y="632" class="body muted">→</text>
+  <text x="494" y="632" class="body">3. Open marker details</text>
+  <rect x="727" y="579" width="361" height="75" rx="8" class="card"/>
+  <text x="743" y="605" class="label">No matching incidents</text>
+  <text x="743" y="632" class="small muted">Keep the new boundary; clear previous markers.</text>
+</svg>
