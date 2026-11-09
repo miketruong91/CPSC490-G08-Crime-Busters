@@ -229,6 +229,13 @@ erDiagram
 ```
 
 *Figure 3 — Initial SQLite ER model. One incident can have zero or more quality flags.*
+### Map and filters wireframe
+
+Figure 5 shows how a user selects a center, applies radius and incident filters, and opens a matching marker in the detail panel. The [editable design and interaction notes](../docs/design/map-filters-wireframe.md) are tracked in [[task:#80]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/80).
+
+![Proposed map page with filter controls, a search boundary, matching markers, an incident detail panel, and the no-results message](../docs/design/diagrams/map-filters-wireframe.png)
+
+*Figure 5 — Proposed map and filters wireframe. The no-results state keeps the applied boundary and clears old markers.*
 
 ### Specification and design documents
 
