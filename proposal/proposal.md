@@ -4,7 +4,8 @@
 **CPSC 490 Undergraduate Seminar in Computer Science — Proposal for Capstone Project**
 
 **Group 08 — Crime Busters** · Sponsor: independent
-Authors: 〈Reyes, Alex (alexreyes1-ctrl)〉, 〈Chavez, Julian (jmbchavez)〉, 〈Truong, Mike (miketruong91)〉, 〈Yonnas, Adonay (Abreezy2)〉
+Authors: Reyes, Alex (alexreyes1-ctrl), Chavez, Julian (jmbchavez), Truong, Mike (miketruong91), Yonnas, Adonay (Abreezy2)
+Repository: https://github.com/miketruong91/CPSC490-G08-Crime-Busters
 Date: 2026-10-20
 
 > **This file is the proposal document, not a README.** Its section numbers,
@@ -25,15 +26,15 @@ Date: 2026-10-20
 > template and paste your prose section by section**, leaving Word's own
 > numbering to do the numbering. Ten minutes, no surprises.
 >
-> If you prefer to convert, `pandoc` can do it (install with
-> `winget install pandoc`):
+> To export from the repository root with Pandoc, use the course reference
+> document and Lua filter. Export the issue titles first if Appendix A should
+> include them. Keep the generated files local.
 >
->     pandoc proposal/proposal.md -o proposal.docx --reference-doc="CPSC 490 Project Proposal Template Fall 2026.docx"
+>     gh issue list --state all --limit 1000 --json number,title > proposal/issues.json
+>     pandoc proposal/proposal.md -o proposal/proposal.docx --reference-doc=proposal/reference.docx --lua-filter=proposal/to-word.lua --resource-path=proposal
 >
-> Then in Word: delete the typed `0.` / `1.` / `1.1` prefixes (Word re-adds
-> them from the list), and set *Related Work* and *Problem Statements* to the
-> template's level-2 heading so they number as 1.1 and 1.2. Check figure
-> placement, then submit.
+> Open the Word export and check the cover fields, section numbering,
+> figures, and Appendix A before submitting.
 >
 > **Formatting requirements — the submitted Word document is graded against
 > these, explicitly:**
@@ -118,6 +119,8 @@ Calls for service must also be distinguished from confirmed crimes. If a selecte
 ### Goal 1: Establish a reliable and structured crime data foundation for the application.
 [[epic:#3]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/3)
 
+Public records are published with different names, formats, and levels of detail. A common format lets the application retrieve records consistently while preserving where they came from and what the source actually reported. Keeping quality flags and location precision also lets later features explain gaps in the data.
+
 - **Objective 1.1:** Collect publicly available crime records containing crime type, location, date, and time, with the data source and minimum record count to be confirmed after reviewing available datasets.
   [[story:#4]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/4)
 
@@ -130,6 +133,8 @@ Calls for service must also be distinguished from confirmed crimes. If a selecte
 ### Goal 2: Identify possible crime patterns.
 [[epic:#14]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/14)
 
+A list of individual reports makes it hard to see which categories or time periods account for most of the records. Counts and charts will describe the user's current selection and make it possible to compare groups within it. Coverage and missing information affect how those counts should be interpreted.
+
 - **Objective 2.1:** Analyze crime incidents within the selected area by crime type, date, and time, verifying that the frequency counts match manually calculated results from a test dataset.
   [[story:#15]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/15)
 
@@ -138,6 +143,8 @@ Calls for service must also be distinguished from confirmed crimes. If a selecte
 
 ### Goal 3: Integrate an interactive map that allows users to explore crime incidents within a selected area.
 [[epic:#12]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/12)
+
+Users need a way to focus on an area that matters to them and then inspect individual records. A map will combine navigation, marker details, and a visible search boundary with incident filters. The same selection will drive the map and the summaries described in Goal 2.
 
 - **Objective 3.1:** Display crime incidents as interactive map markers showing available crime type, date, and time details, with the response-time target and test dataset size to be confirmed after selecting the dataset.
   [[story:#13]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/13)
@@ -170,18 +177,6 @@ Team members need a computer with Python, Git, a modern browser, and access to t
 
 Goal 1's [Crime Data Sources](../docs/crime-data-sources.md) documents the inspected Costa Mesa Burglary layer 57 response: 19 historical calls for service, with block-level locations. Final adoption, reuse terms, timezone, and update frequency remain unresolved. [Standardized Crime Data Format](../docs/crime-data-format.md) defines the UTF-8 JSON exchange format, source identifiers, nullable fields, coordinate validation, quality flags, and duplicate handling. The SQLite schema, Costa Mesa layer 57 normalizer, loader, and verification logic are on develop ([PR #73](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/73)). The layer 57 sample supports the repeatable local-snapshot approach in §3. Final dataset adoption and reuse terms still require team confirmation. Unusable coordinates must be excluded from spatial results; missing fields cannot participate in filters that require them. Source values must remain traceable and must not be invented.
 
-### Sprint 2 Design Diagrams
-
-The following proposed design diagrams document the planned Crime-Busters data pipeline and interactive radius-search workflow:
-
-- [Figure 1: Crime Data Flow Diagram](../docs/design/data-flow.md) — Shows public crime data ingestion, validation, normalization, SQLite storage, Flask filtering, and Leaflet map visualization. Related to #69.
-- [Figure 2: Radius Search UML Sequence Diagram](../docs/design/radius-search-sequence.md) — Shows location/radius selection, request validation, SQLite retrieval, API responses, error handling, and Leaflet map updates. Related to #70.
-
-These diagrams describe the planned integration and do not imply that all components are currently implemented.
-
-At the inspected `develop` commit `faa5dc5`, `prototype/area_filter.py` and `prototype/crime_frequency.py` contain standalone filtering and frequency logic with synthetic-data tests. They do not establish an integrated Flask application, SQLite storage, or interactive map. The frequency module reads `date`/`time` or combined timestamps, while the standardized format uses `incident_date`/`incident_time`; an explicit adapter or reviewed interface change and tests are needed before integration. The scaffold login example does not establish a project authentication requirement.
-
-
 ### Architecture and system context diagrams
 
 Figure 1 shows the proposed components and localhost boundary. The browser will request pages and submit search criteria to Flask, which will query SQLite and apply filtering/analysis before returning records and summaries. Import and normalization will be a separate preparation step, not a provider request on every user search. Interfaces and route names remain to be designed. The authoritative [architecture design and editable Mermaid](../docs/design/architecture.md) explain each exchange and its implementation status.
@@ -196,39 +191,18 @@ Figure 2 treats Crime Busters as one system and shows its external actors. A tea
 
 *Figure 2 — Proposed system context; the conditional basemap arrows do not imply an adopted provider.*
 
-Figure 3 shows the initial SQLite relationship between standardized incident records and their quality flags. The [ER design and editable Mermaid](../docs/design/crime-database-er.md#entity-relationship-diagram) are on develop through [PR #73](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/73).
+[Figure 3 — Initial SQLite entity relationship model](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/blob/develop/docs/design/crime-database-er.md#entity-relationship-diagram). Each standardized incident can have zero or more quality flags. The model and schema were delivered in [PR #73](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/73).
 
-```mermaid
-erDiagram
-    INCIDENTS ||--o{ INCIDENT_QUALITY_FLAGS : "has"
+The SQLite schema gives each incident an internal integer key and enforces uniqueness on the pair of source and source record ID. The source record ID stays text to preserve leading zeros. Each associated flag uses the incident key and flag name together as its key. Separate nullable date, time, timezone, and coordinate fields let the database preserve incomplete records while downstream filters exclude them when the relevant value is unavailable. The source classification and location precision travel with the record so the application can distinguish a block-level call for service from a precise, confirmed incident.
 
-    INCIDENTS {
-        integer id PK
-        text source UK "stable source dataset id"
-        text source_record_id UK "source-supplied id, kept as text"
-        text record_kind "call_for_service, crime_incident, unknown"
-        text crime_type "burglary, theft, vandalism, assault, other; nullable"
-        text source_code "nullable"
-        text description "nullable"
-        text location "nullable"
-        text city "nullable"
-        text agency "nullable"
-        text disposition "nullable"
-        text incident_date "YYYY-MM-DD; nullable"
-        text incident_time "HH:MM:SS; nullable"
-        text timezone "nullable until verified"
-        real latitude "EPSG:4326; nullable"
-        real longitude "EPSG:4326; nullable"
-        text location_precision "exact, block, approximate, unknown"
-    }
+### Data flow and radius search
 
-    INCIDENT_QUALITY_FLAGS {
-        integer incident_id PK, FK
-        text flag PK "e.g. timezone_unverified"
-    }
-```
+The import path validates and normalizes source records before storing accepted records in SQLite. Missing values and conflicting records are handled under format v1. The independent search path passes the user's criteria to Flask, retrieves candidate records from SQLite, and sends matching records to Leaflet. This separation makes a saved input reusable across searches. See [[task:#69]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/69) and [PR #71](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/71).
 
-*Figure 3 — Initial SQLite ER model. One incident can have zero or more quality flags.*
+![Public records pass through Python import and normalization into SQLite. Flask queries SQLite and returns matches to the Leaflet map.](../docs/design/diagrams/data-flow.png)
+
+*[Figure 4 — Proposed data flow from source snapshot to map](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/blob/develop/docs/design/data-flow.md).*
+
 ### Map and filters wireframe
 
 Figure 5 shows how a user selects a center, applies radius and incident filters, and opens a matching marker in the detail panel. The [editable design and interaction notes](../docs/design/map-filters-wireframe.md) are tracked in [[task:#80]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/80).
@@ -237,61 +211,54 @@ Figure 5 shows how a user selects a center, applies radius and incident filters,
 
 *Figure 5 — Proposed map and filters wireframe. The no-results state keeps the applied boundary and clears old markers.*
 
-### Specification and design documents
+Flask validates the center, radius, and active filters before querying SQLite. On success, the browser replaces the previous markers and redraws the applied boundary. Zero matches clear the markers and show a message. Errors preserve the last successful result with a visible error message, and an older response cannot replace a newer one. The sequence illustrates a possible request in kilometers. The current filter works in miles and includes boundary points, so the request and map-drawing units must be made consistent during integration. See [[task:#70]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/70) and [PR #71](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/71).
 
-| Document | Kind | Related issues | Evidence/status |
-|---|---|---|---|
-| [Crime Data Sources](../docs/crime-data-sources.md) | Source evaluation | #3, #4, #8, #9 | Evaluation exists; final source adoption and broader collection pending |
-| [Standardized Crime Data Format](../docs/crime-data-format.md) | Exchange specification | #5, #10, #11 | Format, sample normalizer, and SQLite loader are on develop |
-| [Crime pattern analysis](../docs/crime-pattern-analysis.md) | Prototype analysis | #15, #17, #18 | Standalone code exists; standardized-data integration pending |
-| [Architecture](../docs/design/architecture.md) | Proposed design + Figure 1 | #60, #66; all three goals | Draft for independent review |
-| [System context](../docs/design/system-context.md) | Proposed design + Figure 2 | #60, #66; all three goals | Draft for independent review |
-| [Interactive Crime Map Specification](../docs/specs/crime-map.md) | Goal 3 functional specification | #12, #13, #21, #22, #68 | Draft; defines map interactions, filtering, radius searches, and testable acceptance criteria |
-| [Crime database ER model](../docs/design/crime-database-er.md) | Database design and Figure 3 | [[task:#32]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/32), [[task:#35]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/35), [[task:#36]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/36) | Delivered on develop in [PR #73](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/73) |
-| [Crime Data Foundation Specification](../docs/specs/crime-data-foundation.md) | Goal 1 requirements | #3, #4, #5, #28 | Draft; collection, normalization, storage, and application retrieval acceptance checks |
-| [Crime Pattern Analysis Specification](../docs/specs/crime-pattern-analysis.md) | Goal 2 requirements | #14, #15, #16 | Draft; selected-area analysis, summaries, charts, and integration gaps |
-The [Interactive Crime Map Specification](../docs/specs/crime-map.md) defines the requirements for Goal 3 (Epic #12), including displaying crime incidents on an interactive map, filtering by crime type, date, and time, and selecting a geographic search radius. It documents the scope, functional and non-functional requirements, and acceptance criteria associated with stories #13, #21, and #22. The specification is tracked under [Issue #68](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/68).
+![The browser sends a radius search to Flask, which validates the request and queries SQLite. The sequence shows matches, zero results, errors, and stale responses.](../docs/design/diagrams/radius-search-sequence.png)
 
-The course examples in `docs/specs/example-spec.md` and `docs/design/example-design.md` are reference templates, not Crime Busters designs. The crime data flow diagram and radius-search UML sequence diagram are pending in [PR #71](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/71). Their documents and figures will be indexed after merge to develop.
+*[Figure 6 — Proposed radius-search request and response sequence](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/blob/develop/docs/design/radius-search-sequence.md).*
 
-### Planned activities — the work items
+### Goal 1 requirements and planned activities
 
-The goals and objectives in §2 identify the project's epics and user stories. The tasks below describe the work required to deliver them. The **status** column indicates current implementation evidence or a planned activity; it does not assign an unverified sprint milestone or claim that the work is complete. Actual assignees, story points, and sprint milestones are managed in the GitHub Issues and project board.
+The initial scope covers evaluating a public source, saving a local snapshot, normalizing it to the [standardized format](../docs/crime-data-format.md), and retrieving standardized records from SQLite. Source evaluation must document the publisher, access method, fields, and known limits. The normalizer must produce all 17 exchange fields for accepted records and preserve source identity, nullable values, and quality flags. It must hold records with missing required identifiers or conflicting duplicates. Repeated loads of identical input must leave stored values and counts unchanged. Raw and generated data stay local while reuse terms are unresolved.
 
-| Issue | Type | Activity | Parent | Responsibility | Status |
-|---|---|---|---|---|---|
-| [[task:#8]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/8) | Task | Identify and document an accessible public crime dataset | [[story:#4]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/4) | Alex / Goal 1 | Source evaluation documented; final adoption pending |
-| [[task:#9]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/9) | Task | Verify crime type, location, date, and time fields | [[story:#4]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/4) | Goal 1 | Sample fields documented; broader collection validation pending |
-| [[task:#10]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/10) | Task | Define a consistent crime-record format | [[story:#5]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/5) | Goal 1 | Format specification merged (#10) |
-| [[task:#11]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/11) | Task | Normalize source records into that format | [[story:#5]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/5) | Goal 1 | Merged in PR #73 |
-| [[task:#32]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/32) | Task | Design the initial database schema | [[story:#28]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/28) | Goal 1 | Merged in PR #73 |
-| [[task:#35]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/35) | Task | Load standardized records into the database | [[story:#28]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/28) | Goal 1 | Merged in PR #73 |
-| [[task:#36]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/36) | Task | Retrieve stored records and verify data consistency | [[story:#28]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/28) | Goal 1 | Merged in PR #73 |
-| [[task:#17]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/17) | Task | Filter incident records within a selected circular area | [[story:#15]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/15) | Mike / Goal 2 | Prototype merged; validation pending |
-| [[task:#18]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/18) | Task | Count incidents by crime type, date, and time | [[story:#15]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/15) | Goal 2 | Frequency module merged; standardized-data integration pending |
-| [[task:#19]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/19) | Task | Generate incident totals and category summary statistics | [[story:#16]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/16) | Goal 2 | Planned |
-| [[task:#20]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/20) | Task | Visualize incident frequency and summary statistics | [[story:#16]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/16) | Goal 2 | Planned |
-| [[task:#23]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/23) | Task | Set up the interactive map | [[story:#13]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/13) | Goal 3 | Planned |
-| [[task:#24]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/24) | Task | Connect incident data to the map | [[story:#13]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/13) | Goal 3 | Planned |
-| [[task:#27]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/27) | Task | Display and select incident markers | [[story:#13]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/13) | Goal 3 | Planned |
-| [[task:#29]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/29) | Task | Create location, crime-type, and time filter controls | [[story:#21]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/21) | Goal 3 | Planned |
-| [[task:#30]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/30) | Task | Connect search filters to incident data | [[story:#21]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/21) | Goal 3 | Planned |
-| [[task:#31]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/31) | Task | Update map results when filters change | [[story:#21]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/21) | Goal 3 | Planned |
-| [[task:#33]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/33) | Task | Let users select a location and radius | [[story:#22]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/22) | Goal 3 | Planned |
-| [[task:#34]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/34) | Task | Display the selected radius on the map | [[story:#22]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/22) | Goal 3 | Planned |
-| [[task:#42]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/42) | Task | Create the project README | Standalone documentation | Team | Completed |
-| [[task:#58]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/58) | Task | Add the [team README](../README.md) to develop | Standalone documentation | Alex | Closed; README on develop |
-| [[task:#69]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/69) | Task | Document the crime data flow | Standalone design documentation | Adonay | Open; PR #71 pending |
-| [[task:#70]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/70) | Task | Document the radius-search UML sequence | Standalone design documentation | Adonay | Open; PR #71 pending |
-| [[task:#49]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/49) | Task | Write the proposal abstract | Standalone documentation | Team | Completed |
-| [[task:#51]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/51) | Task | Update proposal §2 goals and objectives | Standalone documentation | Team | Merged; see linked issue |
-| [[task:#53]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/53) | Task | Complete proposal §1 introduction and related work | Standalone documentation | Team | Merged; see linked issue |
+The [Goal 1 specification](../docs/specs/crime-data-foundation.md) defines acceptance against a saved input with known field mappings, missing values, leading-zero IDs, and duplicate cases. On a fresh database, the stored count must equal the number of unique accepted records, and retrieval must reproduce their standardized values and flags. The application must then demonstrate that it can retrieve those fields and preserve source classification and quality information for downstream use.
 
-Sprint 2 documentation for the November 3, 2026 review is tracked in [[task:#65]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/65) (§3 draft), [[task:#60]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/60) (§4 update), and [[task:#66]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/66) (architecture/context figures), all assigned to Mike and pending independent review. The separate [[task:#62]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/62) tracks the Sprint 1 review report. These documentation tasks do not close implementation stories.
+Source evaluation and field verification are tracked in [[task:#8]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/8), [[task:#9]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/9). The checked sample contains 19 historical Costa Mesa burglary calls for service. It is evidence for the pipeline, with final source adoption, minimum dataset size, reuse terms, timezone, location accuracy, and refresh frequency still open. The exchange format, normalizer, schema, loader, and verification are tracked in [[task:#10]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/10), [[task:#11]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/11), [[task:#32]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/32), [[task:#35]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/35), [[task:#36]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/36). The next step is to confirm the evaluation dataset and verify retrieval through the application. The written specification for this goal and Goal 2 was delivered under [[task:#79]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/79).
 
-Work will follow an incremental review process. For Goal 1, the team will first select and assess a dataset, define its standardized fields, then implement database loading and retrieval checks. For Goal 2, selected-area filtering will feed frequency analysis and summary generation. For Goal 3, the team will implement map display, filtering controls, and radius selection, then connect those interactions to the data-processing components. Each implementation task will be developed on a separate branch, checked against its acceptance criteria, and submitted in a pull request for review by at least one other team member before merging into `develop`.
+### Goal 2 requirements and planned activities
 
-Testing will include unit tests for filtering and counts, checks for invalid or missing input data, comparisons of stored versus retrieved records, and integration tests once the map and database interfaces exist. The team will use synthetic data for isolated tests and will validate behavior against the selected public dataset when its schema and access constraints are confirmed. The standalone area-filtering code and tests are already available in `prototype/area_filter.py` and `prototype/test_area_filter.py`; this does not yet establish end-to-end map or database functionality.
+Goal 2 covers descriptive summaries for the selected records. The application must use the same selection for map results, totals, category counts, and date and hour-of-day charts. The circular filter must use the documented distance calculation, include boundary points, and skip unusable coordinates. A record with a missing category, date, or time still contributes to the selection total and is omitted from the affected grouping. Identical inputs must produce reproducible results, and the display must explain incomplete coverage and distinguish calls for service from confirmed crime records.
+
+The [Goal 2 specification](../docs/specs/crime-pattern-analysis.md) requires comparison against hand-calculated totals and groups for a fixture with inside, boundary, outside, and unusable-coordinate records. Tests must also cover an empty selection, missing grouping fields, and standardized date and time fields. In the integrated application, chart values and totals must agree with the database-backed selection used to populate the map.
+
+The standalone area and frequency functions are available under [[task:#17]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/17), [[task:#18]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/18). Integration must map `incident_date` and `incident_time` to the analysis interface or update that interface explicitly. Totals and chart presentation follow in [[task:#19]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/19), [[task:#20]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/20). Reporting timezone, treatment of incomplete date/time values and canceled calls, chart forms, and the performance test dataset and target remain open.
+
+### Goal 3 requirements and planned activities
+
+Goal 3 covers a desktop browser map with pan and zoom, selectable markers, and combined location, category, date, and time filters. Users must be able to choose a center and radius, see the applied circle, and inspect the available details for a marker. Controls must identify the distance unit clearly. Markers and radius results require usable coordinates. The map must show source-provided details and indicate when values are unavailable. Live tracking, report submission, and emergency alerts are outside the planned scope.
+
+Acceptance under the [Goal 3 specification](../docs/specs/crime-map.md) and [[task:#68]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/68) requires a known dataset that demonstrates pan and zoom, correct marker details, individual filters and their intersection, inclusion of boundary records, exclusion of invalid locations, and the no-results state shown in Figure 5. Repeat searches must update the boundary and marker set together. A search failure must leave the last successful result visible and explain the failure.
+
+The initial Flask and Leaflet slice will serve the map and connect SQLite records under [[task:#23]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/23), [[task:#24]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/24), followed by selectable markers under [[task:#27]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/27), filter controls and result updates under [[task:#29]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/29), [[task:#30]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/30), [[task:#31]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/31), and center selection and boundary display under [[task:#33]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/33), [[task:#34]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/34). The basemap provider, attribution and offline behavior, API contract, displayed radius units and bounds, and desktop performance target still need agreement.
+
+### Implemented modules and verification
+
+[The normalizer](../prototype/normalize.py) converts a saved Costa Mesa layer 57 response to standardized JSON. [The schema](../prototype/schema.sql) and [loader](../prototype/load_db.py) create and populate the SQLite database, report inserted, unchanged and held records, and compare stored records against the accepted input. With an approved local snapshot, run these commands from the repository root.
+
+```bash
+python3 prototype/normalize.py costa_mesa_query.json standardized.json
+python3 prototype/load_db.py standardized.json incidents.db
+```
+
+[The area filter](../prototype/area_filter.py) selects records by Haversine distance in miles. [The frequency module](../prototype/crime_frequency.py) returns the selected total and groups by crime type, date, and hour of day. Both are callable Python modules with synthetic tests. To run the prototype tests as CI does, install pytest and run `python -m pytest -q` from `prototype/`. The standalone modules provide evidence for normalization, storage, distance, and counting. Application retrieval, Flask routes, Leaflet controls, and integrated charts remain to be built.
+
+### Design decisions and unresolved interfaces
+
+The [ER design](../docs/design/crime-database-er.md), [data flow](../docs/design/data-flow.md), and [radius-search sequence](../docs/design/radius-search-sequence.md) describe the model and planned exchanges. The [architecture](../docs/design/architecture.md) and [system context](../docs/design/system-context.md) are tracked under [[task:#66]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/66). SQLite keeps deployment local and allows a clean database to be rebuilt from a reviewed snapshot. A separate database server would add setup and administration for the current single-machine prototype. Fetching source data on each search was deferred because results would depend on provider uptime, refresh schedules, and reuse terms. Snapshot age and coverage will need to be visible in the application. Descriptive counts were chosen for the first release because they can be verified against the selected records. Prediction would require a separate dataset and validation plan.
+
+The HTTP routes, parameter and error formats, storage-to-analysis adapter, and chart layout still require design. Before the integrated demo, the team will test the full path from an approved snapshot through the database to matching map and summary results. Installation and demo steps will be checked in a clean environment. The §4 draft was tracked in [[task:#60]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/60), and the §3 approach in [[task:#65]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/65).
+
+The team repository and earlier proposal sections are documented in [[task:#42]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/42), [[task:#49]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/49), [[task:#51]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/51), [[task:#53]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/53), [[task:#58]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/58). The separate Sprint 1 retrospective is tracked in [[task:#62]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/62).
 
 ## 5. Project Outcomes
 
@@ -303,30 +270,14 @@ Testing will include unit tests for filtering and counts, checks for invalid or 
 > however small, running when this proposal is submitted). Briefly describe
 > what your v0 demonstrates and how to run it.
 
-〈**One or two paragraphs** explaining the project outcome overall — what will
-exist when the project is finished, and what it will let someone do. Keep it
-prose, not a checklist; name the deliverables inside the paragraphs, and say
-briefly what prototype v0 demonstrates today and how to run it.〉
+The project will deliver source code, setup instructions, a documented data format, and a local web application for exploring reported incidents. The final demonstration will show users selecting a location, applying filters, and comparing map markers with summaries of the same records. The repository currently demonstrates the standalone modules and checks described in §4. The end-to-end browser demo depends on the application integration described there.
 
 ## 6. Project Timeline
 
 > Identifies tasks (project objectives) to be performed, milestones to be
 > met, and the estimated number of hours for each task.
 
-〈**This is the plan for CPSC 491 next semester — the implementation timeline,
-not this semester's proposal work.** Identify the tasks (your objectives from
-§2), the milestones, and the estimated hours for each, in the order they will
-be built. State the assumptions it rests on (sponsor availability, data
-access, hardware).〉
-
-| Task (objective) | Milestone | Owner | Est. hours | Spring phase |
-|---|---|---|---|---|
-| 〈…〉 | 〈…〉 | 〈…〉 | 〈…〉 | 〈…〉 |
-| 〈…〉 | 〈…〉 | 〈…〉 | 〈…〉 | 〈…〉 |
-
-〈Do **not** put this fall's four proposal sprints here — those live on the
-project board and in `docs/sprint-reviews/`. This section answers "how does
-the system actually get built next semester?"〉
+For CPSC 491, the implementation sequence begins with source approval and a verified import into SQLite. The next milestone is a working browser map backed by stored records. Combined filters, radius search, and summaries follow, then end-to-end acceptance testing and setup verification. This sequence assumes access to an approved source and a development machine that can run the local stack. Spring dates and estimated hours are pending team planning.
 
 ## 7. AI Usage
 
@@ -341,6 +292,8 @@ the system actually get built next semester?"〉
 > the prototype code.
 
 For this Sprint 2 draft, ChatGPT (OpenAI) drafted substantially all new text in §3 and the revised portions of §4, both Mermaid diagrams, and their static figure exports (approximately 100% AI-assisted initial drafting of these changes). It compared claims against `develop`, Goal 1 source/format documentation, issue requirements, and prototype code, and ran repository checks and existing tests as recorded in the pull request. This is automated verification, not human authorship or approval. Mike and an independent teammate must verify the content, rewrite proposal prose in their own words as required by the course, and take responsibility before submission. This disclosure covers this change only; the team must complete disclosure of other proposal and prototype contributions separately.
+
+For the November 9 checklist follow-up, ChatGPT drafted the additions to §2 and the revised §4 prose and removed the printable scaffolding from §§5–6. The initial wording of these changes is approximately 100% AI-assisted. The design figures are existing team artifacts. The team must review the claims and revise the prose in its own words before submission.
 
 ## 8. References
 
