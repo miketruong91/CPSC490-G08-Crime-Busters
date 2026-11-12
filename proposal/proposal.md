@@ -197,7 +197,11 @@ The SQLite schema gives each incident an internal integer key and enforces uniqu
 
 ### Data flow and radius search
 
-[Figure 4 — Proposed data flow from source snapshot to map](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/blob/develop/docs/design/data-flow.md). The import path validates and normalizes source records before storing accepted records in SQLite. Missing values and conflicting records are handled under format v1. The independent search path passes the user's criteria to Flask, retrieves candidate records from SQLite, and sends matching records to Leaflet. This separation makes a saved input reusable across searches. See [[task:#69]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/69) and [PR #71](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/71).
+The import path validates and normalizes source records before storing accepted records in SQLite. Missing values and conflicting records are handled under format v1. The independent search path passes the user's criteria to Flask, retrieves candidate records from SQLite, and sends matching records to Leaflet. This separation makes a saved input reusable across searches. See [[task:#69]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/69) and [PR #71](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/71).
+
+![Public records pass through Python import and normalization into SQLite. Flask queries SQLite and returns matches to the Leaflet map.](../docs/design/diagrams/data-flow.png)
+
+*[Figure 4 — Proposed data flow from source snapshot to map](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/blob/develop/docs/design/data-flow.md).*
 
 ### Map and filters wireframe
 
@@ -207,7 +211,11 @@ Figure 5 shows how a user selects a center, applies radius and incident filters,
 
 *Figure 5 — Proposed map and filters wireframe. The no-results state keeps the applied boundary and clears old markers.*
 
-[Figure 6 — Proposed radius-search request and response sequence](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/blob/develop/docs/design/radius-search-sequence.md). Flask validates the center, radius, and active filters before querying SQLite. On success, the browser replaces the previous markers and redraws the applied boundary. Zero matches clear the markers and show a message. Errors preserve the last successful result with a visible error message, and an older response cannot replace a newer one. The sequence illustrates a possible request in kilometers. The current filter works in miles and includes boundary points, so the request and map-drawing units must be made consistent during integration. See [[task:#70]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/70) and [PR #71](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/71).
+Flask validates the center, radius, and active filters before querying SQLite. On success, the browser replaces the previous markers and redraws the applied boundary. Zero matches clear the markers and show a message. Errors preserve the last successful result with a visible error message, and an older response cannot replace a newer one. The sequence illustrates a possible request in kilometers. The current filter works in miles and includes boundary points, so the request and map-drawing units must be made consistent during integration. See [[task:#70]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/70) and [PR #71](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/71).
+
+![The browser sends a radius search to Flask, which validates the request and queries SQLite. The sequence shows matches, zero results, errors, and stale responses.](../docs/design/diagrams/radius-search-sequence.png)
+
+*[Figure 6 — Proposed radius-search request and response sequence](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/blob/develop/docs/design/radius-search-sequence.md).*
 
 ### Goal 1 requirements and planned activities
 
