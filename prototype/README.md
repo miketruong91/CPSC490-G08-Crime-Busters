@@ -1,44 +1,58 @@
 # Prototype
 
-Proof-of-concept code for 〈project title〉. **Prototype v0 is due Sep 27** with
-the proposal, and it grows every sprint; the Week-8 in-class check demos from
-this folder.
-
-This example implements the login slice behind story
-[#3](../../../issues/3) and task [#5](../../../issues/5) — deliberately tiny,
-because a prototype exists to answer one risky question, not to be the
-product. **Replace it with yours** and keep the shape: a small module, a test
-per acceptance criterion, and run instructions below that work on a machine
-that has never seen your project.
+The Crime Busters prototype displays historical Costa Mesa burglary-related calls for service on a Leaflet map. Flask serves the map and reads the records from a local SQLite database. Locations are block-level, and the source timezone is unverified.
 
 ## How to run
 
+From the root of a fresh clone, create a Python virtual environment and install the dependencies. The demo was tested with Python 3.11.9 and Flask 3.1.3.
+
 ```bash
 cd prototype
-python login.py                 # smoke run: prints a truncated session token
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
 ```
+
+### Create and populate the SQLite database
+
+From `prototype/`, normalize the bundled Costa Mesa snapshot and load it into SQLite.
+
+```bash
+python normalize.py data/layer57.json standardized.json
+python load_db.py standardized.json crime.db
+```
+
+On a fresh database, the loader should report `inserted 19, unchanged 0, held 0`, followed by `verification passed`. Running the same load again should report `unchanged 19`.
+
+See [Crime Data Sources](../docs/crime-data-sources.md) for background on the Costa Mesa data.
+
+### Launch the map
+
+From `prototype/` with the virtual environment active, run:
+
+```bash
+python -m flask --app app run --port 5051
+```
+
+Open the [local map](http://127.0.0.1:5051/). It should show **19 records across 13 mapped locations**. Click a marker to view the calls associated with that location. The [incident API](http://127.0.0.1:5051/api/incidents) should return `"count": 19`.
+
+Flask uses `crime.db` next to `app.py` by default. Press **Ctrl+C** in Terminal to stop the server.
 
 ## How to test
 
-```bash
-cd prototype
-pip install pytest              # once
-python -m pytest tests -q       # 4 tests
-```
+From `prototype/` with the virtual environment active, run:
 
-CI runs exactly these tests on every pull request (job **Prototype build &
-tests**). If you use Node instead of Python, put a `package.json` here with a
-`test` script and CI will detect and run that instead.
+```bash
+python -m pip install pytest
+python -m pytest -q
+```
 
 ## What it proves
 
-That credentials can be checked and a session token issued, with unknown-user
-and wrong-password failures indistinguishable to the caller — the riskiest
-assumption in 〈the epic this belongs to〉.
+The prototype can normalize the Costa Mesa snapshot, store and verify its records in SQLite, and display them on a local map. Records that share coordinates appear under the same marker. The demo shows calls for service, which should be interpreted as reported activity.
 
 ## Status
 
 | Sprint | Increment |
-|---|---|
-| v0 (Sep 27) | login check + 4 tests (this example) |
-| Sprint 1 | 〈what you added〉 |
+| --- | --- |
+| Sprint 3 | Added a runnable Flask and Leaflet demo that displays 19 Costa Mesa calls for service across 13 mapped locations. |
