@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crime Busters</title>
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #172b40;
+        }
+        header { padding: 16px 24px; }
+        h1 { margin: 0 0 8px; }
+        #map {
+            height: 70vh;
+            margin: 0 24px 24px;
+            border: 1px solid #b8c6d4;
+        }
+        .record {
+            border-bottom: 1px solid #ccc;
+            padding: 8px 0;
+        }
+        .record p { margin: 4px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Crime Busters</h1>
+        <p>Historical Costa Mesa burglary-related calls for service.
+           These are not confirmed crime counts.</p>
+        <p>Locations are block-level. Source timezone is unverified.</p>
+        <p id="status" role="status">Loading records…</p>
+    </header>
+
+    <div id="map" aria-label
+
+The endpoint works: **Flask retrieved all 19 records from SQLite**.
+
+Next, display them on the map. Some records share coordinates, so we’ll group those into one marker whose popup lists every record at that location.
+
+**1. Stop Flask with Control + C.**
+
+**2. Paste this entire block directly into Terminal** to replace `prototype/templates/index.html`:
+
+```bash
+cat > prototype/templates/index.html <<'HTML'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crime Busters</title>
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #172b40;
+        }
+        header { padding: 16px 24px; }
+        h1 { margin: 0 0 8px; }
+        #map {
+            height: 70vh;
+            margin: 0 24px 24px;
+            border: 1px solid #b8c6d4;
+        }
+        .records { max-height: 280px; overflow-y: auto; }
+        .record { padding: 10px 0; border-bottom: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Crime Busters</h1>
+        <p>Historical Costa Mesa burglary-related calls for service.
+           These are not confirmed crime counts.</p>
+        <p>Locations are block-level, not exact addresses.
+           Source timezone remains unverified.</p>
+        <p id="status" role="status">Loading records…</p>
+    </header>
+
+    <div id="map" aria-label="Interactive map of Costa Mesa"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const map = L.map("map").setView([33.6411, -117.9187], 13);
+
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        const status = document.getElementById("status");
+
+        function addField(container, label, value) {
+            const line = document.createElement("div");
+            line.textContent = `${label}: ${value ?? "Unknown"}`;
+            container.appendChild(line);
+        }
+
+        async function loadIncidents() {
+            try {
+                const response = await fetch("/api/incidents");
+                if (!response.ok) {
+                    throw new Error("Could not retrieve records");
+                }
+                const data = await response.json();
+                const groups = new Map();
+                let displayed = 0;
+
+                for (const record of data.incidents) {
+                    const lat = record.latitude;
+                    const lon = record.longitude;
+
+                    if (!Number.isFinite(lat) || !Number.isFinite(lon) ||
+                        lat < -90 || lat > 90 || lon < -180 || lon > 180) {
+                        continue;
+                    }
+
+                    const key = `${lat},${lon}`;
+                    if (!groups.has(key)) {
+                        groups.set(key, []);
+                    }
+                    groups.get(key).push(record);
+                    displayed++;
+                }
+
+                const bounds = [];
+
+                for (const records of groups.values()) {
+                    const first = records[0];
+                    const position = [first.latitude, first.longitude];
+                    const popup = document.createElement("div");
+                    popup.className = "records";
+
+                    const heading = document.createElement("strong");
+                    heading.textContent =
+                        `${records.length} record(s) at this block-level location`;
+                    popup.appendChild(heading);
+
+                    for (const record of records) {
+                        const details = document.createElement("div");
+                        details.className = "record";
+                        addField(details, "Type", record.crime_type);
+                        addField(details, "Description", record.description);
+                        addField(details, "Date", record.incident_date);
+                        addField(details, "Time", record.incident_time);
+                        addField(details, "Timezone", record.timezone);
+                        addField(details, "Location", record.location);
+                        addField(details, "Precision", record.location_precision);
+                        addField(details, "Record kind", record.record_kind);
+                        addField(details, "Source", record.source);
+                        addField(details, "Source ID", record.source_record_id);
+                        popup.appendChild(details);
+                    }
+
+                    L.circleMarker(position, {
+                        radius: 8,
+                        color: "#ffffff",
+                        weight: 2,
+                        fillColor: "#1769aa",
+                        fillOpacity: 0.9
+                    }).addTo(map).bindPopup(popup);
+                    bounds.push(position);
+                }
+
+                if (bounds.length) {
+                    map.fitBounds(bounds, { padding: [30, 30], maxZoom: 15 });
+                    status.textContent =
+                        `${displayed} records across ${groups.size} mapped locations. Click a marker for details.`;
+                } else {
+                    status.textContent = "No records with usable coordinates.";
+                }
+            } catch (error) {
+                status.textContent =
+                    "Unable to load incident records. Check the Flask terminal and /api/incidents.";
+                console.error(error);
+            }
+        }
+
+        loadIncidents();
+    </script>
+</body>
+</html>
