@@ -1,10 +1,10 @@
 # Prototype
 
-Proof-of-concept code for Crime Busters, an interactive crime map and database. The current prototype normalizes Costa Mesa crime records, loads them into SQLite, and includes functions for filtering incidents by area and calculating crime frequencies.
+The Crime Busters prototype displays historical Costa Mesa burglary-related calls for service on a Leaflet map. Flask serves the map and reads the records from a local SQLite database. Locations are block-level, and the source timezone is unverified.
 
 ## How to run
 
-Use Python 3.12. From the repository root, create a virtual environment and install the prototype dependencies:
+From the root of a fresh clone, create a Python virtual environment and install the dependencies. The demo was tested with Python 3.11.9 and Flask 3.1.3.
 
 ```bash
 cd prototype
@@ -15,20 +15,32 @@ python -m pip install -r requirements.txt
 
 ### Create and populate the SQLite database
 
-Save a Costa Mesa ArcGIS query response as `costa_mesa_query.json` in the `prototype` directory. Use `outSR=4326` when exporting the query. See [Crime Data Sources](../docs/crime-data-sources.md) for source details.
-
-From the `prototype` directory, run:
+From `prototype/`, normalize the bundled Costa Mesa snapshot and load it into SQLite.
 
 ```bash
-python normalize.py costa_mesa_query.json standardized.json
+python normalize.py data/layer57.json standardized.json
 python load_db.py standardized.json crime.db
 ```
 
-The first command creates `standardized.json`. The second creates `crime.db` if needed, loads the records, and reports how many were inserted, unchanged, or held for review. Check for `verification passed` in the output.
+On a fresh database, the loader should report `inserted 19, unchanged 0, held 0`, followed by `verification passed`. Running the same load again should report `unchanged 19`.
+
+See [Crime Data Sources](../docs/crime-data-sources.md) for background on the Costa Mesa data.
+
+### Launch the map
+
+From `prototype/` with the virtual environment active, run:
+
+```bash
+python -m flask --app app run --port 5051
+```
+
+Open the [local map](http://127.0.0.1:5051/). It should show **19 records across 13 mapped locations**. Click a marker to view the calls associated with that location. The [incident API](http://127.0.0.1:5051/api/incidents) should return `"count": 19`.
+
+Flask uses `crime.db` next to `app.py` by default. Press **Ctrl+C** in Terminal to stop the server.
 
 ## How to test
 
-From the `prototype` directory with the virtual environment active, run:
+From `prototype/` with the virtual environment active, run:
 
 ```bash
 python -m pip install pytest
@@ -37,10 +49,10 @@ python -m pytest -q
 
 ## What it proves
 
-The prototype can convert Costa Mesa records into a consistent format, store them in SQLite, and verify that retrieved records match the standardized input. The tests also cover area filtering and crime frequency calculations.
+The prototype can normalize the Costa Mesa snapshot, store and verify its records in SQLite, and display them on a local map. Records that share coordinates appear under the same marker. The demo shows calls for service, which should be interpreted as reported activity.
 
 ## Status
 
 | Sprint | Increment |
 | --- | --- |
-| Sprint 3 | The Python prototype includes record normalization, SQLite loading and retrieval, area filtering, and crime frequency calculations. The Flask and Leaflet demo setup is pending. |
+| Sprint 3 | Added a runnable Flask and Leaflet demo that displays 19 Costa Mesa calls for service across 13 mapped locations. |
