@@ -1,44 +1,46 @@
 # Prototype
 
-Proof-of-concept code for 〈project title〉. **Prototype v0 is due Sep 27** with
-the proposal, and it grows every sprint; the Week-8 in-class check demos from
-this folder.
-
-This example implements the login slice behind story
-[#3](../../../issues/3) and task [#5](../../../issues/5) — deliberately tiny,
-because a prototype exists to answer one risky question, not to be the
-product. **Replace it with yours** and keep the shape: a small module, a test
-per acceptance criterion, and run instructions below that work on a machine
-that has never seen your project.
+Proof-of-concept code for Crime Busters, an interactive crime map and database. The current prototype normalizes Costa Mesa crime records, loads them into SQLite, and includes functions for filtering incidents by area and calculating crime frequencies.
 
 ## How to run
 
+Use Python 3.12. From the repository root, create a virtual environment and install the prototype dependencies:
+
 ```bash
 cd prototype
-python login.py                 # smoke run: prints a truncated session token
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
 ```
+
+### Create and populate the SQLite database
+
+Save a Costa Mesa ArcGIS query response as `costa_mesa_query.json` in the `prototype` directory. Use `outSR=4326` when exporting the query. See [Crime Data Sources](../docs/crime-data-sources.md) for source details.
+
+From the `prototype` directory, run:
+
+```bash
+python normalize.py costa_mesa_query.json standardized.json
+python load_db.py standardized.json crime.db
+```
+
+The first command creates `standardized.json`. The second creates `crime.db` if needed, loads the records, and reports how many were inserted, unchanged, or held for review. Check for `verification passed` in the output.
 
 ## How to test
 
-```bash
-cd prototype
-pip install pytest              # once
-python -m pytest tests -q       # 4 tests
-```
+From the `prototype` directory with the virtual environment active, run:
 
-CI runs exactly these tests on every pull request (job **Prototype build &
-tests**). If you use Node instead of Python, put a `package.json` here with a
-`test` script and CI will detect and run that instead.
+```bash
+python -m pip install pytest
+python -m pytest -q
+```
 
 ## What it proves
 
-That credentials can be checked and a session token issued, with unknown-user
-and wrong-password failures indistinguishable to the caller — the riskiest
-assumption in 〈the epic this belongs to〉.
+The prototype can convert Costa Mesa records into a consistent format, store them in SQLite, and verify that retrieved records match the standardized input. The tests also cover area filtering and crime frequency calculations.
 
 ## Status
 
 | Sprint | Increment |
-|---|---|
-| v0 (Sep 27) | login check + 4 tests (this example) |
-| Sprint 1 | 〈what you added〉 |
+| --- | --- |
+| Sprint 3 | The Python prototype includes record normalization, SQLite loading and retrieval, area filtering, and crime frequency calculations. The Flask and Leaflet demo setup is pending. |
