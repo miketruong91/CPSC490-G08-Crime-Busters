@@ -22,6 +22,23 @@
         }
         .records { max-height: 280px; overflow-y: auto; }
         .record { padding: 10px 0; border-bottom: 1px solid #ccc; }
+        .record { padding: 10px 0; border-bottom: 1px solid #ccc; }
+
+.filters {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#crime-type-filter {
+    padding: 8px 12px;
+    border: 1px solid #b8c6d4;
+    border-radius: 5px;
+    font-size: 14px;
+    background: white;
+}
+</style>
     </style>
 </head>
 <body>
@@ -32,6 +49,14 @@
         <p>Locations are block-level, not exact addresses.
            Source timezone remains unverified.</p>
         <p id="status" role="status">Loading records…</p>
+        
+<div class="filters">
+    <label for="crime-type-filter">Filter by crime type:</label>
+    <select id="crime-type-filter">
+        <option value="all">All Crime Types</option>
+    </select>
+</div>
+
     </header>
 
     <div id="map" aria-label="Interactive map of Costa Mesa"></div>
@@ -46,6 +71,23 @@
         }).addTo(map);
 
         const status = document.getElementById("status");
+
+const crimeTypeFilter = document.getElementById("crime-type-filter");
+
+function populateCrimeTypeFilter(incidents) {
+    const crimeTypes = [...new Set(
+        incidents
+            .map(record => record.crime_type)
+            .filter(type => typeof type === "string" && type.trim())
+    )].sort();
+
+    for (const type of crimeTypes) {
+        const option = document.createElement("option");
+        option.value = type;
+        option.textContent = type;
+        crimeTypeFilter.appendChild(option);
+    }
+}
 
         let selectedMarker = null;
 
@@ -92,6 +134,7 @@
                     throw new Error("Could not retrieve records");
                 }
                 const data = await response.json();
+                populateCrimeTypeFilter(data.incidents);
                 const groups = new Map();
                 let displayed = 0;
 
