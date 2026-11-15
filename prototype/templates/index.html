@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -73,6 +73,8 @@
 const crimeTypeFilter = document.getElementById("crime-type-filter");
 
 function populateCrimeTypeFilter(incidents) {
+    const selectedType = crimeTypeFilter.value;
+    crimeTypeFilter.innerHTML = '<option value="all">All Crime Types</option>';
     const crimeTypes = [...new Set(
         incidents
             .map(record => record.crime_type)
@@ -85,10 +87,17 @@ function populateCrimeTypeFilter(incidents) {
         option.textContent = type;
         crimeTypeFilter.appendChild(option);
     }
+    crimeTypeFilter.value = selectedType;
 }
 
         let selectedMarker = null;
-
+const incidentLayer = L.layerGroup().addTo(map);
+        let allIncidents = [];
+       crimeTypeFilter.addEventListener("change", function () {
+    incidentLayer.clearLayers();
+    selectedMarker = null;
+    loadIncidents();
+});
         function selectMarker(marker) {
             if (selectedMarker && selectedMarker !== marker) {
                 deselectMarker(selectedMarker);
@@ -132,11 +141,17 @@ function populateCrimeTypeFilter(incidents) {
                     throw new Error("Could not retrieve records");
                 }
                 const data = await response.json();
+                allIncidents = data.incidents;
                 populateCrimeTypeFilter(data.incidents);
+              
                 const groups = new Map();
                 let displayed = 0;
 
-                for (const record of data.incidents) {
+                for (const record of allIncidents) {
+                    if (crimeTypeFilter.value !== "all" &&
+    record.crime_type !== crimeTypeFilter.value) {
+    continue;
+}
                     const lat = record.latitude;
                     const lon = record.longitude;
 
@@ -188,7 +203,7 @@ function populateCrimeTypeFilter(incidents) {
                     weight: 2,
                     fillColor: "#1769aa",
                     fillOpacity: 0.9
-                }).addTo(map).bindPopup(popup);
+                }).addTo(incidentLayer).bindPopup(popup);
 
                 marker.on("click", function () {
                     selectMarker(marker);
