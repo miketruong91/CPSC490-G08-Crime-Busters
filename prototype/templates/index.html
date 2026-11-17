@@ -93,10 +93,8 @@ function populateCrimeTypeFilter(incidents) {
         let selectedMarker = null;
 const incidentLayer = L.layerGroup().addTo(map);
         let allIncidents = [];
-       crimeTypeFilter.addEventListener("change", function () {
-    incidentLayer.clearLayers();
-    selectedMarker = null;
-    loadIncidents();
+      crimeTypeFilter.addEventListener("change", function () {
+    displayIncidents();
 });
         function selectMarker(marker) {
             if (selectedMarker && selectedMarker !== marker) {
@@ -134,15 +132,10 @@ const incidentLayer = L.layerGroup().addTo(map);
             container.appendChild(line);
         }
 
-        async function loadIncidents() {
-            try {
-                const response = await fetch("/api/incidents");
-                if (!response.ok) {
-                    throw new Error("Could not retrieve records");
-                }
-                const data = await response.json();
-                allIncidents = data.incidents;
-                populateCrimeTypeFilter(data.incidents);
+        function displayIncidents() {
+          try {
+    incidentLayer.clearLayers();
+    selectedMarker = null;
               
                 const groups = new Map();
                 let displayed = 0;
@@ -228,7 +221,24 @@ const incidentLayer = L.layerGroup().addTo(map);
                 console.error(error);
             }
         }
+async function loadIncidents() {
+    try {
+        const response = await fetch("/api/incidents");
 
+        if (!response.ok) {
+            throw new Error("Could not retrieve records");
+        }
+
+        const data = await response.json();
+        allIncidents = data.incidents;
+        populateCrimeTypeFilter(allIncidents);
+        displayIncidents();
+    } catch (error) {
+        status.textContent =
+            "Unable to load incident records. Check the Flask terminal and /api/incidents.";
+        console.error(error);
+    }
+}
         loadIncidents();
     </script>
 </body>
