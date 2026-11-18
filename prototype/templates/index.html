@@ -1,0 +1,245 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crime Busters</title>
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #172b40;
+        }
+        header { padding: 16px 24px; }
+        h1 { margin: 0 0 8px; }
+        #map {
+            height: 70vh;
+            margin: 0 24px 24px;
+            border: 1px solid #b8c6d4;
+        }
+        .records { max-height: 280px; overflow-y: auto; }
+        .record { padding: 10px 0; border-bottom: 1px solid #ccc; }
+
+.filters {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#crime-type-filter {
+    padding: 8px 12px;
+    border: 1px solid #b8c6d4;
+    border-radius: 5px;
+    font-size: 14px;
+    background: white;
+}
+</style>
+</head>
+<body>
+    <header>
+        <h1>Crime Busters</h1>
+        <p>Historical Costa Mesa burglary-related calls for service.
+           These are not confirmed crime counts.</p>
+        <p>Locations are block-level, not exact addresses.
+           Source timezone remains unverified.</p>
+        <p id="status" role="status">Loading records…</p>
+        
+<div class="filters">
+    <label for="crime-type-filter">Filter by crime type:</label>
+    <select id="crime-type-filter">
+        <option value="all">All Crime Types</option>
+    </select>
+</div>
+
+    </header>
+
+    <div id="map" aria-label="Interactive map of Costa Mesa"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const map = L.map("map").setView([33.6411, -117.9187], 13);
+
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        const status = document.getElementById("status");
+
+const crimeTypeFilter = document.getElementById("crime-type-filter");
+
+function populateCrimeTypeFilter(incidents) {
+    const selectedType = crimeTypeFilter.value;
+    crimeTypeFilter.innerHTML = '<option value="all">All Crime Types</option>';
+    const crimeTypes = [...new Set(
+        incidents
+            .map(record => record.crime_type)
+            .filter(type => typeof type === "string" && type.trim())
+    )].sort();
+
+    for (const type of crimeTypes) {
+        const option = document.createElement("option");
+        option.value = type;
+        option.textContent = type;
+        crimeTypeFilter.appendChild(option);
+    }
+    crimeTypeFilter.value = selectedType;
+}
+
+        let selectedMarker = null;
+const incidentLayer = L.layerGroup().addTo(map);
+        let allIncidents = [];
+      crimeTypeFilter.addEventListener("change", function () {
+    displayIncidents();
+});
+        function selectMarker(marker) {
+            if (selectedMarker && selectedMarker !== marker) {
+                deselectMarker(selectedMarker);
+            }
+
+            selectedMarker = marker;
+
+            marker.setStyle({
+                color: "#ffffff",
+                fillColor: "#ff9800",
+                fillOpacity: 1,
+                weight: 3
+            });
+
+            marker.setRadius(11);
+        }
+
+        function deselectMarker(marker) {
+            if (selectedMarker === marker) {
+                marker.setStyle({
+                    color: "#ffffff",
+                    fillColor: "#1769aa",
+                    fillOpacity: 0.9,
+                    weight: 2
+                });
+
+                marker.setRadius(8);
+                selectedMarker = null;
+            }
+        }
+        function addField(container, label, value) {
+            const line = document.createElement("div");
+            line.textContent = `${label}: ${value ?? "Unknown"}`;
+            container.appendChild(line);
+        }
+
+        function displayIncidents() {
+          try {
+    incidentLayer.clearLayers();
+    selectedMarker = null;
+              
+                const groups = new Map();
+                let displayed = 0;
+
+                for (const record of allIncidents) {
+                    if (crimeTypeFilter.value !== "all" &&
+    record.crime_type !== crimeTypeFilter.value) {
+    continue;
+}
+                    const lat = record.latitude;
+                    const lon = record.longitude;
+
+                    if (!Number.isFinite(lat) || !Number.isFinite(lon) ||
+                        lat < -90 || lat > 90 || lon < -180 || lon > 180) {
+                        continue;
+                    }
+
+                    const key = `${lat},${lon}`;
+                    if (!groups.has(key)) {
+                        groups.set(key, []);
+                    }
+                    groups.get(key).push(record);
+                    displayed++;
+                }
+
+                const bounds = [];
+
+                for (const records of groups.values()) {
+                    const first = records[0];
+                    const position = [first.latitude, first.longitude];
+                    const popup = document.createElement("div");
+                    popup.className = "records";
+
+                    const heading = document.createElement("strong");
+                    heading.textContent =
+                        `${records.length} record(s) at this block-level location`;
+                    popup.appendChild(heading);
+
+                    for (const record of records) {
+                        const details = document.createElement("div");
+                        details.className = "record";
+                        addField(details, "Type", record.crime_type);
+                        addField(details, "Description", record.description);
+                        addField(details, "Date", record.incident_date);
+                        addField(details, "Time", record.incident_time);
+                        addField(details, "Timezone", record.timezone);
+                        addField(details, "Location", record.location);
+                        addField(details, "Precision", record.location_precision);
+                        addField(details, "Record kind", record.record_kind);
+                        addField(details, "Source", record.source);
+                        addField(details, "Source ID", record.source_record_id);
+                        popup.appendChild(details);
+                    }
+
+                const marker = L.circleMarker(position, {
+                    radius: 8,
+                    color: "#ffffff",
+                    weight: 2,
+                    fillColor: "#1769aa",
+                    fillOpacity: 0.9
+                }).addTo(incidentLayer).bindPopup(popup);
+
+                marker.on("click", function () {
+                    selectMarker(marker);
+                });
+
+                marker.on("popupclose", function () {
+                    deselectMarker(marker);
+                });
+                    bounds.push(position);
+                }
+
+                if (bounds.length) {
+                    map.fitBounds(bounds, { padding: [30, 30], maxZoom: 15 });
+                    status.textContent =
+                        `${displayed} records across ${groups.size} mapped locations. Click a marker for details.`;
+                } else {
+                    status.textContent = "No records with usable coordinates.";
+                }
+            } catch (error) {
+                status.textContent =
+                    "Unable to load incident records. Check the Flask terminal and /api/incidents.";
+                console.error(error);
+            }
+        }
+async function loadIncidents() {
+    try {
+        const response = await fetch("/api/incidents");
+
+        if (!response.ok) {
+            throw new Error("Could not retrieve records");
+        }
+
+        const data = await response.json();
+        allIncidents = data.incidents;
+        populateCrimeTypeFilter(allIncidents);
+        displayIncidents();
+    } catch (error) {
+        status.textContent =
+            "Unable to load incident records. Check the Flask terminal and /api/incidents.";
+        console.error(error);
+    }
+}
+        loadIncidents();
+    </script>
+</body>
+</html>

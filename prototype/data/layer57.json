@@ -1,0 +1,450 @@
+{
+ "displayFieldName": "ID",
+ "fieldAliases": {
+  "FID": "FID",
+  "ID": "ID",
+  "CallDate": "CallDate",
+  "CallTime": "CallTime",
+  "Type": "Type",
+  "Code": "Code",
+  "Nature": "Nature",
+  "Location": "Location",
+  "City": "City",
+  "Agency": "Agency",
+  "Dispo": "Dispo"
+ },
+ "geometryType": "esriGeometryPoint",
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "fields": [
+  {
+   "name": "FID",
+   "type": "esriFieldTypeOID",
+   "alias": "FID"
+  },
+  {
+   "name": "ID",
+   "type": "esriFieldTypeString",
+   "alias": "ID",
+   "length": 14
+  },
+  {
+   "name": "CallDate",
+   "type": "esriFieldTypeString",
+   "alias": "CallDate",
+   "length": 10
+  },
+  {
+   "name": "CallTime",
+   "type": "esriFieldTypeString",
+   "alias": "CallTime",
+   "length": 8
+  },
+  {
+   "name": "Type",
+   "type": "esriFieldTypeInteger",
+   "alias": "Type"
+  },
+  {
+   "name": "Code",
+   "type": "esriFieldTypeString",
+   "alias": "Code",
+   "length": 6
+  },
+  {
+   "name": "Nature",
+   "type": "esriFieldTypeString",
+   "alias": "Nature",
+   "length": 254
+  },
+  {
+   "name": "Location",
+   "type": "esriFieldTypeString",
+   "alias": "Location",
+   "length": 254
+  },
+  {
+   "name": "City",
+   "type": "esriFieldTypeString",
+   "alias": "City",
+   "length": 40
+  },
+  {
+   "name": "Agency",
+   "type": "esriFieldTypeString",
+   "alias": "Agency",
+   "length": 40
+  },
+  {
+   "name": "Dispo",
+   "type": "esriFieldTypeString",
+   "alias": "Dispo",
+   "length": 254
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "FID": 231,
+    "ID": "2025068460",
+    "CallDate": "07/26/2025",
+    "CallTime": "12:12:51",
+    "Type": 4,
+    "Code": "459V",
+    "Nature": "BURGLARY VEHICLE",
+    "Location": "100 BLK E 18TH ST",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": " "
+   },
+   "geometry": {
+    "x": -117.91764968214937,
+    "y": 33.639379802719652
+   }
+  },
+  {
+   "attributes": {
+    "FID": 232,
+    "ID": "2025068450",
+    "CallDate": "07/26/2025",
+    "CallTime": "11:38:40",
+    "Type": 4,
+    "Code": "R459V",
+    "Nature": "BURGLARY VEHICLE REPORT",
+    "Location": "100 BLK E 18TH ST",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "CANCELED BY CALLER"
+   },
+   "geometry": {
+    "x": -117.91764968214937,
+    "y": 33.639379802719652
+   }
+  },
+  {
+   "attributes": {
+    "FID": 292,
+    "ID": "2025068435",
+    "CallDate": "07/26/2025",
+    "CallTime": "10:40:02",
+    "Type": 4,
+    "Code": "R459R",
+    "Nature": "BURGLARY RESIDENTIAL REPORT",
+    "Location": "100 BLK ROCHESTER ST",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW ARREST"
+   },
+   "geometry": {
+    "x": -117.91864057227981,
+    "y": 33.638298955194749
+   }
+  },
+  {
+   "attributes": {
+    "FID": 573,
+    "ID": "2025065845",
+    "CallDate": "07/19/2025",
+    "CallTime": "01:14:58",
+    "Type": 4,
+    "Code": "R459G",
+    "Nature": "BURGLARY GARAGE REPORT",
+    "Location": "1500 BLK MESA VERDE DR E",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW"
+   },
+   "geometry": {
+    "x": -117.92195281500526,
+    "y": 33.670402326967405
+   }
+  },
+  {
+   "attributes": {
+    "FID": 578,
+    "ID": "2025065846",
+    "CallDate": "07/19/2025",
+    "CallTime": "01:15:09",
+    "Type": 4,
+    "Code": "R459V",
+    "Nature": "BURGLARY VEHICLE REPORT",
+    "Location": "1500 BLK MESA VERDE DR E",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW"
+   },
+   "geometry": {
+    "x": -117.92195281500526,
+    "y": 33.670402326967405
+   }
+  },
+  {
+   "attributes": {
+    "FID": 905,
+    "ID": "2025064493",
+    "CallDate": "07/15/2025",
+    "CallTime": "10:13:18",
+    "Type": 4,
+    "Code": "R459C",
+    "Nature": "BURGLARY COMMERCIAL REPORT",
+    "Location": "1900 BLK HARBOR BLVD",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW"
+   },
+   "geometry": {
+    "x": -117.91899770718035,
+    "y": 33.645326767024514
+   }
+  },
+  {
+   "attributes": {
+    "FID": 1228,
+    "ID": "2025066649",
+    "CallDate": "07/21/2025",
+    "CallTime": "09:33:26",
+    "Type": 4,
+    "Code": "R459G",
+    "Nature": "BURGLARY GARAGE REPORT",
+    "Location": "2000 BLK PARSONS ST",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW"
+   },
+   "geometry": {
+    "x": -117.91752510243778,
+    "y": 33.651373986381465
+   }
+  },
+  {
+   "attributes": {
+    "FID": 1542,
+    "ID": "2025064353",
+    "CallDate": "07/14/2025",
+    "CallTime": "20:48:03",
+    "Type": 4,
+    "Code": "R459V",
+    "Nature": "BURGLARY VEHICLE REPORT",
+    "Location": "2300 BLK HARBOR BLVD",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW"
+   },
+   "geometry": {
+    "x": -117.91915309041045,
+    "y": 33.659888265960035
+   }
+  },
+  {
+   "attributes": {
+    "FID": 1699,
+    "ID": "2025067062",
+    "CallDate": "07/22/2025",
+    "CallTime": "12:29:52",
+    "Type": 4,
+    "Code": "R459C",
+    "Nature": "BURGLARY COMMERCIAL REPORT",
+    "Location": "2700 BLK FAIRVIEW RD",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW"
+   },
+   "geometry": {
+    "x": -117.90779298289787,
+    "y": 33.674097171526846
+   }
+  },
+  {
+   "attributes": {
+    "FID": 1960,
+    "ID": "2025068922",
+    "CallDate": "07/27/2025",
+    "CallTime": "15:36:51",
+    "Type": 4,
+    "Code": "RA459V",
+    "Nature": "BURGLARY VEHICLE ATTEMPT RPT",
+    "Location": "300 BLK LA PERLE PL",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW"
+   },
+   "geometry": {
+    "x": -117.91643747592026,
+    "y": 33.626327694896112
+   }
+  },
+  {
+   "attributes": {
+    "FID": 2143,
+    "ID": "2025064751",
+    "CallDate": "07/16/2025",
+    "CallTime": "04:44:35",
+    "Type": 4,
+    "Code": "459C",
+    "Nature": "BURGLARY COMMERCIAL",
+    "Location": "3100 BLK AIRWAY AVE",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW"
+   },
+   "geometry": {
+    "x": -117.87224074481882,
+    "y": 33.677599861527376
+   }
+  },
+  {
+   "attributes": {
+    "FID": 2158,
+    "ID": "2025068951",
+    "CallDate": "07/27/2025",
+    "CallTime": "17:23:06",
+    "Type": 4,
+    "Code": "R459R",
+    "Nature": "BURGLARY RESIDENTIAL REPORT",
+    "Location": "3100 BLK DUBLIN ST",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW"
+   },
+   "geometry": {
+    "x": -117.91854890397451,
+    "y": 33.685173547445828
+   }
+  },
+  {
+   "attributes": {
+    "FID": 2199,
+    "ID": "2025067858",
+    "CallDate": "07/24/2025",
+    "CallTime": "15:55:33",
+    "Type": 4,
+    "Code": "R459C",
+    "Nature": "BURGLARY COMMERCIAL REPORT",
+    "Location": "3100 BLK PULLMAN ST",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "NO REPORT REQUIRED"
+   },
+   "geometry": {
+    "x": -117.87826314515412,
+    "y": 33.678363083966907
+   }
+  },
+  {
+   "attributes": {
+    "FID": 2206,
+    "ID": "2025068580",
+    "CallDate": "07/26/2025",
+    "CallTime": "17:50:08",
+    "Type": 4,
+    "Code": "R459C",
+    "Nature": "BURGLARY COMMERCIAL REPORT",
+    "Location": "3100 BLK PULLMAN ST",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW"
+   },
+   "geometry": {
+    "x": -117.87826314515412,
+    "y": 33.678363083966907
+   }
+  },
+  {
+   "attributes": {
+    "FID": 2213,
+    "ID": "2025066922",
+    "CallDate": "07/22/2025",
+    "CallTime": "03:22:19",
+    "Type": 4,
+    "Code": "459V",
+    "Nature": "BURGLARY VEHICLE",
+    "Location": "3100 BLK SUMATRA PL",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW"
+   },
+   "geometry": {
+    "x": -117.92644572556944,
+    "y": 33.684813734130159
+   }
+  },
+  {
+   "attributes": {
+    "FID": 2461,
+    "ID": "2025068498",
+    "CallDate": "07/26/2025",
+    "CallTime": "14:23:41",
+    "Type": 4,
+    "Code": "R459G",
+    "Nature": "BURGLARY GARAGE REPORT",
+    "Location": "400 BLK ENCLAVE CIR",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW"
+   },
+   "geometry": {
+    "x": -117.87605762283482,
+    "y": 33.691979882157057
+   }
+  },
+  {
+   "attributes": {
+    "FID": 2469,
+    "ID": "2025066644",
+    "CallDate": "07/21/2025",
+    "CallTime": "09:10:58",
+    "Type": 4,
+    "Code": "R459V",
+    "Nature": "BURGLARY VEHICLE REPORT",
+    "Location": "400 BLK ENCLAVE CIR",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW"
+   },
+   "geometry": {
+    "x": -117.87605762283482,
+    "y": 33.691979882157057
+   }
+  },
+  {
+   "attributes": {
+    "FID": 2470,
+    "ID": "2025066415",
+    "CallDate": "07/20/2025",
+    "CallTime": "15:15:45",
+    "Type": 4,
+    "Code": "R459V",
+    "Nature": "BURGLARY VEHICLE REPORT",
+    "Location": "400 BLK ENCLAVE CIR",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "REPORT TO FOLLOW"
+   },
+   "geometry": {
+    "x": -117.87605762283482,
+    "y": 33.691979882157057
+   }
+  },
+  {
+   "attributes": {
+    "FID": 2471,
+    "ID": "2025066358",
+    "CallDate": "07/20/2025",
+    "CallTime": "12:42:03",
+    "Type": 4,
+    "Code": "R459V",
+    "Nature": "BURGLARY VEHICLE REPORT",
+    "Location": "400 BLK ENCLAVE CIR",
+    "City": "COSTA MESA",
+    "Agency": "CMPD",
+    "Dispo": "NO REPORT REQUIRED"
+   },
+   "geometry": {
+    "x": -117.87605762283482,
+    "y": 33.691979882157057
+   }
+  }
+ ]
+}
