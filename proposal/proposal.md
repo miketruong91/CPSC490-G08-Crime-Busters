@@ -266,6 +266,8 @@ Search parameters and errors, the storage-to-analysis adapter, and chart layout 
 
 The team repository and earlier proposal sections are documented in [[task:#42]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/42), [[task:#49]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/49), [[task:#51]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/51), [[task:#53]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/53), [[task:#58]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/58). The separate Sprint 1 retrospective is tracked in [[task:#62]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/62).
 
+Flask route tests use a temporary SQLite database created from the project schema. They verify that the map route serves the expected HTML page and that the incidents API returns the expected records, excludes records without coordinates, returns an empty list for an empty database, and reports an unavailable database with HTTP 503. These tests verify server responses; browser JavaScript interactions require separate testing. [[task:#93]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/93)
+
 ## 5. Project Outcomes
 
 > Describe the outcomes or deliverables, e.g., final project report, user
