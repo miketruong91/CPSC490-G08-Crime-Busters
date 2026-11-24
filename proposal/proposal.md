@@ -384,6 +384,9 @@ For the November 9 checklist follow-up, ChatGPT drafted the additions to §2 and
 After PR #84, ChatGPT drafted the proposal updates describing the runnable prototype and comparing the existing tests with the acceptance criteria. The new prose is AI-assisted and should be reviewed and revised by the team before submission.
 
 For the design decisions update under task #89, ChatGPT assisted with the initial drafting of comparisons between SQLite and server-based databases, Flask and alternative backend frameworks, Leaflet and alternative mapping libraries, and the current frontend approach and React. The initial wording was AI-assisted and reviewed for consistency with the project's selected technologies.
+
+For the Goal 1 documentation expansion under task #95, ChatGPT helped draft the initial additions describing source evaluation, the standardized format, normalization, SQLite storage, retrieval, verification, and unresolved requirements
+
 ## 8. References
 
 - [1] City of Costa Mesa, “PoliceIncidents (MapServer),” ArcGIS REST Services Directory.
