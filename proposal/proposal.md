@@ -191,7 +191,11 @@ Figure 2 treats Crime Busters as one system and shows its external actors. A tea
 
 *Figure 2 — Proposed system context; the conditional basemap arrows do not imply an adopted provider.*
 
-[Figure 3 — Initial SQLite entity relationship model](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/blob/develop/docs/design/crime-database-er.md#entity-relationship-diagram). Each standardized incident can have zero or more quality flags. The model and schema were delivered in [PR #73](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/73).
+![SQLite entity relationship model showing incidents and their associated quality flags](../docs/design/diagrams/crime-database-er.png)
+
+*Figure 3 — SQLite incident and quality-flag relationships. PK denotes primary key; FK denotes foreign key.*
+
+Each standardized incident can have zero or more quality flags. The model and schema were delivered in [PR #73](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/73). The [editable ER design](../docs/design/crime-database-er.md) provides supporting design notes. [[task:#32]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/32)
 
 The SQLite schema gives each incident an internal integer key and enforces uniqueness on the pair of source and source record ID. The source record ID stays text to preserve leading zeros. Each associated flag uses the incident key and flag name together as its key. Separate nullable date, time, timezone, and coordinate fields let the database preserve incomplete records while downstream filters exclude them when the relevant value is unavailable. The source classification and location precision travel with the record so the application can distinguish a block-level call for service from a precise, confirmed incident.
 
