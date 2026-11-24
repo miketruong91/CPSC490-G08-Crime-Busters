@@ -249,6 +249,23 @@ The format separates a standardized crime category from the original source code
 
 The format also distinguishes the event’s classification from its geographic precision. A call for service remains a call for service after normalization, and a block-level location remains block-level. Displaying a marker does not establish that its coordinates identify an exact address.
 
+*Table 1 — Selected field conversions for a synthetic Costa Mesa-shaped test record.*
+
+| Source field or context | Input | Standardized field | Output |
+|---|---|---|---|
+| Costa Mesa layer 57 mapping | Burglary-related layer | `source` | `costa_mesa_police_incidents` |
+| `ID` | `000123` | `source_record_id` | `"000123"` |
+| Source classification | Call for service | `record_kind` | `call_for_service` |
+| Evaluated layer | Burglary | `crime_type` | `burglary` |
+| `CallDate` | `07/26/2025` | `incident_date` | `2025-07-26` |
+| `CallTime` | `12:12:51` | `incident_time` | `12:12:51` |
+| `Dispo` | Spaces only | `disposition` | `null` |
+| Unverified source timezone | Unknown | `timezone` | `null` |
+| Source location precision | Block-level | `location_precision` | `block` |
+| Validation results | Timezone unverified; location not exact | `quality_flags` | `timezone_unverified`, `location_not_exact` |
+
+The example is synthetic and shows selected fields rather than all 17 exchange fields. The conversion rules are defined in [Standardized Crime Data Format](../docs/crime-data-format.md). [[task:#10]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/10) [[task:#11]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/11)
+
 #### Normalization and incomplete records
 
 The implemented normalizer converts Costa Mesa layer 57 features into the standardized representation. It trims surrounding whitespace and represents missing optional information as null. This allows the loader and application to distinguish an unavailable value from an actual value supplied by the source.
