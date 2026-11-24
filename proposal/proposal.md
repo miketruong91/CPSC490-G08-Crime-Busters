@@ -191,7 +191,11 @@ Figure 2 treats Crime Busters as one system and shows its external actors. A tea
 
 *Figure 2 — Proposed system context; the conditional basemap arrows do not imply an adopted provider.*
 
-[Figure 3 — Initial SQLite entity relationship model](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/blob/develop/docs/design/crime-database-er.md#entity-relationship-diagram). Each standardized incident can have zero or more quality flags. The model and schema were delivered in [PR #73](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/73).
+![SQLite entity relationship model showing incidents and their associated quality flags](../docs/design/diagrams/crime-database-er.png)
+
+*Figure 3 — SQLite incident and quality-flag relationships. PK denotes primary key; FK denotes foreign key.*
+
+Each standardized incident can have zero or more quality flags. The model and schema were delivered in [PR #73](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/73). The [editable ER design](../docs/design/crime-database-er.md) provides supporting design notes. [[task:#32]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/32)
 
 The SQLite schema gives each incident an internal integer key and enforces uniqueness on the pair of source and source record ID. The source record ID stays text to preserve leading zeros. Each associated flag uses the incident key and flag name together as its key. Separate nullable date, time, timezone, and coordinate fields let the database preserve incomplete records while downstream filters exclude them when the relevant value is unavailable. The source classification and location precision travel with the record so the application can distinguish a block-level call for service from a precise, confirmed incident.
 
@@ -219,11 +223,106 @@ Figure 6 proposes that Flask validate the center, radius, and active filters bef
 
 ### Goal 1 requirements and planned activities
 
-The initial scope covers evaluating a public source, saving a local snapshot, normalizing it to the [standardized format](../docs/crime-data-format.md), and retrieving standardized records from SQLite. Source evaluation must document the publisher, access method, fields, and known limits. The normalizer must produce all 17 exchange fields for accepted records and preserve source identity, nullable values, and quality flags. It must hold records with missing required identifiers or conflicting duplicates. Repeated loads of identical input must leave stored values and counts unchanged. Raw and generated data stay local while reuse terms are unresolved.
+Goal 1 establishes the data foundation used by the map and analysis components. Its purpose is to preserve the meaning of public records while converting differences in source structure into a consistent representation. A record must remain identifiable after normalization, storage, and retrieval. Missing or uncertain information must also remain visible so that later application features do not treat incomplete records as complete observations. This goal is tracked in [[epic:#3]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/3), with collection, standardization, and storage requirements defined in the [Goal 1 specification](../docs/specs/crime-data-foundation.md).
 
-The [Goal 1 specification](../docs/specs/crime-data-foundation.md) defines acceptance against a saved input with known field mappings, missing values, leading-zero IDs, and duplicate cases. On a fresh database, the stored count must equal the number of unique accepted records, and retrieval must reproduce their standardized values and flags. The application must then demonstrate that it can retrieve those fields and preserve source classification and quality information for downstream use.
+#### Source evaluation and collection
 
-Source evaluation and field verification are tracked in [[task:#8]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/8), [[task:#9]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/9). The checked sample contains 19 historical Costa Mesa burglary calls for service. It is evidence for the pipeline, with final source adoption, minimum dataset size, reuse terms, timezone, location accuracy, and refresh frequency still open. The exchange format, normalizer, schema, loader, and verification are tracked in [[task:#10]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/10), [[task:#11]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/11), [[task:#32]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/32), [[task:#35]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/35), [[task:#36]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/36). The next step is to confirm the evaluation dataset and verify retrieval through the application. The written specification for this goal and Goal 2 was delivered under [[task:#79]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/79).
+Source evaluation begins with identifying the publisher, access method, available fields, coverage period, and known limitations. A source must provide enough information to support the intended application behavior, but public visibility alone does not establish that its records are suitable for every use. The team must also examine the meaning of the records, location precision, missing values, and any conditions affecting collection or redistribution. These decisions support the collection objective in [[story:#4]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/4).
+
+The current prototype uses an inspected response from Costa Mesa’s burglary-related layer 57. The saved sample contains 19 historical calls for service. These records represent reported calls rather than confirmed crime counts. A canceled call and a call requiring a report may have different meanings even when they appear within the same source layer. The application must preserve the available description and disposition rather than interpret every row as a confirmed burglary.
+
+The [source evaluation document](../docs/crime-data-sources.md) records the inspected fields and limitations. The historical dates in the sample demonstrate why the application must examine record dates rather than assume that a source label describes the actual coverage period. The sample supports development and verification of the import workflow; its size does not establish a final minimum dataset requirement.
+
+The prototype follows a saved-snapshot approach. A source response can be inspected and processed repeatedly without requesting new provider data during every map interaction. This makes it possible to compare normalization and database results against the same input. It also separates preparation failures from application searches: an unavailable provider does not have to interrupt exploration of records already loaded locally.
+
+Source identification is tracked in [[task:#8]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/8), and verification of the required source fields is tracked in [[task:#9]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/9). Final source adoption, reuse terms, and refresh frequency remain unresolved. Additional cities, including Anaheim and Fullerton, are possible future sources. Their integration would require separate evaluation and field mappings; the existing Costa Mesa normalizer does not establish support for those sources.
+
+#### Standardized record structure
+
+The standardization objective defines a shared representation between source collection and database storage. Without this representation, each downstream component would need to interpret provider-specific field names and missing-value conventions. The exchange format instead gives the importer, database loader, and later application features a common set of fields. This work supports [[story:#5]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/5).
+
+The [standardized data format](../docs/crime-data-format.md) defines a UTF-8 JSON array containing 17 fields per accepted record. These fields cover source identity, record classification, incident descriptions, location information, date and time, coordinates, disposition, and quality flags. Some fields may contain null values because the source does not provide verified information. Requiring the field to exist makes the structure predictable without requiring the normalizer to invent a value.
+
+The combination of `source` and `source_record_id` identifies a record. A source record identifier is stored as text because its meaning is an identifier rather than a quantity. For example, an identifier containing leading zeros must retain those zeros. Source identity is also necessary for future expansion because two agencies may use the same record number for unrelated events.
+
+The format separates a standardized crime category from the original source code and description. The category supports consistent filtering, while the original values preserve the provider’s wording for inspection. The current normalizer assigns the burglary category based on the selected Costa Mesa layer. This behavior must not be generalized to unrelated source layers or other cities without a verified mapping.
+
+The format also distinguishes the event’s classification from its geographic precision. A call for service remains a call for service after normalization, and a block-level location remains block-level. Displaying a marker does not establish that its coordinates identify an exact address.
+
+*Table 1 — Selected field conversions for a synthetic Costa Mesa-shaped test record.*
+
+| Source field or context | Input | Standardized field | Output |
+|---|---|---|---|
+| Costa Mesa layer 57 mapping | Burglary-related layer | `source` | `costa_mesa_police_incidents` |
+| `ID` | `000123` | `source_record_id` | `"000123"` |
+| Source classification | Call for service | `record_kind` | `call_for_service` |
+| Evaluated layer | Burglary | `crime_type` | `burglary` |
+| `CallDate` | `07/26/2025` | `incident_date` | `2025-07-26` |
+| `CallTime` | `12:12:51` | `incident_time` | `12:12:51` |
+| `Dispo` | Spaces only | `disposition` | `null` |
+| Unverified source timezone | Unknown | `timezone` | `null` |
+| Source location precision | Block-level | `location_precision` | `block` |
+| Validation results | Timezone unverified; location not exact | `quality_flags` | `timezone_unverified`, `location_not_exact` |
+
+This an example and shows selected fields rather than all 17 exchange fields. The conversion rules are defined in [Standardized Crime Data Format](../docs/crime-data-format.md). [[task:#10]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/10) [[task:#11]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/11)
+
+#### Normalization and incomplete records
+
+The implemented normalizer converts Costa Mesa layer 57 features into the standardized representation. It trims surrounding whitespace and represents missing optional information as null. This allows the loader and application to distinguish an unavailable value from an actual value supplied by the source.
+
+Dates and times require validation before they can support reliable filtering. The normalizer converts valid source dates into the standardized year-month-day representation and validates time values. Missing or invalid date and time values are represented as null and accompanied by the appropriate quality flags. The source timezone remains null because it has not been verified. The presence of a date and time does not justify assigning a timezone without evidence.
+
+Coordinate validation checks whether latitude and longitude are finite numeric values within their permitted ranges. Missing coordinates are not replaced with zero, because zero is a real coordinate value and would create a misleading location. If either coordinate is missing or invalid, both standardized coordinates become null and the record receives a quality flag. The current incidents API excludes records without valid coordinate pairs from its map response.
+
+The Costa Mesa mapping uses longitude and latitude returned in the requested geographic coordinate system, EPSG:4326. The normalizer does not provide a general coordinate-conversion service for arbitrary sources. A new source using a different coordinate system would therefore require an explicit conversion decision before its locations could be used by the map.
+
+Quality flags preserve uncertainty alongside the standardized values. They allow later components to distinguish a record that lacks coordinates from one that has usable coordinates but an approximate location. Keeping this information with the record supports appropriate downstream behavior without silently discarding every incomplete observation.
+
+Records missing a required source record identifier are held rather than accepted. The current normalizer assigns the source identifier from its Costa Mesa mapping. Identical repeated records are removed from accepted output. When a later record has the same identity but conflicting values, the first accepted version is retained and the conflicting version is held for review. Format definition and normalization are tracked in [[task:#10]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/10) and [[task:#11]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/11).
+
+#### Database structure and loading
+
+The prototype stores standardized records in SQLite. A local database fits the current application because it can be created and queried without configuring a separate database server. It also provides relational constraints and repeatable queries for a saved dataset. This selection supports the present localhost prototype; it does not establish that the same deployment design will satisfy every future hosting or concurrency requirement.
+
+The schema separates incident values from associated quality flags. Each incident receives an internal integer key, while the source and source record identifier remain its external identity. A uniqueness constraint on that pair prevents repeated imports from creating multiple database rows for the same source record.
+
+Quality flags are stored as related rows because an incident can have several flags. Each flag references its incident through a foreign key, and the combination of incident key and flag name prevents duplicate flags for the same incident. Retrieval reconstructs the standardized record together with its quality information. This relationship is documented in the [database entity relationship design](../docs/design/crime-database-er.md).
+
+The loader checks whether a record with the same source identity already exists. An identical stored record is counted as unchanged. A conflicting record is held rather than silently overwriting the stored values. Newly accepted records are inserted with their quality flags. The loading summary reports inserted, unchanged, and held records so that the outcome of an import can be inspected.
+
+Parameterized SQL statements pass record values separately from SQL command text. This supports descriptions and location strings containing punctuation and avoids constructing SQL commands by concatenating source values. Database constraints provide an additional check when a record is inserted.
+
+Schema and loading work support [[story:#28]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/28) and are tracked in [[task:#32]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/32) and [[task:#35]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/35).
+
+#### Retrieval and application boundaries
+
+Retrieval must preserve the standardized values stored during import. The implemented retrieval function looks up a record by its source identity and returns its incident fields and quality flags. Quality flags are returned in a consistent sorted order. This provides a way to compare a stored record with the accepted input and supports the retrieval work in [[task:#36]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/36).
+
+The Flask map API serves a narrower purpose than complete record retrieval. Its current response selects the fields needed by the map and excludes records with unusable coordinates. Consequently, the map response should not be treated as a complete export of all 17 standardized fields and associated quality flags.
+
+Later filtering and analysis integration must define which stored fields each operation requires. A record without coordinates cannot participate in a radius calculation, while a record without a date cannot participate in a date-based selection. These limitations should be applied according to the operation rather than resolved by inventing missing information.
+
+#### Verification and acceptance
+
+Goal 1 verification compares known source fixtures, normalized values, and retrieved database records. Normalizer tests examine field mappings, identifiers, missing values, date and time handling, coordinate validation, and duplicate cases. Loader tests examine insertion, repeated loading, conflicting identities, and retrieval of values and flags.
+
+On a fresh database, the expected stored count is the number of unique accepted records in the test input. Count checks must be accompanied by value comparisons because the correct number of rows alone does not prove that their contents are correct. Retrieval checks therefore compare the stored fields and flags with the expected standardized records.
+
+The current verification function detects missing expected records and differences between stored values and supplied input. Its count check detects a count below the number of expected unique identities; it does not independently reject every unexpected extra row in an existing database. The fresh-database count test provides the separate exact-count check.
+
+Repeated loading provides another acceptance condition. Loading identical accepted input again must leave stored values and record counts unchanged. Previous prototype verification demonstrated an initial load of 19 Costa Mesa sample records followed by a repeated load reporting those records as unchanged. This demonstrates repeatability for that sample rather than a performance or completeness claim about larger datasets.
+
+The completed Flask route tests provide additional evidence at the application boundary. They check that the map page is served, that the incidents response contains the expected records in order, that records without coordinates are excluded, that an empty database produces an empty result, and that an unavailable database produces HTTP 503. These tests verify server responses. Browser interactions and JavaScript marker updates require separate verification. This coverage is tracked in [[task:#93]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/93).
+
+#### Non-functional requirements and open questions
+
+The data foundation must support reproducible imports, preserve source identity, and expose uncertainty. A saved input and a documented mapping should make an import explainable to another team member. Repeated imports must avoid accidental duplication, and conflicting records must remain visible for investigation rather than being silently overwritten.
+
+Maintainability depends on separating provider-specific mappings from the shared exchange format and database behavior. Adding another city should involve evaluating and adapting that source while preserving the meaning of existing records. A source-specific implementation must not imply that every public crime dataset follows the same categories, identifiers, or time conventions.
+
+Several decisions remain open: the final source set, minimum dataset size, reuse conditions, timezone verification, update frequency, handling of source corrections, and the interface connecting stored records to analysis. Multi-city comparisons would also require examining differences in reporting coverage and event classification before combining counts.
+
+The written Goal 1 specification is tracked in [[task:#79]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/79). This expanded explanation of the implemented data foundation, its requirements, and its remaining decisions is tracked in [[task:#95]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/95).
 
 ### Goal 2 requirements and planned activities
 
@@ -247,7 +346,7 @@ For Goal 1, [the normalizer](../prototype/normalize.py) converts the bundled Cos
 
 For Goal 2, [the area filter](../prototype/area_filter.py) selects records by Haversine distance in miles. Its tests cover inside, outside, and boundary points, zero radius, and invalid coordinates. [The frequency module](../prototype/crime_frequency.py) returns a total and groups by type, date, and hour of day. Its tests compare counts with expected values and confirm that missing grouping values do not remove records from the total. These tests verify the module behavior on fixtures. Comparing charts and totals with the same database-backed map selection remains an integration check.
 
-For Goal 3, [the Flask app](../prototype/app.py) serves the Leaflet page at `/` and reads SQLite in read-only mode through `/api/incidents`. The endpoint returns records with valid coordinates. The page groups them into markers and shows the associated calls when a marker is selected. [PR #84](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/84) records a fresh-clone check in which the loader verified 19 records, the map showed 13 mapped locations, both routes returned HTTP 200, and all 51 existing tests passed. These checks cover loading and display for the bundled sample. Automated route and browser checks for combined filters, radius boundaries, empty results, and synchronized summaries remain to be implemented.
+For Goal 3, [the Flask app](../prototype/app.py) serves the Leaflet page at `/` and reads SQLite in read-only mode through `/api/incidents`. The endpoint returns records with valid coordinates. The page groups them into markers and shows the associated calls when a marker is selected. [PR #84](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/pull/84) records a fresh-clone check in which the loader verified 19 records, the map showed 13 mapped locations, both routes returned HTTP 200, and all 51 existing tests passed. These checks cover loading and display for the bundled sample. Flask route tests now cover the map page, expected incident responses, exclusion of records without coordinates, empty database results, and an unavailable database response under [[task:#93]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/93). Automated browser checks and integrated checks for combined filters, radius boundaries, and synchronized summaries remain outstanding.
 
 ### Design decisions and unresolved interfaces
 
@@ -306,6 +405,9 @@ For the November 9 checklist follow-up, ChatGPT drafted the additions to §2 and
 After PR #84, ChatGPT drafted the proposal updates describing the runnable prototype and comparing the existing tests with the acceptance criteria. The new prose is AI-assisted and should be reviewed and revised by the team before submission.
 
 For the design decisions update under task #89, ChatGPT assisted with the initial drafting of comparisons between SQLite and server-based databases, Flask and alternative backend frameworks, Leaflet and alternative mapping libraries, and the current frontend approach and React. The initial wording was AI-assisted and reviewed for consistency with the project's selected technologies.
+
+For the Goal 1 documentation expansion under task #95, ChatGPT helped draft the initial additions describing source evaluation, the standardized format, normalization, SQLite storage, retrieval, verification, and unresolved requirements
+
 ## 8. References
 
 - [1] City of Costa Mesa, “PoliceIncidents (MapServer),” ArcGIS REST Services Directory.
