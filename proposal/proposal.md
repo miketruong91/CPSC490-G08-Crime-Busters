@@ -264,7 +264,7 @@ The format also distinguishes the event’s classification from its geographic p
 | Source location precision | Block-level | `location_precision` | `block` |
 | Validation results | Timezone unverified; location not exact | `quality_flags` | `timezone_unverified`, `location_not_exact` |
 
-The example is synthetic and shows selected fields rather than all 17 exchange fields. The conversion rules are defined in [Standardized Crime Data Format](../docs/crime-data-format.md). [[task:#10]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/10) [[task:#11]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/11)
+This an example and shows selected fields rather than all 17 exchange fields. The conversion rules are defined in [Standardized Crime Data Format](../docs/crime-data-format.md). [[task:#10]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/10) [[task:#11]](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/11)
 
 #### Normalization and incomplete records
 
