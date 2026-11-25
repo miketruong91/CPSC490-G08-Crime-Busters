@@ -1,0 +1,614 @@
+{
+  "source_url": "https://www2.cityoffullerton.com/webdata/apps/cfs/",
+  "capture_date": "2026-11-24",
+  "scope": "Five user-saved HTML pages; partial changing feed, not a complete historical dataset. Desktop rows extracted once; mobile layout copies excluded.",
+  "extraction": "Whitespace normalized; four identical repeated calls across pages removed. No conflicting versions observed.",
+  "input_pages": [
+    {
+      "filename": "Calls for Service - City of Fullerton(1).html",
+      "sha256": "73561ed2ca6a9858bcb27518c9f1e421d6f9c1aa0152ee484fe6a690a558a6af",
+      "desktop_rows": 20
+    },
+    {
+      "filename": "Calls for Service - City of Fullerton Page 2.html",
+      "sha256": "4f2d94e93ff03ec064f59c56b728e275cd02df14a9060c6a830add4947faa5f6",
+      "desktop_rows": 20
+    },
+    {
+      "filename": "Calls for Service - City of Fullerton Page 3.html",
+      "sha256": "02349aa5ec05f492246e30c515e5fe9232cd5497002106f7f5fc60fb5bdbb48d",
+      "desktop_rows": 20
+    },
+    {
+      "filename": "Calls for Service - City of Fullerton Page 4.html",
+      "sha256": "ff861045f56252a666836e8ef515c5734b0c340f74d2bf7bbd0e7d87e331d56c",
+      "desktop_rows": 20
+    },
+    {
+      "filename": "Calls for Service - City of Fullerton Page 5.html",
+      "sha256": "487b75e8d64ba942df583e805ab3cd85e25f68e00fcef0f3f9327fd0928d6aba",
+      "desktop_rows": 20
+    }
+  ],
+  "raw_row_count": 100,
+  "identical_duplicates_removed": 4,
+  "record_count": 96,
+  "records": [
+    {
+      "incident_number": "26-57446",
+      "type": "DISTURBANCE OF PEACE",
+      "date_time": "11/24/2026 2:38 PM",
+      "address": "2700 BLOCK W ORANGETHORPE AVE"
+    },
+    {
+      "incident_number": "26-57444",
+      "type": "PARKING PROBLEM",
+      "date_time": "11/24/2026 2:28 PM",
+      "address": "1500 BLOCK DEERPARK DR"
+    },
+    {
+      "incident_number": "26-57442",
+      "type": "DISTURBANCE OF PEACE",
+      "date_time": "11/24/2026 2:25 PM",
+      "address": "W WOODCREST AVE / S JEFFERSON AVE"
+    },
+    {
+      "incident_number": "26-57443",
+      "type": "INDECENT EXPOSURE",
+      "date_time": "11/24/2026 2:24 PM",
+      "address": "3000 BLOCK W ORANGETHORPE AVE"
+    },
+    {
+      "incident_number": "26-57440",
+      "type": "PARKING PROBLEM",
+      "date_time": "11/24/2026 2:16 PM",
+      "address": "600 BLOCK LANGSDORF DR"
+    },
+    {
+      "incident_number": "26-57439",
+      "type": "PED CHECK",
+      "date_time": "11/24/2026 2:15 PM",
+      "address": "S EUCLID ST / 91 FWY"
+    },
+    {
+      "incident_number": "26-57441",
+      "type": "AREA CHECK",
+      "date_time": "11/24/2026 2:15 PM",
+      "address": "900 BLOCK W LAS PALMAS DR"
+    },
+    {
+      "incident_number": "26-57438",
+      "type": "TC NON INJURY",
+      "date_time": "11/24/2026 1:59 PM",
+      "address": "E AMERIGE AVE / N LEMON ST"
+    },
+    {
+      "incident_number": "26-57437",
+      "type": "PED CHECK",
+      "date_time": "11/24/2026 1:59 PM",
+      "address": "1000 BLOCK W COMMONWEALTH AVE"
+    },
+    {
+      "incident_number": "26-57436",
+      "type": "TRAFFIC STOP BIKE",
+      "date_time": "11/24/2026 1:49 PM",
+      "address": "E VALENCIA DR / S LEMON ST"
+    },
+    {
+      "incident_number": "26-57434",
+      "type": "PATROL CHECK",
+      "date_time": "11/24/2026 1:46 PM",
+      "address": "100 BLOCK N GILBERT ST"
+    },
+    {
+      "incident_number": "26-57433",
+      "type": "DISTURBANCE OF PEACE",
+      "date_time": "11/24/2026 1:37 PM",
+      "address": "900 BLOCK S HARBOR BLVD"
+    },
+    {
+      "incident_number": "26-57432",
+      "type": "PED CHECK",
+      "date_time": "11/24/2026 1:29 PM",
+      "address": "HARBOR/VALENCIA"
+    },
+    {
+      "incident_number": "26-57429",
+      "type": "PATROL CHECK",
+      "date_time": "11/24/2026 1:03 PM",
+      "address": "1800 BLOCK W MALVERN AVE"
+    },
+    {
+      "incident_number": "26-57428",
+      "type": "PED CHECK",
+      "date_time": "11/24/2026 12:50 PM",
+      "address": "900 BLOCK W ORANGETHORPE AVE"
+    },
+    {
+      "incident_number": "26-57427",
+      "type": "PARKING PROBLEM",
+      "date_time": "11/24/2026 12:47 PM",
+      "address": "400 BLOCK S JENSEN WAY"
+    },
+    {
+      "incident_number": "26-57426",
+      "type": "PED CHECK",
+      "date_time": "11/24/2026 12:46 PM",
+      "address": "S GILBERT ST / W VALENCIA DR"
+    },
+    {
+      "incident_number": "26-57425",
+      "type": "PED CHECK",
+      "date_time": "11/24/2026 12:42 PM",
+      "address": "900 BLOCK W ORANGETHORPE AVE"
+    },
+    {
+      "incident_number": "26-57424",
+      "type": "SUSPICIOUS PERSON",
+      "date_time": "11/24/2026 12:27 PM",
+      "address": "600 BLOCK S PLACENTIA AVE"
+    },
+    {
+      "incident_number": "26-57423",
+      "type": "THEFT PETTY RPT",
+      "date_time": "11/24/2026 12:24 PM",
+      "address": "1900 BLOCK W MALVERN AVE"
+    },
+    {
+      "incident_number": "26-57422",
+      "type": "SUSPICIOUS PERSON",
+      "date_time": "11/24/2026 12:11 PM",
+      "address": "400 BLOCK W ORANGETHORPE AVE"
+    },
+    {
+      "incident_number": "26-57421",
+      "type": "PATROL CHECK",
+      "date_time": "11/24/2026 12:00 PM",
+      "address": "3100 BLOCK HIGHLANDER RD"
+    },
+    {
+      "incident_number": "26-57420",
+      "type": "TRAFFIC STOP",
+      "date_time": "11/24/2026 11:54 AM",
+      "address": "N EUCLID ST / W COMMONWEALTH AVE"
+    },
+    {
+      "incident_number": "26-57419",
+      "type": "FRAUD RPT",
+      "date_time": "11/24/2026 11:51 AM",
+      "address": "2300 BLOCK E VALENCIA DR"
+    },
+    {
+      "incident_number": "26-57418",
+      "type": "TRANSIENT PROBLEM",
+      "date_time": "11/24/2026 11:44 AM",
+      "address": "800 BLOCK S HARBOR BLVD"
+    },
+    {
+      "incident_number": "26-57417",
+      "type": "SUSP CIRCS",
+      "date_time": "11/24/2026 11:39 AM",
+      "address": "S HARBOR BLVD / W HILL AVE"
+    },
+    {
+      "incident_number": "26-57416",
+      "type": "PARKING PROBLEM",
+      "date_time": "11/24/2026 11:34 AM",
+      "address": "3100 BLOCK GARNET LANE"
+    },
+    {
+      "incident_number": "26-57415",
+      "type": "FOLLOW UP CASE",
+      "date_time": "11/24/2026 11:32 AM",
+      "address": "2100 BLOCK CAMINO DEL SOL"
+    },
+    {
+      "incident_number": "26-57414",
+      "type": "TRANSIENT PROBLEM",
+      "date_time": "11/24/2026 11:17 AM",
+      "address": "2200 BLOCK W ORANGETHORPE AVE"
+    },
+    {
+      "incident_number": "26-57410",
+      "type": "ABANDONED VEHICLE",
+      "date_time": "11/24/2026 10:58 AM",
+      "address": "1800 BLOCK CAROL DR"
+    },
+    {
+      "incident_number": "26-57408",
+      "type": "PED CHECK",
+      "date_time": "11/24/2026 10:38 AM",
+      "address": "2700 BLOCK W ORANGETHORPE AVE"
+    },
+    {
+      "incident_number": "26-57407",
+      "type": "TRAFFIC STOP",
+      "date_time": "11/24/2026 10:37 AM",
+      "address": "800 BLOCK W MALVERN AVE"
+    },
+    {
+      "incident_number": "26-57406",
+      "type": "AREA CHECK",
+      "date_time": "11/24/2026 10:35 AM",
+      "address": "N STATE COLLEGE BLVD / E CHAPMAN AVE"
+    },
+    {
+      "incident_number": "26-57405",
+      "type": "BURGLARY RPT",
+      "date_time": "11/24/2026 10:32 AM",
+      "address": "2000 BLOCK DEERPARK DR"
+    },
+    {
+      "incident_number": "26-57404",
+      "type": "WELFARE CHECK",
+      "date_time": "11/24/2026 10:24 AM",
+      "address": "1000 BLOCK S MALDEN AVE"
+    },
+    {
+      "incident_number": "26-57403",
+      "type": "DEPARTMENT ASSIST",
+      "date_time": "11/24/2026 10:09 AM",
+      "address": "3000 BLOCK PEARL DR"
+    },
+    {
+      "incident_number": "26-57402",
+      "type": "PATROL CHECK",
+      "date_time": "11/24/2026 10:00 AM",
+      "address": "300 BLOCK W TRUSLOW AVE"
+    },
+    {
+      "incident_number": "26-57401",
+      "type": "AREA CHECK",
+      "date_time": "11/24/2026 9:46 AM",
+      "address": "200 BLOCK E COMMONWEALTH AVE"
+    },
+    {
+      "incident_number": "26-57400",
+      "type": "ALARM BURGLARY",
+      "date_time": "11/24/2026 9:32 AM",
+      "address": "100 BLOCK MARION BLVD"
+    },
+    {
+      "incident_number": "26-57399",
+      "type": "PARKING PROBLEM",
+      "date_time": "11/24/2026 9:25 AM",
+      "address": "3300 BLOCK QUARTZ LANE"
+    },
+    {
+      "incident_number": "26-57398",
+      "type": "THEFT PETTY RPT",
+      "date_time": "11/24/2026 9:12 AM",
+      "address": "1200 BLOCK DEERPARK DR"
+    },
+    {
+      "incident_number": "26-57397",
+      "type": "TC W/INJURY RPT",
+      "date_time": "11/24/2026 9:10 AM",
+      "address": "E COMMONWEALTH AVE / N POMONA AVE"
+    },
+    {
+      "incident_number": "26-57396",
+      "type": "DEPARTMENT ASSIST",
+      "date_time": "11/24/2026 9:06 AM",
+      "address": "100 BLOCK N PRITCHARD AVE"
+    },
+    {
+      "incident_number": "26-57395",
+      "type": "PARKING PROBLEM",
+      "date_time": "11/24/2026 8:53 AM",
+      "address": "2600 BLOCK MILTON AVE"
+    },
+    {
+      "incident_number": "26-57394",
+      "type": "TRAFFIC STOP",
+      "date_time": "11/24/2026 8:51 AM",
+      "address": "N HARBOR BLVD / W CHAPMAN AVE"
+    },
+    {
+      "incident_number": "26-57393",
+      "type": "THEFT PETTY RPT",
+      "date_time": "11/24/2026 8:46 AM",
+      "address": "1800 BLOCK W MALVERN AVE"
+    },
+    {
+      "incident_number": "26-57390",
+      "type": "BURGLARY RPT",
+      "date_time": "11/24/2026 8:27 AM",
+      "address": "400 BLOCK E COMMONWEALTH AVE"
+    },
+    {
+      "incident_number": "26-57389",
+      "type": "FOLLOW UP CASE",
+      "date_time": "11/24/2026 8:15 AM",
+      "address": "26300 BLOCK IRIS AVE MORENO VALLEY"
+    },
+    {
+      "incident_number": "26-57388",
+      "type": "ABANDONED VEHICLE",
+      "date_time": "11/24/2026 8:14 AM",
+      "address": "1200 BLOCK N ACACIA AVE"
+    },
+    {
+      "incident_number": "26-57386",
+      "type": "TRAFFIC STOP",
+      "date_time": "11/24/2026 8:10 AM",
+      "address": "E HERMOSA DR / MADONNA DR"
+    },
+    {
+      "incident_number": "26-57385",
+      "type": "SUSPICIOUS PERSON",
+      "date_time": "11/24/2026 8:07 AM",
+      "address": "1800 BLOCK W MALVERN AVE"
+    },
+    {
+      "incident_number": "26-57384",
+      "type": "SUSPICIOUS PERSON",
+      "date_time": "11/24/2026 8:02 AM",
+      "address": "N BASQUE AVE / W COMMONWEALTH AVE"
+    },
+    {
+      "incident_number": "26-57382",
+      "type": "ALARM BURGLARY",
+      "date_time": "11/24/2026 7:40 AM",
+      "address": "1300 BLOCK E VALENCIA DR"
+    },
+    {
+      "incident_number": "26-57381",
+      "type": "TRESPASS",
+      "date_time": "11/24/2026 7:27 AM",
+      "address": "1800 BLOCK W MALVERN AVE"
+    },
+    {
+      "incident_number": "26-57380",
+      "type": "PARKING PROBLEM",
+      "date_time": "11/24/2026 7:16 AM",
+      "address": "DALE ST / AUTO CENTER DR"
+    },
+    {
+      "incident_number": "26-57378",
+      "type": "FOUND PROPERTY",
+      "date_time": "11/24/2026 6:29 AM",
+      "address": "200 BLOCK W COMMONWEALTH AVE"
+    },
+    {
+      "incident_number": "26-57377",
+      "type": "ALARM BURGLARY",
+      "date_time": "11/24/2026 6:14 AM",
+      "address": "2700 BLOCK MOORE AVE"
+    },
+    {
+      "incident_number": "26-57376",
+      "type": "TRAFFIC STOP",
+      "date_time": "11/24/2026 5:39 AM",
+      "address": "2100 BLOCK E ORANGETHORPE AVE"
+    },
+    {
+      "incident_number": "26-57375",
+      "type": "PARKING PROBLEM",
+      "date_time": "11/24/2026 5:06 AM",
+      "address": "1800 BLOCK E ORANGETHORPE AVE"
+    },
+    {
+      "incident_number": "26-57374",
+      "type": "DISTURBANCE FAMILY",
+      "date_time": "11/24/2026 4:33 AM",
+      "address": "3100 BLOCK YORBA LINDA BLVD"
+    },
+    {
+      "incident_number": "26-57373",
+      "type": "BURGLARY RPT",
+      "date_time": "11/24/2026 3:03 AM",
+      "address": "1000 BLOCK S MALDEN AVE"
+    },
+    {
+      "incident_number": "26-57372",
+      "type": "DISTURBANCE FAMILY",
+      "date_time": "11/24/2026 2:38 AM",
+      "address": "3100 BLOCK GARNET LANE"
+    },
+    {
+      "incident_number": "26-57371",
+      "type": "SUSP CIRCS",
+      "date_time": "11/24/2026 2:27 AM",
+      "address": "S ACACIA AVE / E VALENCIA DR"
+    },
+    {
+      "incident_number": "26-57370",
+      "type": "WELFARE CHECK",
+      "date_time": "11/24/2026 2:10 AM",
+      "address": "1400 BLOCK S EUCLID ST"
+    },
+    {
+      "incident_number": "26-57369",
+      "type": "DISTURBANCE OF PEACE",
+      "date_time": "11/24/2026 2:00 AM",
+      "address": "2000 BLOCK E WHITING AVE"
+    },
+    {
+      "incident_number": "26-57368",
+      "type": "TRANSIENT PROBLEM",
+      "date_time": "11/24/2026 1:45 AM",
+      "address": "1200 BLOCK E ORANGETHORPE AVE"
+    },
+    {
+      "incident_number": "26-57365",
+      "type": "PATROL CHECK",
+      "date_time": "11/24/2026 12:30 AM",
+      "address": "300 BLOCK W JACARANDA PL"
+    },
+    {
+      "incident_number": "26-57364",
+      "type": "PATROL CHECK",
+      "date_time": "11/24/2026 12:00 AM",
+      "address": "4000 BLOCK N HARBOR BLVD"
+    },
+    {
+      "incident_number": "26-57363",
+      "type": "PED CHECK",
+      "date_time": "11/23/2026 11:50 PM",
+      "address": "300 BLOCK W VALENCIA DR"
+    },
+    {
+      "incident_number": "26-57361",
+      "type": "DISTURBANCE MUSIC",
+      "date_time": "11/23/2026 11:02 PM",
+      "address": "100 BLOCK S LILLIE AVE"
+    },
+    {
+      "incident_number": "26-57360",
+      "type": "PED CHECK",
+      "date_time": "11/23/2026 10:39 PM",
+      "address": "100 BLOCK N RAYMOND AVE"
+    },
+    {
+      "incident_number": "26-57359",
+      "type": "DISTURBANCE OF PEACE",
+      "date_time": "11/23/2026 10:27 PM",
+      "address": "200 BLOCK ORANGEFAIR AVE"
+    },
+    {
+      "incident_number": "26-57358",
+      "type": "ALARM BURGLARY",
+      "date_time": "11/23/2026 10:21 PM",
+      "address": "500 BLOCK N SYCAMORE AVE"
+    },
+    {
+      "incident_number": "26-57356",
+      "type": "SUSPICIOUS OCCUPIED VEHICLE",
+      "date_time": "11/23/2026 10:13 PM",
+      "address": "S GILBERT ST / W OLIVE AVE"
+    },
+    {
+      "incident_number": "26-57357",
+      "type": "AREA CHECK",
+      "date_time": "11/23/2026 10:12 PM",
+      "address": "100 BLOCK W ORANGETHORPE AVE"
+    },
+    {
+      "incident_number": "26-57355",
+      "type": "PATROL CHECK",
+      "date_time": "11/23/2026 10:00 PM",
+      "address": "2100 BLOCK FOXWOOD PL"
+    },
+    {
+      "incident_number": "26-57354",
+      "type": "DISTURBANCE OF PEACE",
+      "date_time": "11/23/2026 9:57 PM",
+      "address": "3500 BLOCK W COMMONWEALTH AVE"
+    },
+    {
+      "incident_number": "26-57353",
+      "type": "TRESPASS",
+      "date_time": "11/23/2026 9:56 PM",
+      "address": "900 BLOCK W ORANGETHORPE AVE"
+    },
+    {
+      "incident_number": "26-57351",
+      "type": "WELFARE CHECK",
+      "date_time": "11/23/2026 9:29 PM",
+      "address": "2300 BLOCK E COMMONWEALTH AVE"
+    },
+    {
+      "incident_number": "26-57349",
+      "type": "PATROL CHECK",
+      "date_time": "11/23/2026 9:27 PM",
+      "address": "200 BLOCK PACIFIC DR"
+    },
+    {
+      "incident_number": "26-57350",
+      "type": "DISTURBANCE OF PEACE",
+      "date_time": "11/23/2026 9:25 PM",
+      "address": "100 BLOCK W HOUSTON AVE"
+    },
+    {
+      "incident_number": "26-57347",
+      "type": "TRAFFIC STOP",
+      "date_time": "11/23/2026 9:21 PM",
+      "address": "N MAGNOLIA AVE / W COMMONWEALTH AVE"
+    },
+    {
+      "incident_number": "26-57348",
+      "type": "ALARM BURGLARY",
+      "date_time": "11/23/2026 9:20 PM",
+      "address": "100 BLOCK E VALENCIA MESA DR"
+    },
+    {
+      "incident_number": "26-57346",
+      "type": "FOLLOW UP CASE",
+      "date_time": "11/23/2026 9:07 PM",
+      "address": "100 BLOCK W SANTA FE AVE"
+    },
+    {
+      "incident_number": "26-57345",
+      "type": "TRESPASS",
+      "date_time": "11/23/2026 9:05 PM",
+      "address": "800 BLOCK S HARBOR BLVD"
+    },
+    {
+      "incident_number": "26-57344",
+      "type": "PATROL CHECK",
+      "date_time": "11/23/2026 9:00 PM",
+      "address": "200 BLOCK N RICHMAN AVE"
+    },
+    {
+      "incident_number": "26-57341",
+      "type": "DISTURBANCE JUVY",
+      "date_time": "11/23/2026 8:50 PM",
+      "address": "200 BLOCK W ORANGETHORPE AVE"
+    },
+    {
+      "incident_number": "26-57342",
+      "type": "AREA CHECK",
+      "date_time": "11/23/2026 8:49 PM",
+      "address": "E COMMONWEALTH AVE / N RAYMOND AVE"
+    },
+    {
+      "incident_number": "26-57340",
+      "type": "DRUNK DRIVER",
+      "date_time": "11/23/2026 8:46 PM",
+      "address": "N PLACENTIA AVE / MADISON AVE"
+    },
+    {
+      "incident_number": "26-57339",
+      "type": "SUSPICIOUS VEHICLE",
+      "date_time": "11/23/2026 8:34 PM",
+      "address": "E VALENCIA DR / S STATE COLLEGE BLVD"
+    },
+    {
+      "incident_number": "26-57338",
+      "type": "DEPARTMENT ASSIST",
+      "date_time": "11/23/2026 8:24 PM",
+      "address": "1400 BLOCK COURTNEY AVE"
+    },
+    {
+      "incident_number": "26-57337",
+      "type": "WELFARE CHECK",
+      "date_time": "11/23/2026 8:20 PM",
+      "address": "3200 BLOCK QUARTZ LANE"
+    },
+    {
+      "incident_number": "26-57336",
+      "type": "DRUNK",
+      "date_time": "11/23/2026 7:46 PM",
+      "address": "700 BLOCK S HIGHLAND AVE"
+    },
+    {
+      "incident_number": "26-57335",
+      "type": "KEEP THE PEACE",
+      "date_time": "11/23/2026 7:42 PM",
+      "address": "2000 BLOCK E NUTWOOD AVE"
+    },
+    {
+      "incident_number": "26-57334",
+      "type": "DEPARTMENT ASSIST",
+      "date_time": "11/23/2026 7:17 PM",
+      "address": "1900 BLOCK EDINBURGH WAY"
+    },
+    {
+      "incident_number": "26-57333",
+      "type": "PARKING PROBLEM",
+      "date_time": "11/23/2026 6:55 PM",
+      "address": "W UNION AVE / N MALDEN AVE"
+    }
+  ]
+}

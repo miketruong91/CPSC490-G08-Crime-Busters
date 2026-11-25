@@ -85,8 +85,12 @@ the sample documented in crime-data-sources.md.
 The numeric Type field has not been interpreted and must not be used
 to infer a category. FID is not used as the permanent record identifier.
 
-Mappings for Fullerton and Community Crime Map have not been defined.
-Each additional source requires its own documented mapping.
+The saved Anaheim and Fullerton sample mappings are documented in
+[city-data-import.md](city-data-import.md). Anaheim uses the independent
+anaheimcrime.com export, not a newly verified LexisNexis export. No mapping
+for Community Crime Map itself is claimed. Derived block coordinates and
+display cities are documented separately in
+[multi-city-map.md](multi-city-map.md).
 
 ## Validation and missing-value rules
 

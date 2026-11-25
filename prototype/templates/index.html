@@ -1,245 +1,77 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Crime Busters</title>
-    <link rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            color: #172b40;
-        }
-        header { padding: 16px 24px; }
-        h1 { margin: 0 0 8px; }
-        #map {
-            height: 70vh;
-            margin: 0 24px 24px;
-            border: 1px solid #b8c6d4;
-        }
-        .records { max-height: 280px; overflow-y: auto; }
-        .record { padding: 10px 0; border-bottom: 1px solid #ccc; }
-
-.filters {
-    margin-top: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-#crime-type-filter {
-    padding: 8px 12px;
-    border: 1px solid #b8c6d4;
-    border-radius: 5px;
-    font-size: 14px;
-    background: white;
-}
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crime Busters</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#172b40}header{padding:20px 24px}h1{margin:0 0 8px}p{line-height:1.5}.filters,.legend{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:16px}select{padding:8px 12px;border:1px solid #b8c6d4;border-radius:5px;background:white;font-size:14px}.legend span{display:inline-flex;align-items:center;gap:7px}.dot{width:12px;height:12px;border-radius:50%;display:inline-block}#map{height:65vh;min-height:380px;margin:0 24px 24px;border:1px solid #b8c6d4}.records{max-height:280px;overflow-y:auto}.record{padding:10px 0;border-bottom:1px solid #ccc}#coverage{font-size:14px;color:#46596a}
 </style>
 </head>
 <body>
-    <header>
-        <h1>Crime Busters</h1>
-        <p>Historical Costa Mesa burglary-related calls for service.
-           These are not confirmed crime counts.</p>
-        <p>Locations are block-level, not exact addresses.
-           Source timezone remains unverified.</p>
-        <p id="status" role="status">Loading records…</p>
-        
+<header><h1>Crime Busters</h1>
+<p id="local-file-notice" hidden>For map tiles, open this page through a local server: run <code>python3 -m http.server 8000</code> in this folder, then visit <a href="http://localhost:8000/multi-city-map.html">localhost:8000/multi-city-map.html</a>.</p>
+<p>Explore Costa Mesa and Fullerton calls for service alongside Anaheim crime incidents.<br>
+Markers show approximate locations. Calls for service are not confirmed crime counts; source timezones remain unverified.</p>
 <div class="filters">
-    <label for="crime-type-filter">Filter by crime type:</label>
-    <select id="crime-type-filter">
-        <option value="all">All Crime Types</option>
-    </select>
+<label for="city-filter">Source city:</label><select id="city-filter"><option value="all">All cities</option></select>
+<label for="crime-type-filter">Crime type:</label><select id="crime-type-filter"><option value="all">All crime types</option></select>
+<button id="fit-map" type="button">Show selected locations</button>
 </div>
-
-    </header>
-
-    <div id="map" aria-label="Interactive map of Costa Mesa"></div>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-        const map = L.map("map").setView([33.6411, -117.9187], 13);
-
-        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        const status = document.getElementById("status");
-
-const crimeTypeFilter = document.getElementById("crime-type-filter");
-
-function populateCrimeTypeFilter(incidents) {
-    const selectedType = crimeTypeFilter.value;
-    crimeTypeFilter.innerHTML = '<option value="all">All Crime Types</option>';
-    const crimeTypes = [...new Set(
-        incidents
-            .map(record => record.crime_type)
-            .filter(type => typeof type === "string" && type.trim())
-    )].sort();
-
-    for (const type of crimeTypes) {
-        const option = document.createElement("option");
-        option.value = type;
-        option.textContent = type;
-        crimeTypeFilter.appendChild(option);
-    }
-    crimeTypeFilter.value = selectedType;
+<div class="legend" aria-label="City marker colors">
+<span><i class="dot" style="background:#1769aa"></i>Costa Mesa</span>
+<span><i class="dot" style="background:#138568"></i>Fullerton</span>
+<span><i class="dot" style="background:#a64cb6"></i>Anaheim</span>
+</div><p id="status" role="status">Loading records…</p><p id="coverage"></p>
+</header>
+<div id="map" aria-label="Interactive crime map of Costa Mesa, Fullerton and Anaheim"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+if(location.protocol==='file:')document.getElementById('local-file-notice').hidden=false;
+const map=L.map('map').setView([33.76,-117.93],11);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+const layer=L.layerGroup().addTo(map);
+const colors={'Costa Mesa':'#1769aa','Fullerton':'#138568','Anaheim':'#a64cb6'};
+const cityFilter=document.getElementById('city-filter');
+const typeFilter=document.getElementById('crime-type-filter');
+const status=document.getElementById('status');
+let data=null, visibleBounds=[];
+function addField(box,label,value){const el=document.createElement('div');el.textContent=`${label}: ${value ?? 'Unknown'}`;box.appendChild(el)}
+function fitMap(){if(visibleBounds.length)map.fitBounds(visibleBounds,{padding:[30,30],maxZoom:15})}
+function render(){
+ layer.clearLayers();visibleBounds=[];
+ const selected=data.incidents.filter(r=>(cityFilter.value==='all'||r.city===cityFilter.value)&&(typeFilter.value==='all'||(r.crime_type||'unclassified')===typeFilter.value));
+ const groups=new Map();
+ for(const record of selected){
+  if(!Number.isFinite(record.latitude)||!Number.isFinite(record.longitude))continue;
+  const key=`${record.city},${record.latitude},${record.longitude}`;
+  if(!groups.has(key))groups.set(key,[]);groups.get(key).push(record);
+ }
+ for(const records of groups.values()){
+  const first=records[0],position=[first.latitude,first.longitude],box=document.createElement('div');box.className='records';
+  const title=document.createElement('strong');title.textContent=`${first.city} · ${records.length} record(s) · Approximate location`;box.appendChild(title);
+  for(const r of records){const details=document.createElement('div');details.className='record';
+   for(const [label,key] of [['Source city','city'],['Type','crime_type'],['Description','description'],['Date','incident_date'],['Time','incident_time'],['Timezone','timezone'],['Reported location','location'],['Location accuracy','location_label'],['Precision','location_precision'],['Record kind','record_kind'],['Source','source'],['Source ID','source_record_id']])addField(details,label,r[key]);
+   if(r.geocoding){addField(details,'Location method',(r.geocoding.method.includes('geometry_crossing')?'Intersection estimated from road geometry':(r.geocoding.method.includes('direction_unverified')?'Block estimate; source direction unverified':'Representative point within reported block')));addField(details,'Geocoder',r.geocoding.provider)}
+   box.appendChild(details);
+  }
+  const color=colors[first.city]||'#657786';
+  const marker=L.circleMarker(position,{radius:8,color:'#fff',weight:2,fillColor:color,fillOpacity:.9}).addTo(layer).bindPopup(box);
+  marker.on('click',()=>{marker.setRadius(11);marker.setStyle({weight:3,fillOpacity:1})});
+  marker.on('popupclose',()=>{marker.setRadius(8);marker.setStyle({weight:2,fillOpacity:.9})});
+  visibleBounds.push(position);
+ }
+ status.textContent=`${selected.length} records across ${groups.size} mapped locations. Click a marker for details.`;
+ const cities=Object.entries(data.by_city).filter(([city])=>cityFilter.value==='all'||city===cityFilter.value);
+ document.getElementById('coverage').textContent=cities.map(([city,c])=>`${city}: ${c.mapped} mapped / ${c.total} records; ${c.unmapped} awaiting coordinates`).join(' · ');
+ fitMap();
 }
-
-        let selectedMarker = null;
-const incidentLayer = L.layerGroup().addTo(map);
-        let allIncidents = [];
-      crimeTypeFilter.addEventListener("change", function () {
-    displayIncidents();
-});
-        function selectMarker(marker) {
-            if (selectedMarker && selectedMarker !== marker) {
-                deselectMarker(selectedMarker);
-            }
-
-            selectedMarker = marker;
-
-            marker.setStyle({
-                color: "#ffffff",
-                fillColor: "#ff9800",
-                fillOpacity: 1,
-                weight: 3
-            });
-
-            marker.setRadius(11);
-        }
-
-        function deselectMarker(marker) {
-            if (selectedMarker === marker) {
-                marker.setStyle({
-                    color: "#ffffff",
-                    fillColor: "#1769aa",
-                    fillOpacity: 0.9,
-                    weight: 2
-                });
-
-                marker.setRadius(8);
-                selectedMarker = null;
-            }
-        }
-        function addField(container, label, value) {
-            const line = document.createElement("div");
-            line.textContent = `${label}: ${value ?? "Unknown"}`;
-            container.appendChild(line);
-        }
-
-        function displayIncidents() {
-          try {
-    incidentLayer.clearLayers();
-    selectedMarker = null;
-              
-                const groups = new Map();
-                let displayed = 0;
-
-                for (const record of allIncidents) {
-                    if (crimeTypeFilter.value !== "all" &&
-    record.crime_type !== crimeTypeFilter.value) {
-    continue;
-}
-                    const lat = record.latitude;
-                    const lon = record.longitude;
-
-                    if (!Number.isFinite(lat) || !Number.isFinite(lon) ||
-                        lat < -90 || lat > 90 || lon < -180 || lon > 180) {
-                        continue;
-                    }
-
-                    const key = `${lat},${lon}`;
-                    if (!groups.has(key)) {
-                        groups.set(key, []);
-                    }
-                    groups.get(key).push(record);
-                    displayed++;
-                }
-
-                const bounds = [];
-
-                for (const records of groups.values()) {
-                    const first = records[0];
-                    const position = [first.latitude, first.longitude];
-                    const popup = document.createElement("div");
-                    popup.className = "records";
-
-                    const heading = document.createElement("strong");
-                    heading.textContent =
-                        `${records.length} record(s) at this block-level location`;
-                    popup.appendChild(heading);
-
-                    for (const record of records) {
-                        const details = document.createElement("div");
-                        details.className = "record";
-                        addField(details, "Type", record.crime_type);
-                        addField(details, "Description", record.description);
-                        addField(details, "Date", record.incident_date);
-                        addField(details, "Time", record.incident_time);
-                        addField(details, "Timezone", record.timezone);
-                        addField(details, "Location", record.location);
-                        addField(details, "Precision", record.location_precision);
-                        addField(details, "Record kind", record.record_kind);
-                        addField(details, "Source", record.source);
-                        addField(details, "Source ID", record.source_record_id);
-                        popup.appendChild(details);
-                    }
-
-                const marker = L.circleMarker(position, {
-                    radius: 8,
-                    color: "#ffffff",
-                    weight: 2,
-                    fillColor: "#1769aa",
-                    fillOpacity: 0.9
-                }).addTo(incidentLayer).bindPopup(popup);
-
-                marker.on("click", function () {
-                    selectMarker(marker);
-                });
-
-                marker.on("popupclose", function () {
-                    deselectMarker(marker);
-                });
-                    bounds.push(position);
-                }
-
-                if (bounds.length) {
-                    map.fitBounds(bounds, { padding: [30, 30], maxZoom: 15 });
-                    status.textContent =
-                        `${displayed} records across ${groups.size} mapped locations. Click a marker for details.`;
-                } else {
-                    status.textContent = "No records with usable coordinates.";
-                }
-            } catch (error) {
-                status.textContent =
-                    "Unable to load incident records. Check the Flask terminal and /api/incidents.";
-                console.error(error);
-            }
-        }
-async function loadIncidents() {
-    try {
-        const response = await fetch("/api/incidents");
-
-        if (!response.ok) {
-            throw new Error("Could not retrieve records");
-        }
-
-        const data = await response.json();
-        allIncidents = data.incidents;
-        populateCrimeTypeFilter(allIncidents);
-        displayIncidents();
-    } catch (error) {
-        status.textContent =
-            "Unable to load incident records. Check the Flask terminal and /api/incidents.";
-        console.error(error);
-    }
-}
-        loadIncidents();
-    </script>
-</body>
-</html>
+async function loadIncidents(){try{
+ data=window.CRIME_BUSTERS_DATA;
+ if(!data){const response=await fetch('/api/map-incidents');if(!response.ok)throw Error('Could not retrieve records');data=await response.json()}
+ for(const city of Object.keys(data.by_city).sort()){const option=document.createElement('option');option.value=city;option.textContent=city;cityFilter.appendChild(option)}
+ for(const type of [...new Set(data.incidents.map(r=>r.crime_type||'unclassified'))].sort()){const option=document.createElement('option');option.value=type;option.textContent=type==='unclassified'?'Unclassified':type;typeFilter.appendChild(option)}
+ cityFilter.addEventListener('change',render);typeFilter.addEventListener('change',render);document.getElementById('fit-map').addEventListener('click',fitMap);render();
+}catch(error){status.textContent='Unable to load incident records. Check that the combined database was built and Flask is running.';console.error(error)}}
+loadIncidents();
+</script></body></html>

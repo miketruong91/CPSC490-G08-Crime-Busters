@@ -62,3 +62,12 @@ CREATE INDEX IF NOT EXISTS idx_incidents_date   ON incidents (incident_date);
 CREATE INDEX IF NOT EXISTS idx_incidents_type   ON incidents (crime_type);
 -- Supports finding records by flag.
 CREATE INDEX IF NOT EXISTS idx_flags_flag       ON incident_quality_flags (flag);
+
+-- Derived block coordinates are documented separately from publisher fields.
+CREATE TABLE IF NOT EXISTS incident_geocoding (
+    incident_id INTEGER PRIMARY KEY REFERENCES incidents(id) ON DELETE CASCADE,
+    provider TEXT NOT NULL, method TEXT NOT NULL,
+    original_location TEXT NOT NULL, selected_query_address TEXT NOT NULL,
+    city_context TEXT NOT NULL, request_url TEXT NOT NULL,
+    matched_address TEXT, benchmark_json TEXT, checks_json TEXT NOT NULL
+);

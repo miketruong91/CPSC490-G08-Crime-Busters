@@ -1,0 +1,44 @@
+{
+  "result": {
+    "input": {
+      "address": {
+        "city": "Fullerton",
+        "street": "2700 W ORANGETHORPE AVE",
+        "state": "CA"
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    },
+    "addressMatches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "652193106"
+        },
+        "coordinates": {
+          "x": -117.974512999275,
+          "y": 33.859061700207
+        },
+        "addressComponents": {
+          "zip": "92833",
+          "streetName": "ORANGETHORPE",
+          "preType": "",
+          "city": "FULLERTON",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "2700",
+          "state": "CA",
+          "suffixType": "AVE",
+          "toAddress": "2798",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "2700 W ORANGETHORPE AVE, FULLERTON, CA, 92833"
+      }
+    ]
+  }
+}

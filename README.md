@@ -21,7 +21,8 @@
 - **Project board:** https://github.com/users/miketruong91/projects/1
 - **Specifications:** [docs/specs/](docs/specs/)
 - **Designs:** [docs/design/](docs/design/)
-- **Prototype:** [prototype/](prototype/) — run instructions in its README
+- **Prototype:** [prototype/](prototype/) — combined Costa Mesa, Fullerton and Anaheim map; run instructions in its README
+- **City data integration:** [docs/multi-city-map.md](docs/multi-city-map.md) — source coverage, approximate coordinates and API compatibility
 - **Sprint reviews:** [docs/sprint-reviews/](docs/sprint-reviews/)
 
 ## Project summary

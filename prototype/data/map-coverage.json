@@ -1,0 +1,27 @@
+{
+  "total_records": 370,
+  "mapped_records": 353,
+  "unmapped_count": 17,
+  "by_city": {
+    "Anaheim": {
+      "mapped": 246,
+      "total": 255,
+      "unmapped": 9
+    },
+    "Costa Mesa": {
+      "mapped": 19,
+      "total": 19,
+      "unmapped": 0
+    },
+    "Fullerton": {
+      "mapped": 88,
+      "total": 96,
+      "unmapped": 8
+    }
+  },
+  "mapped_locations_by_city": {
+    "Anaheim": 215,
+    "Costa Mesa": 13,
+    "Fullerton": 82
+  }
+}
