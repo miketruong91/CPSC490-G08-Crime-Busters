@@ -1,6 +1,6 @@
 # Anaheim and Fullerton source evaluation
 
-Working evaluation for [task #97](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/97), checked November 24, 2026. This records source inspection, not completed integration. No new city records have been loaded into the project database.
+Initial source inspection for [task #97](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/97), checked November 24, 2026. This records the initial source inspection. Subsequent saved-sample integration is documented in [city-data-import.md](city-data-import.md) and [multi-city-map.md](multi-city-map.md); those documents supersede the initial implementation status below.
 
 ## Decision so far
 

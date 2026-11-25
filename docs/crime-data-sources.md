@@ -116,8 +116,13 @@ https://apps.costamesaca.gov/gis1/rest/services/PoliceIncidents/MapServer/info/i
 Reuse terms and final team adoption remain unresolved. This document
 does not claim permission to redistribute the records.
 
-Fullerton and Community Crime Map were listed as alternatives but
-have not been evaluated.
+The saved Fullerton viewer sample and the independent anaheimcrime.com
+Anaheim export have since been evaluated and integrated as bounded offline
+samples under Task #97. See [city-data-import.md](city-data-import.md) for
+source coverage and field mappings, and [multi-city-map.md](multi-city-map.md)
+for partial map coverage and coordinate provenance. Community Crime Map
+itself remains a candidate; the Anaheim export is not represented as a
+verified export from that service. Reuse terms remain unresolved.
 
 ## Remaining work
 
