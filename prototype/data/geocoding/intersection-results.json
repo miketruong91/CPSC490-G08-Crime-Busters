@@ -1,0 +1,1085 @@
+{
+  "results": [
+    {
+      "city_context": "Anaheim",
+      "original_location": "BEACH BLVD / ORANGE AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "BEACH BLVD / ORANGE AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.82475899997487,
+          "longitude": -117.99337799965639,
+          "matched_address": "Orange Ave / S Beach Blvd / W Orange Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 2
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "BROOKHURST ST / LA PALMA AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "BROOKHURST ST / LA PALMA AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.84702133343099,
+          "longitude": -117.95912733334306,
+          "matched_address": "N Brookhurst St / W La Palma Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 3
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "CERRITOS AVE / WALNUT ST",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "CERRITOS AVE / WALNUT ST",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.81057399972171,
+          "longitude": -117.92838699989127,
+          "matched_address": "S Walnut St / W Cerritos Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "CLIFTON AVE / CLAUDINA ST",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "CLIFTON AVE / CLAUDINA ST",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.819996999641,
+          "longitude": -117.90755099998262,
+          "matched_address": "E Clifton Ave / S Claudina St",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "EUCLID ST / GLENOAKS AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "EUCLID ST / GLENOAKS AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.84295800002342,
+          "longitude": -117.94162300006968,
+          "matched_address": "N Euclid St / W Glenoaks Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "GENE AUTRY WAY / SANTA CRUZ ST",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "GENE AUTRY WAY / SANTA CRUZ ST",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.799715999979924,
+          "longitude": -117.89618600009821,
+          "matched_address": "E Gene Autry Way / S Santa Cruz St",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "GLENOAKS AVE / EUCLID ST",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "GLENOAKS AVE / EUCLID ST",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.84295800002342,
+          "longitude": -117.94162300006968,
+          "matched_address": "N Euclid St / W Glenoaks Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "HARBOR BLVD / CARL KARCHER WAY",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "HARBOR BLVD / CARL KARCHER WAY",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.850798999953774,
+          "longitude": -117.92429500039727,
+          "matched_address": "N Harbor Blvd / W Carl Karcher Way",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "HARBOR BLVD / KATELLA AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "HARBOR BLVD / KATELLA AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.803273749867195,
+          "longitude": -117.91525775011135,
+          "matched_address": "S Harbor Blvd / W Katella Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 4
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "HARBOR BLVD / SYCAMORE ST",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "HARBOR BLVD / SYCAMORE ST",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.83855799982571,
+          "longitude": -117.92097100028406,
+          "matched_address": "N Harbor Blvd / W Sycamore St",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "KATELLA AVE / WALNUT ST",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "KATELLA AVE / WALNUT ST",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.80322300026164,
+          "longitude": -117.92835699975404,
+          "matched_address": "S Walnut St / W Katella Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 2
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "KNOTT AVE / LINCOLN AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "KNOTT AVE / LINCOLN AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.83190299973544,
+          "longitude": -118.01098049977598,
+          "matched_address": "Lincoln Ave / S Knott Ave / W Lincoln Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 2
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "LINCOLN AVE / DALE AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "LINCOLN AVE / DALE AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.83210950017576,
+          "longitude": -117.98473149990025,
+          "matched_address": "Dale St / Lincoln Ave / N Dale Ave / S Dale Ave / S Dale St / W Lincoln Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 2
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "MINTEER ST / CHEVY CHASE DR",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "MINTEER ST / CHEVY CHASE DR",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.85314499969828,
+          "longitude": -117.94001899973941,
+          "matched_address": "Minteer St / W Chevy Chase Dr",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "ORANGETHORPE AVE / RAYMOND AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "ORANGETHORPE AVE / RAYMOND AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.859554999690964,
+          "longitude": -117.90678400042673,
+          "matched_address": "E Orangethorpe Ave / N Raymond Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "STATE COLLEGE BLVD / LA PALMA AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "STATE COLLEGE BLVD / LA PALMA AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.84725100014277,
+          "longitude": -117.88920499978583,
+          "matched_address": "E La Palma Ave / La Palma Ave / N State College Blvd / S State College Blvd",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "SYCAMORE ST / PAULINE ST",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "SYCAMORE ST / PAULINE ST",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.84130100014011,
+          "longitude": -117.90910000006134,
+          "matched_address": "E Sycamore St / N Pauline St",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "TOPANGA DR / DEL MONTE DR",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "TOPANGA DR / DEL MONTE DR",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.82979499976473,
+          "longitude": -118.000016999662,
+          "matched_address": "Del Monte Dr / S Topanga Dr / W Del Monte Dr",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "WESTCHESTER DR / LINCOLN AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "WESTCHESTER DR / LINCOLN AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.831878000300605,
+          "longitude": -118.00538350013505,
+          "matched_address": "Lincoln Ave / S Westchester Dr / W Lincoln Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 2
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "WOODLAND DR / LA PALMA AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "WOODLAND DR / LA PALMA AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.846804000121125,
+          "longitude": -117.97925100007356,
+          "matched_address": "La Palma Ave / W La Palma Ave / W Woodland Dr / Woodland Dr",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "DALE ST / AUTO CENTER DR",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "DALE ST / AUTO CENTER DR",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.85955999990234,
+          "longitude": -117.98505999987577,
+          "matched_address": "Auto Center Dr / Dale St",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "E AMERIGE AVE / N LEMON ST",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "E AMERIGE AVE / N LEMON ST",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.87142000020744,
+          "longitude": -117.919869999919,
+          "matched_address": "E Amerige Ave / N Lemon St",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "E COMMONWEALTH AVE / N POMONA AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "E COMMONWEALTH AVE / N POMONA AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.870359999873884,
+          "longitude": -117.92206000005521,
+          "matched_address": "E Commonwealth Ave / N Pomona Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "E COMMONWEALTH AVE / N RAYMOND AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "E COMMONWEALTH AVE / N RAYMOND AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.87047000023213,
+          "longitude": -117.90698000024533,
+          "matched_address": "E Commonwealth Ave / N Raymond Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "E HERMOSA DR / MADONNA DR",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "E HERMOSA DR / MADONNA DR",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.90994000035368,
+          "longitude": -117.91942999970297,
+          "matched_address": "E Hermosa Dr / N Madonna Dr",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "E VALENCIA DR / S LEMON ST",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "E VALENCIA DR / S LEMON ST",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.866250000308256,
+          "longitude": -117.91983600003297,
+          "matched_address": "E Valencia Dr / S Lemon St",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 2
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "E VALENCIA DR / S STATE COLLEGE BLVD",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "E VALENCIA DR / S STATE COLLEGE BLVD",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.86691000003435,
+          "longitude": -117.88953000037415,
+          "matched_address": "E Valencia Dr / S State College Blvd",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "HARBOR/VALENCIA",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "HARBOR/VALENCIA",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.86619999986116,
+          "longitude": -117.92428499990235,
+          "matched_address": "E Valencia Dr / S Harbor Blvd / W Valencia Dr",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 2
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "N BASQUE AVE / W COMMONWEALTH AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "N BASQUE AVE / W COMMONWEALTH AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.8701600000799,
+          "longitude": -117.95068999986287,
+          "matched_address": "N Basque Ave / W Commonwealth Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "N EUCLID ST / W COMMONWEALTH AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "N EUCLID ST / W COMMONWEALTH AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.870209999699405,
+          "longitude": -117.94195000030784,
+          "matched_address": "N Euclid St / W Commonwealth Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "N HARBOR BLVD / W CHAPMAN AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "N HARBOR BLVD / W CHAPMAN AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.8739300003722,
+          "longitude": -117.92432999965904,
+          "matched_address": "N Harbor Blvd / W Chapman Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "N PLACENTIA AVE / MADISON AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "N PLACENTIA AVE / MADISON AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.882719999826925,
+          "longitude": -117.87640999964837,
+          "matched_address": "Madison Ave / N Placentia Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "N STATE COLLEGE BLVD / E CHAPMAN AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "N STATE COLLEGE BLVD / E CHAPMAN AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.87423000006227,
+          "longitude": -117.88962599973532,
+          "matched_address": "E Chapman Ave / N State College Blvd",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "S ACACIA AVE / E VALENCIA DR",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "S ACACIA AVE / E VALENCIA DR",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.86682999977422,
+          "longitude": -117.89823999979197,
+          "matched_address": "E Valencia Dr / S Acacia Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "S EUCLID ST / 91 FWY",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "S EUCLID ST / 91 FWY",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.85415600035135,
+          "longitude": -117.9417894996635,
+          "matched_address": "Riverside Fwy / S Euclid St",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 2
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "S GILBERT ST / W OLIVE AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "S GILBERT ST / W OLIVE AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.86237000002125,
+          "longitude": -117.96807000031214,
+          "matched_address": "S Gilbert St / W Olive Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "S GILBERT ST / W VALENCIA DR",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "S GILBERT ST / W VALENCIA DR",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.866470000286625,
+          "longitude": -117.96810999959678,
+          "matched_address": "S Gilbert St / W Valencia Dr",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "S HARBOR BLVD / W HILL AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "S HARBOR BLVD / W HILL AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.86107999986316,
+          "longitude": -117.92428999992524,
+          "matched_address": "S Harbor Blvd / W Hill Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 2
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "W UNION AVE / N MALDEN AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "W UNION AVE / N MALDEN AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.87752000033465,
+          "longitude": -117.92651999979527,
+          "matched_address": "N Malden Ave / W Union Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "W WOODCREST AVE / S JEFFERSON AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "W WOODCREST AVE / S JEFFERSON AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.85838900029009,
+          "longitude": -117.93933900022215,
+          "matched_address": "S Jefferson Ave / W Woodcrest Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "EAST ST / LINCOLN AVE",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "EAST ST / LINCOLN AVE",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.83808400027455,
+          "longitude": -117.90265400039958,
+          "matched_address": "E Lincoln Ave / N East St / S East St",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "EAST ST / SYCAMORE ST",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "EAST ST / SYCAMORE ST",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.84245900016613,
+          "longitude": -117.90409899982289,
+          "matched_address": "E Sycamore St / N East St",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "LA PALMA AVE / HARBOR BLVD",
+      "status": "candidate_needs_map_review",
+      "precision": "approximate",
+      "location_label": "Approximate intersection",
+      "provider": "US Census TIGERweb road geometry",
+      "method": "local_road_geometry_crossing",
+      "selected_query_address": "LA PALMA AVE / HARBOR BLVD",
+      "request_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer",
+      "benchmark": "Saved TIGERweb Transportation road extract",
+      "candidates": [
+        {
+          "latitude": 33.84718200023698,
+          "longitude": -117.92383599991466,
+          "matched_address": "N Harbor Blvd / W La Palma Ave",
+          "checks": {
+            "both_reported_streets_matched": true,
+            "single_crossing_cluster": true,
+            "within_city_context": true
+          },
+          "crossing_count": 1
+        }
+      ]
+    }
+  ],
+  "unresolved": [
+    [
+      "Fullerton",
+      "N MAGNOLIA AVE / W COMMONWEALTH AVE"
+    ]
+  ]
+}

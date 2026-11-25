@@ -1,0 +1,1097 @@
+{
+  "provider": "US Census Geocoder",
+  "database_modified": false,
+  "note": "Derived approximate candidates. No actual event house numbers are known.",
+  "results": [
+    {
+      "city_context": "Fullerton",
+      "original_location": "3500 BLOCK W COMMONWEALTH AVE",
+      "precision": "block",
+      "location_label": "Approximate location",
+      "method": "sequential_block_number_query",
+      "approved_for_import": false,
+      "attempts": [
+        {
+          "query_number": 3500,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=3500+W+COMMONWEALTH+AVE&city=Fullerton&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "candidate_needs_map_review",
+          "candidates": [
+            {
+              "matched_address": "3500 W COMMONWEALTH AVE, FULLERTON, CA, 92833",
+              "latitude": 33.869961640078,
+              "longitude": -117.973677708242,
+              "address_components": {
+                "zip": "92833",
+                "streetName": "COMMONWEALTH",
+                "preType": "",
+                "city": "FULLERTON",
+                "preDirection": "W",
+                "suffixDirection": "",
+                "fromAddress": "3500",
+                "state": "CA",
+                "suffixType": "AVE",
+                "toAddress": "3598",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "L",
+                "tigerLineId": "144010197"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": true,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "matched_address": "3500 W COMMONWEALTH AVE, FULLERTON, CA, 92833",
+          "latitude": 33.869961640078,
+          "longitude": -117.973677708242,
+          "address_components": {
+            "zip": "92833",
+            "streetName": "COMMONWEALTH",
+            "preType": "",
+            "city": "FULLERTON",
+            "preDirection": "W",
+            "suffixDirection": "",
+            "fromAddress": "3500",
+            "state": "CA",
+            "suffixType": "AVE",
+            "toAddress": "3598",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "tiger_line": {
+            "side": "L",
+            "tigerLineId": "144010197"
+          },
+          "checks": {
+            "city_label_matches": true,
+            "state_matches": true,
+            "street_matches": true,
+            "number_in_returned_range": true,
+            "valid_coordinates": true
+          }
+        }
+      ],
+      "status": "candidate_needs_map_review",
+      "selected_query_address": "3500 W COMMONWEALTH AVE",
+      "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=3500+W+COMMONWEALTH+AVE&city=Fullerton&state=CA&benchmark=Public_AR_Current&format=json",
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "2700 BLOCK W ORANGETHORPE AVE",
+      "precision": "block",
+      "location_label": "Approximate location",
+      "method": "sequential_block_number_query",
+      "approved_for_import": false,
+      "attempts": [
+        {
+          "query_number": 2700,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=2700+W+ORANGETHORPE+AVE&city=Fullerton&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "candidate_needs_map_review",
+          "candidates": [
+            {
+              "matched_address": "2700 W ORANGETHORPE AVE, FULLERTON, CA, 92833",
+              "latitude": 33.859061700207,
+              "longitude": -117.974512999275,
+              "address_components": {
+                "zip": "92833",
+                "streetName": "ORANGETHORPE",
+                "preType": "",
+                "city": "FULLERTON",
+                "preDirection": "W",
+                "suffixDirection": "",
+                "fromAddress": "2700",
+                "state": "CA",
+                "suffixType": "AVE",
+                "toAddress": "2798",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "L",
+                "tigerLineId": "652193106"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": true,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "matched_address": "2700 W ORANGETHORPE AVE, FULLERTON, CA, 92833",
+          "latitude": 33.859061700207,
+          "longitude": -117.974512999275,
+          "address_components": {
+            "zip": "92833",
+            "streetName": "ORANGETHORPE",
+            "preType": "",
+            "city": "FULLERTON",
+            "preDirection": "W",
+            "suffixDirection": "",
+            "fromAddress": "2700",
+            "state": "CA",
+            "suffixType": "AVE",
+            "toAddress": "2798",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "tiger_line": {
+            "side": "L",
+            "tigerLineId": "652193106"
+          },
+          "checks": {
+            "city_label_matches": true,
+            "state_matches": true,
+            "street_matches": true,
+            "number_in_returned_range": true,
+            "valid_coordinates": true
+          }
+        }
+      ],
+      "status": "candidate_needs_map_review",
+      "selected_query_address": "2700 W ORANGETHORPE AVE",
+      "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=2700+W+ORANGETHORPE+AVE&city=Fullerton&state=CA&benchmark=Public_AR_Current&format=json",
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    },
+    {
+      "city_context": "Fullerton",
+      "original_location": "1500 BLOCK DEERPARK DR",
+      "precision": "block",
+      "location_label": "Approximate location",
+      "method": "sequential_block_number_query",
+      "approved_for_import": false,
+      "attempts": [
+        {
+          "query_number": 1500,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=1500+DEERPARK+DR&city=Fullerton&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "candidate_needs_map_review",
+          "candidates": [
+            {
+              "matched_address": "1500 DEERPARK DR, FULLERTON, CA, 92831",
+              "latitude": 33.885761077199,
+              "longitude": -117.878814976696,
+              "address_components": {
+                "zip": "92831",
+                "streetName": "DEERPARK",
+                "preType": "",
+                "city": "FULLERTON",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "1500",
+                "state": "CA",
+                "suffixType": "DR",
+                "toAddress": "1598",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "R",
+                "tigerLineId": "144009310"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": true,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "matched_address": "1500 DEERPARK DR, FULLERTON, CA, 92831",
+          "latitude": 33.885761077199,
+          "longitude": -117.878814976696,
+          "address_components": {
+            "zip": "92831",
+            "streetName": "DEERPARK",
+            "preType": "",
+            "city": "FULLERTON",
+            "preDirection": "",
+            "suffixDirection": "",
+            "fromAddress": "1500",
+            "state": "CA",
+            "suffixType": "DR",
+            "toAddress": "1598",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "tiger_line": {
+            "side": "R",
+            "tigerLineId": "144009310"
+          },
+          "checks": {
+            "city_label_matches": true,
+            "state_matches": true,
+            "street_matches": true,
+            "number_in_returned_range": true,
+            "valid_coordinates": true
+          }
+        }
+      ],
+      "status": "candidate_needs_map_review",
+      "selected_query_address": "1500 DEERPARK DR",
+      "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=1500+DEERPARK+DR&city=Fullerton&state=CA&benchmark=Public_AR_Current&format=json",
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "500 BLOCK N HANOVER ST",
+      "precision": "block",
+      "location_label": "Approximate location",
+      "method": "sequential_block_number_query",
+      "approved_for_import": false,
+      "attempts": [
+        {
+          "query_number": 500,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=500+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "needs_investigation",
+          "candidates": [
+            {
+              "matched_address": "500 HANOVER ST, ANAHEIM, CA, 92801",
+              "latitude": 33.837522428175,
+              "longitude": -117.974581416684,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "HANOVER",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "500",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "598",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "R",
+                "tigerLineId": "144011743"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": false,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        },
+        {
+          "query_number": 501,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=501+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "needs_investigation",
+          "candidates": [
+            {
+              "matched_address": "501 HANOVER ST, ANAHEIM, CA, 92801",
+              "latitude": 33.837520173437,
+              "longitude": -117.97471934874,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "HANOVER",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "501",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "599",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "L",
+                "tigerLineId": "144011743"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": false,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        },
+        {
+          "query_number": 502,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=502+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "needs_investigation",
+          "candidates": [
+            {
+              "matched_address": "502 HANOVER ST, ANAHEIM, CA, 92801",
+              "latitude": 33.837563090404,
+              "longitude": -117.974582380106,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "HANOVER",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "500",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "598",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "R",
+                "tigerLineId": "144011743"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": false,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        },
+        {
+          "query_number": 503,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=503+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "needs_investigation",
+          "candidates": [
+            {
+              "matched_address": "503 HANOVER ST, ANAHEIM, CA, 92801",
+              "latitude": 33.837560835667,
+              "longitude": -117.974720312162,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "HANOVER",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "501",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "599",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "L",
+                "tigerLineId": "144011743"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": false,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        },
+        {
+          "query_number": 504,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=504+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "needs_investigation",
+          "candidates": [
+            {
+              "matched_address": "504 HANOVER ST, ANAHEIM, CA, 92801",
+              "latitude": 33.837603752634,
+              "longitude": -117.974583343529,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "HANOVER",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "500",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "598",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "R",
+                "tigerLineId": "144011743"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": false,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        },
+        {
+          "query_number": 505,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=505+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "needs_investigation",
+          "candidates": [
+            {
+              "matched_address": "505 HANOVER ST, ANAHEIM, CA, 92801",
+              "latitude": 33.837601497896,
+              "longitude": -117.974721275585,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "HANOVER",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "501",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "599",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "L",
+                "tigerLineId": "144011743"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": false,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        },
+        {
+          "query_number": 506,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=506+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "needs_investigation",
+          "candidates": [
+            {
+              "matched_address": "506 HANOVER ST, ANAHEIM, CA, 92801",
+              "latitude": 33.837644414864,
+              "longitude": -117.974584306951,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "HANOVER",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "500",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "598",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "R",
+                "tigerLineId": "144011743"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": false,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        },
+        {
+          "query_number": 507,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=507+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "needs_investigation",
+          "candidates": [
+            {
+              "matched_address": "507 HANOVER ST, ANAHEIM, CA, 92801",
+              "latitude": 33.837642160126,
+              "longitude": -117.974722239007,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "HANOVER",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "501",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "599",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "L",
+                "tigerLineId": "144011743"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": false,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        },
+        {
+          "query_number": 508,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=508+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "needs_investigation",
+          "candidates": [
+            {
+              "matched_address": "508 HANOVER ST, ANAHEIM, CA, 92801",
+              "latitude": 33.837685077093,
+              "longitude": -117.974585270373,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "HANOVER",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "500",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "598",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "R",
+                "tigerLineId": "144011743"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": false,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        },
+        {
+          "query_number": 509,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=509+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "needs_investigation",
+          "candidates": [
+            {
+              "matched_address": "509 HANOVER ST, ANAHEIM, CA, 92801",
+              "latitude": 33.837682822355,
+              "longitude": -117.974723202429,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "HANOVER",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "501",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "599",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "L",
+                "tigerLineId": "144011743"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": false,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        },
+        {
+          "query_number": 510,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=510+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "needs_investigation",
+          "candidates": [
+            {
+              "matched_address": "510 HANOVER ST, ANAHEIM, CA, 92801",
+              "latitude": 33.837725739323,
+              "longitude": -117.974586233796,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "HANOVER",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "500",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "598",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "R",
+                "tigerLineId": "144011743"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": false,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        },
+        {
+          "query_number": 511,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=511+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "needs_investigation",
+          "candidates": [
+            {
+              "matched_address": "511 HANOVER ST, ANAHEIM, CA, 92801",
+              "latitude": 33.837723484585,
+              "longitude": -117.974724165852,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "HANOVER",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "501",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "599",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "L",
+                "tigerLineId": "144011743"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": false,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        },
+        {
+          "query_number": 512,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=512+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "needs_investigation",
+          "candidates": [
+            {
+              "matched_address": "512 HANOVER ST, ANAHEIM, CA, 92801",
+              "latitude": 33.837766401552,
+              "longitude": -117.974587197218,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "HANOVER",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "500",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "598",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "R",
+                "tigerLineId": "144011743"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": false,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        },
+        {
+          "query_number": 513,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=513+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "needs_investigation",
+          "candidates": [
+            {
+              "matched_address": "513 HANOVER ST, ANAHEIM, CA, 92801",
+              "latitude": 33.837764146814,
+              "longitude": -117.974725129274,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "HANOVER",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "",
+                "suffixDirection": "",
+                "fromAddress": "501",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "599",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "L",
+                "tigerLineId": "144011743"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": false,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        },
+        {
+          "query_number": 514,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=514+N+HANOVER+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "lookup_pending"
+        }
+      ],
+      "candidates": [],
+      "status": "lookup_pending",
+      "reason": "Run without --cached-only to continue live lookups."
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "100 BLOCK S RIO VISTA ST",
+      "precision": "block",
+      "location_label": "Approximate location",
+      "method": "sequential_block_number_query",
+      "approved_for_import": false,
+      "attempts": [
+        {
+          "query_number": 100,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=100+S+RIO+VISTA+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "candidate_needs_map_review",
+          "candidates": [
+            {
+              "matched_address": "100 S RIO VISTA ST, ANAHEIM, CA, 92806",
+              "latitude": 33.8414156948,
+              "longitude": -117.87158599975,
+              "address_components": {
+                "zip": "92806",
+                "streetName": "RIO VISTA",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "S",
+                "suffixDirection": "",
+                "fromAddress": "100",
+                "state": "CA",
+                "suffixType": "ST",
+                "toAddress": "148",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "L",
+                "tigerLineId": "640211984"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": true,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "matched_address": "100 S RIO VISTA ST, ANAHEIM, CA, 92806",
+          "latitude": 33.8414156948,
+          "longitude": -117.87158599975,
+          "address_components": {
+            "zip": "92806",
+            "streetName": "RIO VISTA",
+            "preType": "",
+            "city": "ANAHEIM",
+            "preDirection": "S",
+            "suffixDirection": "",
+            "fromAddress": "100",
+            "state": "CA",
+            "suffixType": "ST",
+            "toAddress": "148",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "tiger_line": {
+            "side": "L",
+            "tigerLineId": "640211984"
+          },
+          "checks": {
+            "city_label_matches": true,
+            "state_matches": true,
+            "street_matches": true,
+            "number_in_returned_range": true,
+            "valid_coordinates": true
+          }
+        }
+      ],
+      "status": "candidate_needs_map_review",
+      "selected_query_address": "100 S RIO VISTA ST",
+      "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=100+S+RIO+VISTA+ST&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    },
+    {
+      "city_context": "Anaheim",
+      "original_location": "3100 BLOCK W LINCOLN AVE",
+      "precision": "block",
+      "location_label": "Approximate location",
+      "method": "sequential_block_number_query",
+      "approved_for_import": false,
+      "attempts": [
+        {
+          "query_number": 3100,
+          "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=3100+W+LINCOLN+AVE&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+          "status": "candidate_needs_map_review",
+          "candidates": [
+            {
+              "matched_address": "3100 W LINCOLN AVE, ANAHEIM, CA, 92801",
+              "latitude": 33.83187526639,
+              "longitude": -117.997949407096,
+              "address_components": {
+                "zip": "92801",
+                "streetName": "LINCOLN",
+                "preType": "",
+                "city": "ANAHEIM",
+                "preDirection": "W",
+                "suffixDirection": "",
+                "fromAddress": "3100",
+                "state": "CA",
+                "suffixType": "AVE",
+                "toAddress": "3116",
+                "suffixQualifier": "",
+                "preQualifier": ""
+              },
+              "tiger_line": {
+                "side": "L",
+                "tigerLineId": "630203162"
+              },
+              "checks": {
+                "city_label_matches": true,
+                "state_matches": true,
+                "street_matches": true,
+                "number_in_returned_range": true,
+                "valid_coordinates": true
+              }
+            }
+          ],
+          "benchmark": {
+            "isDefault": true,
+            "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+            "id": "4",
+            "benchmarkName": "Public_AR_Current"
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "matched_address": "3100 W LINCOLN AVE, ANAHEIM, CA, 92801",
+          "latitude": 33.83187526639,
+          "longitude": -117.997949407096,
+          "address_components": {
+            "zip": "92801",
+            "streetName": "LINCOLN",
+            "preType": "",
+            "city": "ANAHEIM",
+            "preDirection": "W",
+            "suffixDirection": "",
+            "fromAddress": "3100",
+            "state": "CA",
+            "suffixType": "AVE",
+            "toAddress": "3116",
+            "suffixQualifier": "",
+            "preQualifier": ""
+          },
+          "tiger_line": {
+            "side": "L",
+            "tigerLineId": "630203162"
+          },
+          "checks": {
+            "city_label_matches": true,
+            "state_matches": true,
+            "street_matches": true,
+            "number_in_returned_range": true,
+            "valid_coordinates": true
+          }
+        }
+      ],
+      "status": "candidate_needs_map_review",
+      "selected_query_address": "3100 W LINCOLN AVE",
+      "request_url": "https://geocoding.geo.census.gov/geocoder/locations/address?street=3100+W+LINCOLN+AVE&city=Anaheim&state=CA&benchmark=Public_AR_Current&format=json",
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    }
+  ]
+}

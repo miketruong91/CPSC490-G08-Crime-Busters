@@ -1,0 +1,18 @@
+source,source_record_id,incident_date,incident_time,description,location,review_reason
+anaheimcrime_anaheim_incidents,2026135481,2026-09-18,,DRUG / NARCOTIC VIOLATIONS,1900 BLOCK S JACARANDA ST,No consistent address-range match or unique road crossing
+anaheimcrime_anaheim_incidents,2026135582,2026-09-18,,"METHAMPHETAMINE, ADDERALL, GHB:M:POSSESSION",1300 BLOCK S DISNEYLAND DR,No consistent address-range match or unique road crossing
+anaheimcrime_anaheim_incidents,2026136053,2026-09-19,,AGGRAVATED ASSAULT,1100 BLOCK N CITRON ST,No consistent address-range match or unique road crossing
+anaheimcrime_anaheim_incidents,2026136384,2026-09-20,,AGGRAVATED ASSAULT,2200 BLOCK W BROADWAY,No consistent address-range match or unique road crossing
+anaheimcrime_anaheim_incidents,2026136573,2026-09-20,,ALL OTHER LARCENY,1900 BLOCK S JACARANDA ST,No consistent address-range match or unique road crossing
+anaheimcrime_anaheim_incidents,2026137148,2026-09-21,,THEFT:PETTY:LICENSE PLATE,2200 BLOCK W BROADWAY,No consistent address-range match or unique road crossing
+anaheimcrime_anaheim_incidents,2026137700,2026-09-18,,INTIMIDATION,1900 BLOCK S JACARANDA ST,No consistent address-range match or unique road crossing
+anaheimcrime_anaheim_incidents,2026137821,2026-09-22,,THEFT:PETTY:AUTO PARTS,300 BLOCK S QUADRILATERAL WAY,No consistent address-range match or unique road crossing
+anaheimcrime_anaheim_incidents,2026138621,2026-09-24,,AGGRAVATED ASSAULT,2100 BLOCK S STATE COLLEGE BLVD,No consistent address-range match or unique road crossing
+fullerton_police_calls_for_service,26-57358,2026-11-23,22:21:00,ALARM BURGLARY,500 BLOCK N SYCAMORE AVE,No consistent address-range match or unique road crossing
+fullerton_police_calls_for_service,26-57381,2026-11-24,07:27:00,TRESPASS,1800 BLOCK W MALVERN AVE,No consistent address-range match or unique road crossing
+fullerton_police_calls_for_service,26-57385,2026-11-24,08:07:00,SUSPICIOUS PERSON,1800 BLOCK W MALVERN AVE,No consistent address-range match or unique road crossing
+fullerton_police_calls_for_service,26-57389,2026-11-24,08:15:00,FOLLOW UP CASE,26300 BLOCK IRIS AVE MORENO VALLEY,Reported address explicitly names a different city than its source dataset; verify before plotting
+fullerton_police_calls_for_service,26-57393,2026-11-24,08:46:00,THEFT PETTY RPT,1800 BLOCK W MALVERN AVE,No consistent address-range match or unique road crossing
+fullerton_police_calls_for_service,26-57423,2026-11-24,12:24:00,THEFT PETTY RPT,1900 BLOCK W MALVERN AVE,No consistent address-range match or unique road crossing
+fullerton_police_calls_for_service,26-57429,2026-11-24,13:03:00,PATROL CHECK,1800 BLOCK W MALVERN AVE,No consistent address-range match or unique road crossing
+fullerton_police_calls_for_service,26-57443,2026-11-24,14:24:00,INDECENT EXPOSURE,3000 BLOCK W ORANGETHORPE AVE,No consistent address-range match or unique road crossing

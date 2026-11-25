@@ -1,0 +1,44 @@
+{
+  "result": {
+    "input": {
+      "address": {
+        "city": "Fullerton",
+        "street": "3500 W COMMONWEALTH AVE",
+        "state": "CA"
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    },
+    "addressMatches": [
+      {
+        "tigerLine": {
+          "side": "L",
+          "tigerLineId": "144010197"
+        },
+        "coordinates": {
+          "x": -117.973677708242,
+          "y": 33.869961640078
+        },
+        "addressComponents": {
+          "zip": "92833",
+          "streetName": "COMMONWEALTH",
+          "preType": "",
+          "city": "FULLERTON",
+          "preDirection": "W",
+          "suffixDirection": "",
+          "fromAddress": "3500",
+          "state": "CA",
+          "suffixType": "AVE",
+          "toAddress": "3598",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "3500 W COMMONWEALTH AVE, FULLERTON, CA, 92833"
+      }
+    ]
+  }
+}

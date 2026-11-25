@@ -1,0 +1,44 @@
+{
+  "result": {
+    "input": {
+      "address": {
+        "city": "Anaheim",
+        "street": "506 N HANOVER ST",
+        "state": "CA"
+      },
+      "benchmark": {
+        "isDefault": true,
+        "benchmarkDescription": "Public Address Ranges - Current Benchmark",
+        "id": "4",
+        "benchmarkName": "Public_AR_Current"
+      }
+    },
+    "addressMatches": [
+      {
+        "tigerLine": {
+          "side": "R",
+          "tigerLineId": "144011743"
+        },
+        "coordinates": {
+          "x": -117.974584306951,
+          "y": 33.837644414864
+        },
+        "addressComponents": {
+          "zip": "92801",
+          "streetName": "HANOVER",
+          "preType": "",
+          "city": "ANAHEIM",
+          "preDirection": "",
+          "suffixDirection": "",
+          "fromAddress": "500",
+          "state": "CA",
+          "suffixType": "ST",
+          "toAddress": "598",
+          "suffixQualifier": "",
+          "preQualifier": ""
+        },
+        "matchedAddress": "506 HANOVER ST, ANAHEIM, CA, 92801"
+      }
+    ]
+  }
+}
