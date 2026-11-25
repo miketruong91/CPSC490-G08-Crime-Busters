@@ -11,6 +11,7 @@ import re
 from geocode_all import street_key, ALIASES
 
 ROADS = Path(__file__).with_name('data') / 'geocoding' / 'roads'
+REQUIRED_ROAD_LAYERS = (2, 6, 8)
 SOURCE = 'https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer'
 SUFFIXES = {'ST','AVE','BLVD','RD','DR','LN','PL','CT','CIR','PKWY','HWY','FWY','WAY','TER','TRL'}
 DIRECTIONS = {'N','S','E','W','NE','NW','SE','SW'}
@@ -77,11 +78,17 @@ def meters(a,b):
 
 
 def read_roads():
+    files=[ROADS/f'tiger-layer-{layer}.json' for layer in REQUIRED_ROAD_LAYERS]
+    missing=[file.name for file in files if not file.is_file()]
+    if missing:
+        raise ValueError('Incomplete public road extract; missing: '+', '.join(missing))
     features=[]
-    for file in sorted(ROADS.glob('tiger-layer-*.json')):
+    for file in files:
         document=json.loads(file.read_text())
-        if document.get('error') or document.get('exceededTransferLimit'):
-            raise ValueError('Incomplete public road extract')
+        if (not isinstance(document,dict) or document.get('error') or
+                document.get('exceededTransferLimit') or
+                not isinstance(document.get('features'),list) or not document['features']):
+            raise ValueError(f'Incomplete public road extract: {file.name}')
         features.extend(document['features'])
     return features
 

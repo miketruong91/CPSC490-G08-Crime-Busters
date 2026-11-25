@@ -1,4 +1,10 @@
 import unittest
+import json
+import tempfile
+from pathlib import Path
+from unittest.mock import patch
+import expand_saved_geocoding as expansion
+import street_geometry
 from geocode_all import make_jobs, address_csv, assess_row, collect
 from street_geometry import crossing, road_matches, road_key
 from expand_saved_geocoding import corroborate
@@ -61,6 +67,58 @@ class FullGeocodingTests(unittest.TestCase):
 
     def test_shared_crossing(self):
         self.assertEqual(crossing([0,0],[1,1],[0,1],[1,0]),[0.5,0.5])
+
+
+class RoadExtractSafetyTests(unittest.TestCase):
+    def setUp(self):
+        self.directory=tempfile.TemporaryDirectory()
+        self.addCleanup(self.directory.cleanup)
+        self.root=Path(self.directory.name)
+        self.roads=self.root/'data/geocoding/roads'
+        self.roads.mkdir(parents=True)
+        self.manifest=self.roads.parent/'resolved-locations.json'
+        self.saved='{"results": ["previously reviewed coordinates"]}\n'
+        self.manifest.write_text(self.saved)
+        self.feature=road('N Hanover St',[[-117.9745,33.83],[-117.9745,33.85]])
+        for layer in (2,6,8):
+            (self.roads/f'tiger-layer-{layer}.json').write_text(json.dumps({'features':[self.feature]}))
+
+    def assert_rebuild_preserves_manifest(self):
+        with patch.object(street_geometry,'ROADS',self.roads), patch.object(expansion.g,'ROOT',self.root):
+            with self.assertRaises(ValueError):
+                expansion.run()
+        self.assertEqual(self.manifest.read_text(),self.saved)
+
+    def test_missing_each_required_layer_preserves_saved_coordinates(self):
+        for layer in (2,6,8):
+            with self.subTest(layer=layer):
+                file=self.roads/f'tiger-layer-{layer}.json'
+                saved=file.read_text()
+                file.unlink()
+                self.assert_rebuild_preserves_manifest()
+                file.write_text(saved)
+
+    def test_missing_directory_preserves_saved_coordinates(self):
+        for file in self.roads.iterdir():file.unlink()
+        self.roads.rmdir()
+        self.assert_rebuild_preserves_manifest()
+
+    def test_invalid_extract_preserves_saved_coordinates(self):
+        invalid=[{'features':[]},{'features':{}},{},[],
+                 {'features':[self.feature],'exceededTransferLimit':True},
+                 {'features':[self.feature],'error':{'message':'Unavailable'}}]
+        for document in invalid:
+            with self.subTest(document=document):
+                (self.roads/'tiger-layer-6.json').write_text(json.dumps(document))
+                self.assert_rebuild_preserves_manifest()
+
+    def test_malformed_json_preserves_saved_coordinates(self):
+        (self.roads/'tiger-layer-6.json').write_text('{')
+        self.assert_rebuild_preserves_manifest()
+
+    def test_complete_extract_loads_all_required_layers(self):
+        with patch.object(street_geometry,'ROADS',self.roads):
+            self.assertEqual(street_geometry.read_roads(),[self.feature]*3)
 
 
 if __name__=='__main__':unittest.main()

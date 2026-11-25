@@ -45,6 +45,8 @@ python build_map_db.py --output crime-multicity-expanded.db
 CRIME_DB_PATH="$PWD/crime-multicity-expanded.db" python -m flask --app app run --port 5051
 ```
 
+Offline rebuilds require all three saved road extracts (`tiger-layer-2.json`, `tiger-layer-6.json`, and `tiger-layer-8.json`). If any is missing, empty or incomplete, the rebuild stops before replacing saved coordinates. Restore the affected files from git, or download missing files with `python download_public_roads.py`, before retrying. Delete an invalid extract before downloading its replacement; the downloader keeps existing files.
+
 `python geocode_all.py --live` refreshes address-only Census queries. Each block tries its starting number and then the remaining numbers through the end of that block, selecting the lowest consistent match even if batch rows arrive out of order. Batches stay within the 10,000-row limit. Run `expand_saved_geocoding.py` afterward for local road checks and intersection matching. `download_public_roads.py` refreshes the bounded public Census road extract without sending incident locations. The original isolated pilot remains available as `geocode_city_pilot.py`.
 
 Each build requires a new database filename and refuses to overwrite an existing file. To view a new database, set `CRIME_DB_PATH` when starting Flask. Existing `crime.db` files remain untouched. Provenance records the provider, method, original location, representative query, returned address, benchmark and validation checks in the separate `incident_geocoding` table. Case/source IDs, dates and descriptions are verified against the normalized originals after enrichment.
