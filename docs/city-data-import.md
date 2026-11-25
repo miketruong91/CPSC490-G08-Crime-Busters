@@ -68,4 +68,4 @@ The existing loader and schema were retrieved from develop for these checks; nei
 
 ## AI use
 
-ChatGPT drafted the normalizer, tests, extraction/combination steps, and this document. Initial drafts of these new code and documentation artifacts were entirely AI-assisted. The user supplied downloads and selected the source samples. A human must review the mappings, code, source terms, and test evidence before merge. Proposal prose is a separate course deliverable and must follow its own authorship rules.
+ChatGPT helped draft the normalizer, tests, extraction/combination steps, and this document. Initial drafts of these new code and documentation artifacts were AI-assisted.
