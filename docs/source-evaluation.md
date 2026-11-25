@@ -1,64 +1,49 @@
 # Anaheim and Fullerton source evaluation
 
-Initial source inspection for [task #97](https://github.com/miketruong91/CPSC490-G08-Crime-Busters/issues/97), checked November 24, 2026. This records the initial source inspection. Subsequent saved-sample integration is documented in [city-data-import.md](city-data-import.md) and [multi-city-map.md](multi-city-map.md); those documents supersede the initial implementation status below.
+Related issues: Epic #3; Task #97; storage Story #28. Reviewed November 24, 2026.
 
-## Decision so far
+## Selected prototype sources
 
-| Candidate | Observed data | Suitability decision |
+The prototype integrates saved, publicly accessible records from Fullerton's city-hosted Calls for Service viewer and the independent Anaheim Crime website. Source evaluation covers field compatibility, sample coverage, record meaning, and published usage information. The findings below do not conclude that the datasets cannot be used.
+
+| Source | Saved sample and fields | Technical suitability |
 |---|---|---|
-| Fullerton official Calls for Service | Public query returned 20 calls on page 1, with identifiers, category codes/descriptions, block or intersection locations, and formatted dates/times. No numeric coordinates were present in this response. | Candidate for database storage after field mapping and reuse review. Map integration is unresolved. |
-| Anaheim official Community Crime Map | Police documentation identifies LexisNexis as its public map provider, describes block-level locations, and warns that initial report classifications can change. | Viewing source confirmed. Reusable export/API, terms, and actual coordinate output remain unverified. |
-| Anaheim ArcGIS item `9a32b866a3204bb5b9070b5a27248301` | A table without geometry. Three queried rows identified San Diego Police; a distinct-agency query returned eight San Diego-area agencies and no Anaheim agency. | Exclude from the Anaheim import. Publisher/title alone are insufficient evidence of geographic coverage. |
+| [Fullerton Calls for Service](https://www2.cityoffullerton.com/webdata/apps/cfs/) | 96 unique calls, November 23–24, 2026. Call identifiers, descriptions, reported blocks/intersections, and displayed dates/times. No coordinates in the saved tables. | Integrated with the existing schema as `call_for_service`. Repeat imports do not create duplicates. The map displays 88 calls using documented approximate coordinates; 8 retain null coordinates. |
+| [Anaheim Crime](https://anaheimcrime.com/) | 255 unique Anaheim Police incident records, September 18–25, 2026. Case identifiers, categories, descriptions, reported locations, dates, and agency labels. Times and coordinates are absent. | Integrated as `crime_incident`. Repeat imports do not create duplicates. The map displays 246 records using documented approximate coordinates; 9 retain null coordinates. |
 
-## Fullerton evidence and provisional mapping
+These counts describe the saved samples, not full historical coverage. The sources cover different periods and record types, so their counts are not directly comparable city crime rates. Final implemented field mappings and validation rules are in [city-data-import.md](city-data-import.md); map coverage and coordinate provenance are in [multi-city-map.md](multi-city-map.md).
 
-Public viewer: https://www2.cityoffullerton.com/webdata/apps/cfs/
+## Source selection and third-party platforms
 
-The viewer's public JavaScript calls `POST /WebData/Apps/CFS/FpdApi/Query` with `q`, `pg`, and `r`, plus a request-verification token from the public landing page. Inspection used the same anonymous cookie/token flow; no account credentials were used. This is an implementation endpoint, not a verified supported public API contract.
+I selected Fullerton's city-hosted viewer rather than collecting records through LexisNexis Community Crime Map. Anaheim's saved sample came from anaheimcrime.com, an independent public-data presentation, rather than from LexisNexis. It is not represented as an official city export.
 
-The response has a `success` property and a JSON-encoded `result`. Within the decoded result, records are in `hits.hits`, with original values in `_source` and additional display fields in `fields`. The inspected response reported 924 matching records; that is a query result count, not a verified historical total or a count imported into this project. The first returned call displayed November 24, 2026, 12:50 PM. The complete available date range and retention window remain unverified.
+The [Anaheim Police Community Crime Map page](https://pd.anaheim.net/280/Community-Crime-Map) identifies LexisNexis as its mapping provider. Alex's reason for avoiding that retrieval route was to avoid depending on a commercial mapping platform and its potentially separate access, automation, and reuse conditions. This records the selection rationale; no specific vendor restriction is asserted without inspecting that vendor's terms.
 
-| Standard field | Candidate mapping or unresolved decision |
-|---|---|
-| `source` | Proposed dataset identifier `fullerton_police_calls_for_service`; document before adoption. |
-| `source_record_id` | Evaluate `PK` (also returned as `_id`) for stability; preserve its value as text. Retain report year and number in raw evidence. Do not use report number alone across years. |
-| `record_kind` | `call_for_service`, based on the official viewer's stated scope. |
-| `source_code` | `_source.INCIDENT_TYPE`, preserving the original code. |
-| `description` | `_source.INCIDENT_DESC`, preserving the original wording. |
-| `location` | `_source.STREET_NAME_100BLK`; both block addresses and intersections appeared. |
-| `incident_date`, `incident_time` | Parse `fields.incident_datetime[0]` after confirming display semantics. The display supplies minute precision; do not claim source-provided seconds. |
-| `timezone` | Null until source documentation verifies it. Do not infer it from the city name or an epoch-like sort key. |
-| `latitude`, `longitude` | Null for the inspected query output. `incident_haslatlon: true` is a Boolean, not a coordinate pair. |
-| `location_precision` | Determine from source documentation and location form. Do not label intersections or unknown geometry as exact. |
-| `crime_type` | Define and review a source-specific mapping. Patrol checks, traffic stops, and alarms must retain their call meaning; a burglary alarm is not automatically a burglary. |
-| `city`, `agency`, `disposition` | Not explicit fields in the inspected `_source`; do not invent source-provided values. Document any later enrichment separately. |
-| `quality_flags` | Apply existing missing/uncertain-value rules after finalizing the mapping. |
+City-hosted records, city open-data portals, and vendor-hosted maps are distinct publication channels. Public analysis and reuse are common purposes of open-data publishing, but the applicable terms must be recorded for the specific source used. Fullerton's Calls for Service viewer has not been verified as an explicitly licensed open-data portal. Choosing a city-hosted source does not itself establish a blanket license, nor does a general website notice by itself settle the rights in individual factual records.
 
-The current schema allows null coordinate pairs and multiple source identifiers. Its incident API excludes records without usable coordinates. Consequently, storing these Fullerton calls alone would not add Fullerton markers to the current map.
+## Published usage information
 
-## Anaheim evidence
+| Source | What the review established | What remains unverified |
+|---|---|---|
+| Fullerton city-hosted viewer | Records are publicly accessible. The City's [general disclaimer and copyright notice](https://www.cityoffullerton.com/about-us/contact-us/disclaimer) reserves rights in website materials and includes a written-permission condition. Its [public-records page](https://www.cityoffullerton.com/government/departments/city-clerk/public-records-information) describes access to City records. | No calls-for-service-specific reuse license was verified. The application of the general website notice to this factual dataset was not established. No conclusion that the project is prohibited follows from this review. |
+| Anaheim Crime | The [About](https://anaheimcrime.com/about) and [Sources](https://anaheimcrime.com/sources) pages describe an independent, unofficial presentation of public records. [Methodology](https://anaheimcrime.com/methodology) explains record definitions and location rounding. [Privacy](https://anaheimcrime.com/privacy) and [Corrections](https://anaheimcrime.com/corrections) pages were also inspected. | No explicit reuse license was found on those inspected pages. Upstream terms applicable to this historical snapshot were not independently verified. Absence of a license statement is recorded as unknown, not as a finding that use is prohibited. |
 
-Official police description: https://pd.anaheim.net/280/Community-Crime-Map
+The Fullerton general notice was available through search-engine copies of the official page; direct retrieval returned HTTP 403. The viewer returned only a loading shell in text retrieval. These access limitations are not evidence of a ban on reuse. This document records source information and technical suitability, not a legal determination or a verified grant of unrestricted redistribution rights.
 
-The police department states that locations are rounded to block addresses and reports are preliminary. A separate evaluation is still needed for the public map's retrieval method, agency filtering, accessible history, category coverage, coordinate precision, and reuse conditions.
+## Rejected candidate and provenance
 
-Rejected ArcGIS candidate metadata:
-https://www.arcgis.com/sharing/rest/content/items/9a32b866a3204bb5b9070b5a27248301?f=json
+A separately inspected [ArcGIS item](https://www.arcgis.com/sharing/rest/content/items/9a32b866a3204bb5b9070b5a27248301?f=json) and [table](https://services3.arcgis.com/hPs600I3X0RTaaaq/arcgis/rest/services/Crime_Mapping_/FeatureServer/0) contained no geometry. Sample and distinct-agency queries identified eight San Diego-area agencies and no Anaheim agency. That queried candidate was excluded from the Anaheim import. A city name in metadata was not treated as proof of geographic coverage.
 
-Candidate table:
-https://services3.arcgis.com/hPs600I3X0RTaaaq/arcgis/rest/services/Crime_Mapping_/FeatureServer/0
+Anaheim Crime's current sources page reports 255 records for September 18–25, matching the saved sample's count and date range. Its upstream link does not independently establish the historical identity or terms of every saved record. Original filenames, hashes, source labels, and source record fields remain preserved in the saved inputs.
 
-Its metadata describes a table and contains no geometry field. Query checks used `outFields=*`, `resultRecordCount=3`, and a separate distinct `Agency` query. Distinct agencies were Coronado Police, Escondido Police, La Mesa Police, Lemon Grove Sheriff, National City Police, San Diego County Sheriff, San Diego Harbor Police, and San Diego Police. The item metadata's `licenseInfo` was null; a blank license is not evidence of permission to redistribute.
+## Verification and review
 
-## Remaining work
+All 351 Anaheim/Fullerton records were imported alongside the 19 Costa Mesa records. Automated checks cover field preservation, stored counts, repeat-import duplicate prevention, and approximate-coordinate provenance. The full suite passed 96 tests plus 15 subtests. Available local repository checks passed; GitHub-dependent checks remain for CI.
 
-- Verify source-specific retrieval and redistribution terms for both cities. No conclusion that scraping is prohibited or permitted has been established here.
-- Establish actual coverage and date retention from source evidence, rather than from a city name in a search URL.
-- Find verified coordinates or an explicitly documented enrichment approach before promising additional map markers. Keep missing coordinates null.
-- Finalize identifier, date/time, category, and precision mappings before writing an importer.
-- For each adopted source, save a bounded input snapshot and retrieval metadata, normalize it, load a fresh database, verify every selected sample value and record count, and repeat the import to prove duplicate prevention.
-- Run appropriate tests and repository checks, and obtain teammate review of the implementation PR.
+Alex ran Flask locally and confirmed map rendering, city/type filtering, zooming, marker details, and recentering. Independent teammate review remains part of the PR process. Technical validation and the published-terms findings above are separate evidence; neither should be described as proving unrestricted reuse rights.
 
 ## AI assistance
 
-ChatGPT performed the initial public-source inspection and drafted this working evaluation. Human review of the evidence and mapping decisions is pending. The listed import and test steps have not yet been performed for Anaheim or Fullerton.
+ChatGPT helped draft the evaluation, implementation, tests, and documentation. Alex supplied the source samples, selected the retrieval routes, and manually tested the Flask map.
+
+Assisted-by: ChatGPT

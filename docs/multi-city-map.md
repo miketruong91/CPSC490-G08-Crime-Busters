@@ -39,6 +39,6 @@ The prototype README documents address-only refreshes and offline rebuilds from 
 
 Tests cover both API contracts, all three cities, coverage totals, legacy databases, missing-database errors, source preservation, provenance, sequential fallback and block limits. Repeating an import of the 351 raw city records produces 0 inserted and 351 unchanged; repeating the 370-record combined import produces 0 inserted and 370 unchanged. The builder refuses to overwrite existing files. User review confirmed that the standalone map renders when served through localhost. Automated JavaScript logic checks cover filtering, empty results, grouping and approximate-location popups; automated visual rendering was not completed in the isolated execution environment.
 
-Source-specific reuse terms and final team adoption remain unresolved; this implementation is a technical prototype and does not establish those decisions. It does not add a live feed or geocode all records.
+Published usage information and unverified dataset-specific terms are documented in [source-evaluation.md](source-evaluation.md). These findings do not conclude that the sources cannot be used, and technical integration is not a grant of unrestricted reuse rights. Final team adoption is a review decision. It does not add a live feed or geocode all records.
 
 Assisted-by: ChatGPT

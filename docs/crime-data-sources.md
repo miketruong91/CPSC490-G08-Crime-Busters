@@ -122,7 +122,7 @@ samples under Task #97. See [city-data-import.md](city-data-import.md) for
 source coverage and field mappings, and [multi-city-map.md](multi-city-map.md)
 for partial map coverage and coordinate provenance. Community Crime Map
 itself remains a candidate; the Anaheim export is not represented as a
-verified export from that service. Reuse terms remain unresolved.
+verified export from that service. Source-selection rationale and published usage information are documented in [source-evaluation.md](source-evaluation.md), including the distinction between Fullerton's city-hosted viewer, the independent Anaheim export, and LexisNexis. No dataset-specific reuse license was verified for the selected city samples; this does not establish that use is prohibited.
 
 ## Remaining work
 
